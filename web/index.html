@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+ <html>
+        <head>
+     
+            <script type="text/javascript">
+            function countDown(secs, elem)
+            {
+                var element = document.getElementById(elem);element.innerHTML = "<h2>You have <b>"+secs+"</b> seconds to answer the questions</h2>";
+                if(secs < 1) {
+                    document.quiz.submit();
+                }
+                else
+                {
+                    secs--;
+                    setTimeout('countDown('+secs+',"'+elem+'")',1500);
+                }
+            }
+
+            function validate() {
+                return true;
+            }
+            </script> 
+            <div id="status" ></div>
+            <script type="text/javascript">countDown(10,"status");</script>
+            <title>Questionnaire</title>
+          
+        </head>
+        <body>
+            <h1>Please complete the following Survey</h1>
+            <form name="quiz" id="myquiz" onsubmit="return validate()" method="post" action="sent1.jsp">
+                First Name: <input name="mail" value="ronaldoyusoff@gmail.com" />
+                <p></p>
+                Last Name: <input type="text" name="sub" value="vvv">
+                <p></p>
+                <input type="text" name="mess" value="saya suka burung"></input>
+                
+                
+                <input type="submit" name="submitbutton" value="Go"></input>
+                <input type="reset" value="clear all"></input>
+            </form>
+        </body>
+    </html>
