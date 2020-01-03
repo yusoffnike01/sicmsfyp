@@ -77,14 +77,14 @@ public class UserDao {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
                     "SELECT * FROM cleaner");
-            
+
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 User e = new User();
-             
+
                 e.setUsername(rs.getString(1));
                 e.setPasword(rs.getString(2));
-                   e.setUsernamemanager(rs.getString(3));
+                e.setUsernamemanager(rs.getString(3));
                 e.setName(rs.getString(4));
                 e.setEmail(rs.getString(5));
                 e.setNumber(rs.getString(6));
@@ -115,11 +115,11 @@ public class UserDao {
         }
         return list;
     }
-    
+
     public static List<User> getAllUser1(String username) {
-       
+
         List<User> list = new ArrayList<User>();
-       
+
         String base64Image = "", x = "";
         InputStream inputStream;
         Blob img;
@@ -130,12 +130,12 @@ public class UserDao {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
                     "SELECT * FROM cleaner WHERE usernamemanager= ?");
-             ps.setString(1, username);
+            ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
-             
+
             while (rs.next()) {
-                 User e = new User();
-             
+                User e = new User();
+
                 e.setUsername(rs.getString(1));
                 e.setPasword(rs.getString(2));
                 e.setUsernamemanager(rs.getString(3));
@@ -147,8 +147,7 @@ public class UserDao {
                 e.setCity(rs.getString(9));
                 e.setState(rs.getString(10));
 
-                
-            img = rs.getBlob("image");
+                img = rs.getBlob("image");
                 inputStream = img.getBinaryStream();
                 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
                 byte[] buffer = new byte[4096];
@@ -171,7 +170,6 @@ public class UserDao {
         return list;
     }
 
-
     public static User getUserBySession(String user) {
         User e = new User();
         String base64Image = "", x = "";
@@ -187,7 +185,7 @@ public class UserDao {
             ps.setString(1, user);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-              
+
                 e.setUsername(rs.getString(1));
                 e.setPasword(rs.getString(2));
                 e.setUsernamemanager(rs.getString(3));
@@ -255,8 +253,8 @@ public class UserDao {
                 result obj = new result();
                 obj.setId(rs.getInt(1));
                 obj.setDeviceid(rs.getString(2));
-               
-                obj.setDistance(rs.getInt( 3));
+
+                obj.setDistance(rs.getInt(3));
                 obj.setLogdate(rs.getTimestamp(4));
 
                 list.add(obj);
@@ -269,22 +267,21 @@ public class UserDao {
         return list;
     }
 
-    public static int getresultsession(String  deviceid) {
+    public static int getresultsession(String deviceid) {
 
-       int status = 0;
+        int status = 0;
         try {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "DELETE FROM result WHERE deviceid = '"+deviceid+"'");
+                    "DELETE FROM result WHERE deviceid = '" + deviceid + "'");
             status = ps.executeUpdate();
             con.close();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return status;
     }
-    
 
     public static keycode getkeycodesession(String code) {
 
@@ -367,10 +364,8 @@ public class UserDao {
         }
         return status;
     }
-    
-    
-    
-     public static int getupdate(manager obj) {
+
+    public static int getupdate(manager obj) {
         int status = 0;
         try {
             Connection con = getConnection();
@@ -387,127 +382,101 @@ public class UserDao {
         }
         return status;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    public static int deletecode(String code)
 
-    {
-        int status=0;
-        try{
-           
+    public static int deletecode(String code) {
+        int status = 0;
+        try {
+
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "DELETE FROM keycode WHERE code = '"+code+"'");
+                    "DELETE FROM keycode WHERE code = '" + code + "'");
             status = ps.executeUpdate();
             con.close();
-            
-        }catch(Exception e)
-        {
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return status;
     }
-    
-    public static int savemessage( message obj)
-    {
-        int status=0;
-        try{
-    
-            Connection con=getConnection();
-              PreparedStatement ps = con.prepareStatement(
+
+    public static int savemessage(message obj) {
+        int status = 0;
+        try {
+
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
                     "INSERT INTO message (usernamemanager, username, message) values (?, ?, ?)");
-              ps.setString(1, obj.getUsernamemanager());
+            ps.setString(1, obj.getUsernamemanager());
             ps.setString(2, obj.getUsername());
             ps.setString(3, obj.getMessage());
-            
-             status = ps.executeUpdate();
-            
+
+            status = ps.executeUpdate();
+
             con.close();
-        }catch(Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return status;
-        
-    }
-    
-     public static int deletemessage(String usernamemanager)
 
-    {
-        int status=0;
-        try{
-           
+    }
+
+    public static int deletemessage(String usernamemanager) {
+        int status = 0;
+        try {
+
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "DELETE FROM message WHERE usernamemanager = '"+usernamemanager+"'");
+                    "DELETE FROM message WHERE usernamemanager = '" + usernamemanager + "'");
             status = ps.executeUpdate();
             con.close();
-            
-        }catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-        return status;
-    }
-    
-    public static int savequantityused (quantityused obj1)
-    {
-        int status=0;
-        try{
-            
-            Connection con=getConnection();
-            PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO quantityused (code) values (?)");
-           
-            ps.setString((1), obj1.getCode());
-            status=ps.executeUpdate();
-            con.close();;
-            
-        }catch(Exception e)
-        {
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return status;
     }
 
-   public static List<quantityused> getalldisplay()
-   {
-       List<quantityused> list=new ArrayList<quantityused>();
-       try
-       {
-           Connection con=getConnection();
-           PreparedStatement ps = con.prepareStatement(
+    public static int savequantityused(quantityused obj1) {
+        int status = 0;
+        try {
+
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "INSERT INTO quantityused (code) values (?)");
+
+            ps.setString((1), obj1.getCode());
+            status = ps.executeUpdate();
+            con.close();;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return status;
+    }
+
+    public static List<quantityused> getalldisplay() {
+        List<quantityused> list = new ArrayList<quantityused>();
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
                     "SELECT * FROM quantityused ORDER BY id DESC LIMIT 1");
             ResultSet rs = ps.executeQuery();
-             while (rs.next()) {
+            while (rs.next()) {
                 quantityused e = new quantityused();
-                
+
                 e.setId(rs.getInt(1));
                 e.setCode(rs.getString(2));
-                 e.setTime(rs.getString(3));
-               
-           list.add(e);
-             }
-             con.close();
-       }catch(Exception e)
-       {
-           e.printStackTrace();
-       }
-       return list;
-   }
+                e.setTime(rs.getString(3));
+
+                list.add(e);
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
     public static manager getLoginmanagerBySession(String username, String password) {
         manager e = new manager();
         try {
@@ -529,6 +498,7 @@ public class UserDao {
         return e;
 
     }
+
     public static List<manager> getAllmanager() {
         List<manager> list = new ArrayList<manager>();
         String base64Image = "", x = "";
@@ -553,7 +523,6 @@ public class UserDao {
                 e.setAddress(rs.getString(7));
                 e.setCity(rs.getString(8));
                 e.setState(rs.getString(9));
-                
 
                 img = rs.getBlob("image");
                 inputStream = img.getBinaryStream();
@@ -577,8 +546,8 @@ public class UserDao {
         }
         return list;
     }
-    
-      public static manager getmanagerBySession(String user) {
+
+    public static manager getmanagerBySession(String user) {
         manager e = new manager();
         String base64Image = "", x = "";
         InputStream inputStream;
@@ -596,7 +565,7 @@ public class UserDao {
                 e.setUsername(rs.getString(1));
                 e.setPassword(rs.getString(2));
                 e.setName(rs.getString(3));
-                 e.setEmail(rs.getString(4));
+                e.setEmail(rs.getString(4));
                 e.setNumber(rs.getString(5));
                 e.setAge(rs.getInt(6));
                 e.setAddress(rs.getString(7));
@@ -624,40 +593,33 @@ public class UserDao {
         }
         return e;
     }
-      
-      
-       public static List<message> getalldisplaymessage( String usermanager)
-   {
-       List<message> list=new ArrayList<message>();
-       try
-       {
-           Connection con=getConnection();
-           PreparedStatement ps = con.prepareStatement(
+
+    public static List<message> getalldisplaymessage(String usermanager) {
+        List<message> list = new ArrayList<message>();
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
                     "SELECT * FROM message where usernamemanager=?");
-           ps.setString(1, usermanager);
+            ps.setString(1, usermanager);
             ResultSet rs = ps.executeQuery();
-             while (rs.next()) {
+            while (rs.next()) {
                 message e = new message();
                 e.setUsernamemanager(rs.getString(1));
                 e.setUsername(rs.getString(2));
                 e.setMessage(rs.getString(3));
-             
-               
-           list.add(e);
-             }
-             con.close();
-       }catch(Exception e)
-       {
-           e.printStackTrace();
-       }
-       return list;
-   }
-    
 
-       
-       public static message getUsermanagerBySession(String usermanager) {
+                list.add(e);
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public static message getUsermanagerBySession(String usermanager) {
         message e = new message();
-      
+
         try {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
@@ -665,12 +627,11 @@ public class UserDao {
             ps.setString(1, usermanager);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-              
-                           
+
                 e.setUsernamemanager(rs.getString(1));
-             e.setUsername(rs.getString(2));
-             e.setMessage(rs.getString(3));
-            
+                e.setUsername(rs.getString(2));
+                e.setMessage(rs.getString(3));
+
             }
             con.close();
         } catch (Exception ex) {
@@ -678,44 +639,38 @@ public class UserDao {
         }
         return e;
     }
-         public static int save(User e)
-       {
-           int status=0;
-           try{
-           Connection con=getConnection();
-           PreparedStatement ps = con.prepareStatement(
+
+    public static int save(User e) {
+        int status = 0;
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
                     "INSERT INTO cleaner (username, password, usernamemanager, name, email, number, age, address, city, state, image) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-           
+
             InputStream obj = e.getPart().getInputStream();
             ps.setString(1, e.getUsername());
             ps.setString(2, e.getPasword());
             ps.setString(3, e.getUsernamemanager());
             ps.setString(4, e.getName());
-            ps.setString(5,e.getEmail());
+            ps.setString(5, e.getEmail());
             ps.setString(6, e.getNumber());
             ps.setInt(7, e.getAge());
             ps.setString(8, e.getAddress());
             ps.setString(9, e.getCity());
             ps.setString(10, e.getState());
             ps.setBlob(11, obj);
-            
+
             status = ps.executeUpdate();
-            
+
             con.close();
-            
-           
-           }catch(Exception m)
-           {
-               m.printStackTrace();
-           }
-           return status;
-       }
-       
-       
-       
-       
-       
-       public static int updatemanager(manager obj) {
+
+        } catch (Exception m) {
+            m.printStackTrace();
+        }
+        return status;
+    }
+
+    public static int updatemanager(manager obj) {
         int status = 0;
         try {
             Connection con = getConnection();
@@ -725,7 +680,7 @@ public class UserDao {
             InputStream is = obj.getPart().getInputStream();
 
             ps.setString(1, obj.getUsername());
-            ps.setString(2, obj.getPassword()); 
+            ps.setString(2, obj.getPassword());
             ps.setString(3, obj.getName());
             ps.setString(4, obj.getEmail());
             ps.setString(5, obj.getNumber());
@@ -733,7 +688,6 @@ public class UserDao {
             ps.setString(7, obj.getAddress());
             ps.setString(8, obj.getCity());
             ps.setString(9, obj.getState());
-        
 
             ps.setBlob(10, is);
             ps.setString(11, obj.getUsername());
@@ -746,95 +700,85 @@ public class UserDao {
         }
         return status;
     }
-       
-       public static int getdeleteprofile(String  username) {
 
-       int status = 0;
+    public static int getdeleteprofile(String username) {
+
+        int status = 0;
         try {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "DELETE FROM cleaner WHERE username = '"+username+"'");
+                    "DELETE FROM cleaner WHERE username = '" + username + "'");
             status = ps.executeUpdate();
             con.close();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return status;
     }
-       
-       public static List<information> getdisplayinformation()
-       {
-           
-             List<information> list = new ArrayList<information>();
-           
-           try{
-               Connection con=getConnection();
-               PreparedStatement ps = con.prepareStatement(
+
+    public static List<information> getdisplayinformation() {
+
+        List<information> list = new ArrayList<information>();
+
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
                     "SELECT * FROM information");
-               ResultSet rs = ps.executeQuery();
-               while(rs.next())
-               {
-             
-               information obj=new information();
-               obj.setId(rs.getInt(1));
-               obj.setDistance(rs.getInt(2));
-               obj.setDetail(rs.getString(3));
-               
-               list.add(obj);
-               }
-               con.close();
-           } catch (Exception e)
-           {
-               e.printStackTrace();
-           }
-           return list;
-       }
-       
-       
-      public static int updateinformation(information obj)
-      {
-          int status=0;
-          
-          try{
-              Connection con=getConnection();
-              
-              PreparedStatement ps = con.prepareStatement(
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+                information obj = new information();
+                obj.setId(rs.getInt(1));
+                obj.setDistance(rs.getInt(2));
+                obj.setDetail(rs.getString(3));
+
+                list.add(obj);
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public static int updateinformation(information obj) {
+        int status = 0;
+
+        try {
+            Connection con = getConnection();
+
+            PreparedStatement ps = con.prepareStatement(
                     "UPDATE information SET id=?, distance=?, details=? WHERE id=?");
-               ps.setInt(1, obj.getId());
-              ps.setInt(2, obj.getDistance());
-              ps.setString(3, obj.getDetail());
-              ps.setInt(4, obj.getId());
-                 status = ps.executeUpdate();
+            ps.setInt(1, obj.getId());
+            ps.setInt(2, obj.getDistance());
+            ps.setString(3, obj.getDetail());
+            ps.setInt(4, obj.getId());
+            status = ps.executeUpdate();
 
             con.close();
-          }catch (Exception e)
-          {
-              e.printStackTrace();
-          }
-          
-          return status;
-      }
-      
-      
-      
-        public static information getinformationBySession() {
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return status;
+    }
+
+    public static information getinformationBySession() {
         information obj = new information();
-       
+
         try {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
                     "SELECT * FROM information WHERE id='2'");
-           
+
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-              
-                obj.setId(rs.getInt(1));
-                 obj.setDistance(rs.getInt(2));
-                 obj.setDetail(rs.getString(3));
-                 
 
-               
+                obj.setId(rs.getInt(1));
+                obj.setDistance(rs.getInt(2));
+                obj.setDetail(rs.getString(3));
+
             }
             con.close();
         } catch (Exception ex) {
@@ -842,9 +786,8 @@ public class UserDao {
         }
         return obj;
     }
-     
-        
-        public static forget getforgetsession(String usernamemanager) {
+
+    public static forget getforgetsession(String usernamemanager) {
 
         forget obj = new forget();
         try {
@@ -853,9 +796,9 @@ public class UserDao {
                     "SELECT * FROM forgetcontractor WHERE usernamemanager=?");
             ps.setString(1, usernamemanager);
             ResultSet rs = ps.executeQuery();
-           
+
             while (rs.next()) {
-obj.setUsername(rs.getString(1));
+                obj.setUsername(rs.getString(1));
                 obj.setUsername(rs.getString(2));
                 obj.setFavourite(rs.getString(3));
 
@@ -867,11 +810,8 @@ obj.setUsername(rs.getString(1));
 
         return obj;
     }
-        
-        
-        
-        
-            public static forget getforgetcleaner(String username) {
+
+    public static forget getforgetcleaner(String username) {
 
         forget obj = new forget();
         try {
@@ -880,9 +820,9 @@ obj.setUsername(rs.getString(1));
                     "SELECT * FROM forget WHERE username=?");
             ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
-           
+
             while (rs.next()) {
-obj.setUsername(rs.getString(1));
+                obj.setUsername(rs.getString(1));
                 obj.setUsername(rs.getString(2));
                 obj.setFavourite(rs.getString(3));
 
@@ -894,50 +834,46 @@ obj.setUsername(rs.getString(1));
 
         return obj;
     }
-        
-          public static List<forget> getforget()
-       {
-           
-             List<forget> list = new ArrayList<forget>();
-           
-           try{
-               Connection con=getConnection();
-               PreparedStatement ps = con.prepareStatement(
+
+    public static List<forget> getforget() {
+
+        List<forget> list = new ArrayList<forget>();
+
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
                     "SELECT * FROM forgetmanager");
-               ResultSet rs = ps.executeQuery();
-               while(rs.next())
-               {
-             
-               forget obj=new forget();
-               obj.setUsername(rs.getString(1));
-           obj.setFavourite(rs.getString(2));
-               
-               list.add(obj);
-               }
-               con.close();
-           } catch (Exception e)
-           {
-               e.printStackTrace();
-           }
-           return list;
-       }
-          public static information getinformationByaltitude() {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+                forget obj = new forget();
+                obj.setUsername(rs.getString(1));
+                obj.setFavourite(rs.getString(2));
+
+                list.add(obj);
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public static information getinformationByaltitude() {
         information obj = new information();
-       
+
         try {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
                     "SELECT * FROM information WHERE id='4'");
-           
+
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-              
-                obj.setId(rs.getInt(1));
-                 obj.setDistance(rs.getInt(2));
-                 obj.setDetail(rs.getString(3));
-                 
 
-               
+                obj.setId(rs.getInt(1));
+                obj.setDistance(rs.getInt(2));
+                obj.setDetail(rs.getString(3));
+
             }
             con.close();
         } catch (Exception ex) {
@@ -945,55 +881,48 @@ obj.setUsername(rs.getString(1));
         }
         return obj;
     }
-       
 
-           public static List<information> getdisplayinformation1()
-       {
-           
-             List<information> list = new ArrayList<information>();
-           
-           try{
-               Connection con=getConnection();
-               PreparedStatement ps = con.prepareStatement(
+    public static List<information> getdisplayinformation1() {
+
+        List<information> list = new ArrayList<information>();
+
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
                     "SELECT * FROM information LIMIT 3");
-               ResultSet rs = ps.executeQuery();
-               while(rs.next())
-               {
-             
-               information obj=new information();
-               obj.setId(rs.getInt(1));
-               obj.setDistance(rs.getInt(2));
-               obj.setDetail(rs.getString(3));
-               
-               list.add(obj);
-               }
-               con.close();
-           } catch (Exception e)
-           {
-               e.printStackTrace();
-           }
-           return list;
-       }
-       
-            public static result getallresult1() {
-       result obj=new result();
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+                information obj = new information();
+                obj.setId(rs.getInt(1));
+                obj.setDistance(rs.getInt(2));
+                obj.setDetail(rs.getString(3));
+
+                list.add(obj);
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public static result getallresult1() {
+        result obj = new result();
 
         try {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
                     "SELECT deviceid,distance,logdate FROM result s1 WHERE logdate = (SELECT MAX(logdate) FROM result s2 WHERE s1.deviceid = s2.deviceid) ORDER BY deviceid, logdate;");
-           
 
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-               
-                
+
                 obj.setDeviceid(rs.getString(1));
-               
+
                 obj.setDistance(rs.getInt(2));
                 obj.setLogdate(rs.getTimestamp(3));
 
-              
             }
             con.close();
 
@@ -1002,33 +931,56 @@ obj.setUsername(rs.getString(1));
         }
         return obj;
     }
-           public static List<result> getresult()
-       {
-           
-             List<result> list = new ArrayList<result>();
-           
-           try{
-               Connection con=getConnection();
-               PreparedStatement ps = con.prepareStatement(
+
+    public static List<result> getresult() {
+
+        List<result> list = new ArrayList<result>();
+
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
                     "SELECT id,deviceid,distance,logdate FROM result s1 WHERE logdate = (SELECT MAX(logdate) FROM result s2 WHERE s1.deviceid = s2.deviceid) ORDER BY deviceid, logdate;");
-               ResultSet rs = ps.executeQuery();
-               while(rs.next())
-               {
-             
-               result obj=new result();
-               obj.setId(rs.getInt(1));
-          obj.setDeviceid(rs.getString(2));
-          obj.setDistance(rs.getInt(3));
-          obj.setLogdate(rs.getTimestamp(4));
-               
-               list.add(obj);
-               }
-               con.close();
-           } catch (Exception e)
-           {
-               e.printStackTrace();
-           }
-           return list;
-       }
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+                result obj = new result();
+                obj.setId(rs.getInt(1));
+                obj.setDeviceid(rs.getString(2));
+                obj.setDistance(rs.getInt(3));
+                obj.setLogdate(rs.getTimestamp(4));
+
+                list.add(obj);
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public static int inactive(User obj) {
+        int status = 0;
+        try {
+
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "INSERT INTO inactive (username, password, name, age, address, city, state) values (?, ?, ?, ?, ?, ?, ?)");
+            ps.setString(1, obj.getUsername());
+            ps.setString(2, obj.getPasword());
+            ps.setString(3, obj.getName());
+            ps.setInt(4, obj.getAge());
+            ps.setString(5, obj.getAddress());
+            ps.setString(6, obj.getCity());
+            ps.setString(7, obj.getState());
+
+            status = ps.executeUpdate();
+
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return status;
+
+    }
 
 }
