@@ -1,93 +1,129 @@
 <%-- 
-    Document   : profilemanager
-    Created on : Nov 8, 2019, 10:18:52 AM
+    Document   : newjsp
+    Created on : Jan 14, 2020, 10:09:51 PM
     Author     : user
 --%>
 
-<%@page import="fyp.forget"%>
+
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+
+
+<%@page import="java.io.*"%>
+<%@page import="java.lang.*"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="fyp.UserDao"%>
-<%@page import="fyp.manager" %>
+
+<%@page import="fyp.User"%>
+<%@page import="fyp.manager"%>
+
+
+
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>JSP Page</title>
- <script src = "http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <script src = "http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-        <style>
-            body{
-                margin: 0;
-                padding: 0;
-             background-image: url("80222-internet_of_things-technology-gadget-electronics-communication-2880x1800.jpg") ;
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Profile</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+        <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<style>
+     * {
+  box-sizing: border-box;
+}
+body
+{
+     margin: 0%;
+                padding: 0%;
+                background-image: url("80222-internet_of_things-technology-gadget-electronics-communication-2880x1800.jpg");
                 background-size: cover;
-                align-items: center;
-                display:flex;
+               
+                     
                 font-family: sans-serif;
-                justify-content: center;
-                min-height: 100vh;
-
+}
+ .kotak
+            {
+                  background-image: url("102456.jpg");
+                 width:50%;
+                 
+                height:540px;
+                border: 2px solid #2481f2;
+  border-radius: 5px;
+                margin-left: 350px;
             }
-            *{
-                margin: 0px;
-                padding:0px;
+            
+            
+            .kotak h4
+            
+            {
+                font-size: 18px;
+                padding-top: 30%; padding-left: 5%;
+            }
+    .navbar-nav
+    {
+      
+       margin-left:520px;
+       
+    }
+    #profileid
+            {
+                
+                width:20%;
+                height:45px;
+                  border-radius: 50%;
+                border:2px solid #34495e;
+         
+                box-sizing: border-box;
+             
+                
+            }
+            
+       
+
+    #profileid1
+            {
+               
+                margin-top: 1%;
+                margin-left: 35%;
+               
+                 width:12%;
+                height:150px;
+                
+                border:2px solid #34495e;
+         
+                box-sizing: border-box;
+                position:absolute;
+                
+                
+            }
+            
+ 
+            #title
+            {
+                 position:absolute;
                 font-family: sans-serif;
-
+                margin-left: 38.5%;
+                margin-top:200px;
+                color:black;
+                font-family: sans-serif;
+                font-size:1.5vw;
             }
-            #bar
-            {
-                position: fixed;
-                width:200px;
-                height:100%;
-                background: #33cce6;
-                left: -200px;
-                transition: all 500ms linear;
-            }
-
-
-            #bar.active
-            {
-                left:0px;
-            }
-            #bar ul li{
-                color:rgba(238,230,230,0.9);
-                list-style: none;
-                padding: 15px 10px;
-                border-bottom: 1px solid rgba(100,100,100,0.3)
-            }
-
-            #bar ul li:hover
-            {
-                color:#003333
-            }
-
-            #bar .toggle-btn
-            {
-                position: absolute;
-                left: 230px;
-                top:20px;
-
-            }
-            #bar .toggle-btn span{
-                display: block;
-                width:30px;
-                height: 5px;
-                background: #151719;
-                margin: 3px 0px;
-
-            }
-
-          
-
-
-
             #buttonEdit {
                 float: right;
-                margin-right: 50px;
-               background-image: url("102456.jpg");
              
+               position: absolute;
+               background-image: url("102456.jpg");
+             margin-left: 40%;
+            
                 color: white;
                 font-size: 1.3vw;
                 
@@ -98,33 +134,43 @@
             #buttonEdit:hover {
                 background-color: #b9c7f0;
             }
+@media  (max-width: 768px) {
+                    
+
             
-              .kotak
+    .navbar-nav
+    {
+      
+       margin-left:4%;
+       
+    }
+    
+    .kotak
             {
                   background-image: url("102456.jpg");
-                 width:50%;
-                height:600px;
+                 width:100%;
+               margin-left: 0px;
+                height:auto;
                 border: 2px solid #2481f2;
+    
   border-radius: 5px;
-                margin-left: 40px;
+               
             }
 
-            .in
-            { 
-               width:100%;
-               height: 30%;
-               background-image: url("blue-sky-hd-wallpaper-1.jpg");
-               background-size: cover;
+     .kotak h4
+            
+            {
+                font-size: 14px;
+                padding-top: 50%; padding-left: 3%;
             }
             
-            #profileid
+            
+    #profileid1
             {
                
-                margin-top: 10px;
-                margin-left: 500px;
-               
-                 width:170px;
-                height:170px;
+margin-left: 75%;
+                 width:20%;
+                height:15%;
                 
                 border:2px solid #34495e;
          
@@ -133,126 +179,131 @@
                 
                 
             }
-            
-            
-            #title
+  #title
             {
                  position:absolute;
                 font-family: sans-serif;
-                margin-left: 38.5%;
-                margin-top:200px;
+                margin-left: 75%;
+                margin-top:35%;
                 color:black;
                 font-family: sans-serif;
-                font-size:1.9vw;
+                font-size:14px;
             }
-            
-            #kedudukan
+              #profileid
             {
-                position:absolute;
-                 margin-left: 38.5%;
-                margin-top: 78px;
-                font-weight: bold;
-                font-family: sans-serif;
-                font-size:1.5vw;
                 
-            }
-            
-         
-            .content-base
-            
-            {
-                width:100%;
-                background-color:#C2F9F6;
-            }
-            
-            #profileid1
-            {
-                   width:36%;
-                height:70px;
+                width:20%;
+                height:40px;
                   border-radius: 50%;
                 border:2px solid #34495e;
          
                 box-sizing: border-box;
-                position:absolute;
-                margin-top: 1px;
-                margin-left: 10px;
-                
-                
-                
+             
                 
             }
-        </style>
+            
+               #buttonEdit {
+               
+             border: 2px solid #2481f2;
+  border-radius: 5px;
+               position: static;
+               background-image: url("102456.jpg");
+            padding-left: 75%;
+          margin-top: : 0%;
+                color: white;
+                font-size: 15px;
+                
+                cursor: pointer;
+                width:100%;
+            }
+             #buttonEdit:hover {
+                background-color: #b9c7f0;
+            }
+             
+}
 
-        <script>
+
+</style>
+
+<script>
             function togglebar()
             {
                 document.getElementById("bar").classList.toggle('active');
             }
-            
-                $(document).ready(function() {
+           
+      $(document).ready(function() {
          function disablePrev() { window.history.forward() }
          window.onload = disablePrev();
          window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
       });
    
-        </script>
+    function myfunctional()
+      {
+              <%
+                  String usernamemanager=request.getParameter("usernamanager");
+                  int status=UserDao.deletemessage(usernamemanager);
+                  if(status>0)
+                  {
+                      response.sendRedirect("notificationmanager.jsp");
+                  }
+                   
+                  
+                  
+                  %>
+      }
+   
+   
+             
+           </script>
+</head>
 
-    </head>
-    <body>
 
+   
+<body>
+    
+      <% 
+                 
+                manager e = UserDao.getmanagerBySession((String)session.getAttribute("user"));
+       
+        %>
+        
         <%
 
-             manager e = UserDao.getmanagerBySession((String)session.getAttribute("user"));
-             
-forget m=UserDao.getforgetsession((String)session.getAttribute("user"));
+            manager obj2 = UserDao.getmanagerBySession((String) session.getAttribute("user"));
 
         %>
-        <div id="bar">
-            <div class="toggle-btn"   onclick="togglebar()">
-
-                <span></span>
-                <span></span>
-                <span></span>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
+    <div class="container-fluid">
+        <a href="#"class="navbar-brand mr-3"><img src="<%=e.getBase64Image() %>"  id="profileid" > Contractor</a>
+        
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav">
+              
+              
             </div>
-            <ul>
-
-
-                <li>
-                                 <img src="<%=e.getBase64Image() %>" id="profileid1" > <p style="padding-left:60%; padding-top: 20px;"> <%=e.getUsername() %> <br> Contractor</P>
-                    <br>
-                    <br>
-                 
-                </li>
-                 <a href="page1.jsp">  
-                    <li style="font-size:1.2vw; color:black"> Dashboard</li
-                </a>
-                <a href="reportmanager.jsp">   
-                    <li style="font-size:1.2vw; color:black"> Analysis</li>
-                </a>
-             
-               <a href="notificationmanager.jsp">  
-                    <li style="font-size:1.2vw; color:black"> Notification</li
-                </a>
-               <a href="register.jsp">  
-                    <li style="font-size:1.2vw; color:black"> Management cleaner</li
-                </a>
-                  <a href="profilemanager.jsp">  
-                <li style="font-size:1.2vw; color:black">Profile</li>
-                  </a>
-                <a href="index.jsp">  
-                    
-                    <li style="font-size:1.2vw; color:black">Log Out</li>
-                </a>            </ul>
+            <div class="navbar-nav ml-auto">
+                  <a href="page1.jsp" class="nav-item nav-link">Dashboard</a>
+                <a href="reportmanager.jsp" class="nav-item nav-link">Analysis</a>
+                <a href="notificationmanager.jsp" class="nav-item nav-link">Notification</a>
+                <a href="register.jsp" class="nav-item nav-link">Management</a>
+                 <a href="profilemanager.jsp" class="nav-item nav-link active">profile</a>
+            <a href="index.jsp" class="nav-item nav-link">LogOut</a>
+                
+            </div>
         </div>
+    </div> 
+        
+       
+</nav>
 
-      
-
-
-        <div class="kotak">
+   <div class="kotak">
              
           
                 
-                <img src="<%=e.getBase64Image() %>"  id="profileid" > 
+                <img src="<%=e.getBase64Image() %>"  id="profileid1" > 
            
 
 
@@ -264,7 +315,7 @@ forget m=UserDao.getforgetsession((String)session.getAttribute("user"));
                           </h1>
                 
                      
-                        <h4 style="padding-left:10%; padding-top:240px;"> Name:<%=e.getName() %>
+                        <h4> Name:<%=e.getName() %>
                             
                             <br><br>
                             Email:<%=e.getEmail()  %>
@@ -285,7 +336,7 @@ forget m=UserDao.getforgetsession((String)session.getAttribute("user"));
                             State:<%=e.getState() %>
                         </h4>
                    
-                        <br><br><br>
+                     
                        
                        <div id="buttonEdit">
 
@@ -297,9 +348,9 @@ forget m=UserDao.getforgetsession((String)session.getAttribute("user"));
                     
         </div>
     
-    
-    
+     
  
-
 </body>
+
+
 </html>

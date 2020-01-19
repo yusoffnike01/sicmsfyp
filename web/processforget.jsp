@@ -12,51 +12,200 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <title>JSP Page</title>
         
         <style>
             
-                body
-            {
-                margin: 0;
-                padding: 0;
-                background-image: url("80222-internet_of_things-technology-gadget-electronics-communication-2880x1800.jpg");
-                background-size: cover;
-                align-items: center;
-                display:flex;
-                font-family: sans-serif;
-                justify-content: center;
-                min-height: 100vh;
+         * {
+  box-sizing: border-box;
+  
+}
 
-            }
-            
-            
-            
-            
-             form
-            {
-                background-color:white;
-                padding: 20px;
-                width: 450px;
-                margin: 50px auto;
-                border: 2px solid #2481f2;
+body{
+     background-image: url("80222-internet_of_things-technology-gadget-electronics-communication-2880x1800.jpg");
+                background-size: cover;
+                 max-height:  400px;
+}
+/* Create four equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 40%;
+  padding: 20px;
+  margin-left: 30%;
+  min-height: 200px;
+   background-color:white;
+    border: 2px solid #2481f2;
   border-radius: 8px;
-            }
-            
-            input[type=text]
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+ 
+}
+.row{
+     margin-top:10%;
+}
+/* On screens that are 992px wide or less, go from four columns to two columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+      margin: 0px;
+       background-color:white;
+        border: 2px solid #2481f2;
+  border-radius: 8px;
+  }
+  
+  input[type=text]
             {
-                width:280px;
+                width:100%;
                 padding:8px;
                 margin:5px 0;
                 border-radius: 5px;
                 border:1px solid #33cce6;
-                
+                font-size: calc(20px+1.3vw);
                 
             }
             
-            input[type=submit]
+             input[type=password]
+            {
+                width:100%;
+                padding:8px;
+                margin:5px 0;
+                border-radius: 5px;
+                border:1px solid #33cce6;
+                font-size: calc(20px+1.3vw);
+                
+            }
+            
+              input[type=submit]
+            {
+                width:150px;
+                height:40px;
+                border-radius:5px;
+                background-color: #4880B0;
+                border:1px solid #286090;
+                
+            }
+}
+@media screen and (max-width: 780px) {
+  .column {
+    width: 90%;
+    margin: 0px;
+    margin-left: 5%;
+       background-color:white;
+        border: 2px solid #2481f2;
+  border-radius: 8px;
+  }
+  
+  input[type=text]
+            {
+                width:100%;
+                padding:8px;
+                margin:5px 0;
+                border-radius: 5px;
+                border:1px solid #33cce6;
+                font-size: calc(20px+1.3vw);
+                
+            }
+            
+             input[type=password]
+            {
+                width:100%;
+                padding:8px;
+                margin:5px 0;
+                border-radius: 5px;
+                border:1px solid #33cce6;
+                font-size: calc(20px+1.3vw);
+                
+            }
+            
+              input[type=submit]
+            {
+                width:150px;
+                height:40px;
+                border-radius:5px;
+                background-color: #4880B0;
+                border:1px solid #286090;
+                
+            }
+}
+
+/* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 360px) {
+  .column {
+    width: 90%;
+    margin: 0px;
+    margin-left: 5%;
+     background-color:white;
+    
+     border: 2px solid #2481f2;
+  border-radius: 8px;
+  }
+   input[type=password]
+            {
+                width:100%;
+                padding:8px;
+                margin:5px 0;
+                border-radius: 5px;
+                border:1px solid #33cce6;
+                font-size: calc(20px+1.3vw);
+                
+            }
+              input[type=submit]
+            {
+                width:150px;
+                height:40px;
+                border-radius:5px;
+                background-color: #4880B0;
+                border:1px solid #286090;
+                
+            }
+  
+ 
+  input[type=text]
+            {
+                width:100%;
+                padding:8px;
+                margin:5px 0;
+                border-radius: 5px;
+                border:1px solid #33cce6;
+                font-size: calc(20px+1.3vw);
+                
+            }
+}
+input[type=text]
+            {
+                width:100%;
+                padding:8px;
+                margin:5px 0;
+                border-radius: 5px;
+                border:1px solid #33cce6;
+                font-size: calc(20px+1.3vw);
+                
+            }
+            
+            input[type=password]
+            {
+                width:100%;
+                padding:8px;
+                margin:5px 0;
+                border-radius: 5px;
+                border:1px solid #33cce6;
+                font-size: calc(20px+1.3vw);
+                
+            }
+              input[type=submit]
             {
                 width:150px;
                 height:40px;
@@ -66,35 +215,10 @@
                 
             }
             
-             input[type=email]
-            {
-                 width:280px;
-                padding:8px;
-                margin:5px 0;
-                border-radius: 5px;
-                border:1px solid #33cce6;
-                
-                
+            .id{
+                width:100%;
             }
-            input[type=submit]:hover
-            {
-                background-color: whitesmoke;
-            }
-           
-              
-            input[type=button]
-            {
-                 width:100px;
-                height:40px;
-                border-radius:5px;
-                background-color: #4880B0;
-                border:1px solid #286090;
-                
-            }
-            input[type=button]:hover
-            {
-                background-color: whitesmoke;
-            }
+}
             </style>
             
     </head>
@@ -117,23 +241,24 @@ if(username.equals(obj.getUsername())&&favourite.equals(obj.getFavourite())&&rol
 
 
     %>
+   <div class="row">
     
-    
+  <div class="column">
     <form  action="processforget2.jsp" method="POST" name="myForm">
         <table class="id">
             <tr>
                 
                 <td colspan="2">
-                    Change the password:
+                    <h4>             Change the password:</h4>
                 </td>
             </tr>
             <tr>
                 
                 <td>
-                    username:
+                    <p>   username: </p>
                 </td>
                 <td>
-                <input type="text" name="username" value="<%=obj2.getUsername() %>">
+                <input type="text" name="username" value="<%=obj.getUsername() %>">
                 
                     
                 </td>
@@ -142,16 +267,16 @@ if(username.equals(obj.getUsername())&&favourite.equals(obj.getFavourite())&&rol
             <tr>
                 
                 <td>
-                     password:
+                   <hp>   password: </p>
                 </td>
                 <td>
-                      <input type="password" name="password" value="<%=obj2.getPassword() %>">
+                      <input type="password" name="password" value="">
                 </td>
             </tr>
             <tr>
                 
                 <td>
-                    Repassword:
+                 <p>    Repassword:  <p>
                     
                 </td>
                 <td>
@@ -172,8 +297,10 @@ if(username.equals(obj.getUsername())&&favourite.equals(obj.getFavourite())&&rol
       
         </table>
     </form>
-    </p>
-    
+  </div>
+  
+ 
+</div>
     <%
 }
 
@@ -181,18 +308,22 @@ else if (username.equals(obj3.getUsername())&&favourite.equals(obj3.getFavourite
 
 
 %>
- <form  action="processforget2.jsp" method="POST" name="myForm">
+
+ <div class="row">
+    
+  <div class="column">
+    <form  action="processforget2.jsp" method="POST" name="myForm">
         <table class="id">
             <tr>
                 
                 <td colspan="2">
-                    Change the password:
+                    <h1>             Change the password:</h1>
                 </td>
             </tr>
             <tr>
                 
                 <td>
-                    username:
+                    <p>   username: </p>
                 </td>
                 <td>
                 <input type="text" name="username" value="<%=obj3.getUsername() %>">
@@ -204,7 +335,7 @@ else if (username.equals(obj3.getUsername())&&favourite.equals(obj3.getFavourite
             <tr>
                 
                 <td>
-                     password:
+                   <p>   password: </p>
                 </td>
                 <td>
                       <input type="password" name="password" value="">
@@ -213,7 +344,7 @@ else if (username.equals(obj3.getUsername())&&favourite.equals(obj3.getFavourite
             <tr>
                 
                 <td>
-                    Repassword:
+                 <p>    Repassword:  <p>
                     
                 </td>
                 <td>
@@ -234,9 +365,10 @@ else if (username.equals(obj3.getUsername())&&favourite.equals(obj3.getFavourite
       
         </table>
     </form>
-    
-
-
+  </div>
+  
+ 
+</div>
 <%
     
     

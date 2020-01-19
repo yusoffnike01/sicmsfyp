@@ -29,7 +29,7 @@
 
     final String from = "ronaldoyusoff@gmail.com";
 
-    final String pass = "Yusoff12@";
+    final String pass = "mamiizzah1234";
 
  
 

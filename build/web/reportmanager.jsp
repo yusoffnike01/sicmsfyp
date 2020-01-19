@@ -5,63 +5,85 @@
 --%>
 
 <%@page import="fyp.quantityused"%>
-<%@page import="fyp.User"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
+<%@page import="fyp.soap_info"%>
+<%@page import="fyp.information"%>
+
+<%@page import="java.io.*"%>
+<%@page import="java.lang.*"%>
+<%@page import="java.util.List"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="fyp.UserDao"%>
 <%@page import="fyp.result"%>
+<%@page import="fyp.User"%>
 <%@page import="fyp.manager"%>
-<%@page import="fyp.information"%>
-<%@page import="java.util.ArrayList"%>
 
 
-<html>
 
 
-    <head>
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <script src = "http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-        <script src = "http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Analysis</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
         <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
-        <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-        <style>
-            body {
-                margin: 0;
-                padding: 0;
-                background-image: url("80222-internet_of_things-technology-gadget-electronics-communication-2880x1800.jpg") ;
-                justify-content: center;
-                min-height: 100vh;
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<style>
+     * {
+  box-sizing: border-box;
+}
+body
+{
+     margin: 0%;
+                padding: 0%;
+                background-image: url("80222-internet_of_things-technology-gadget-electronics-communication-2880x1800.jpg");
                 background-size: cover;
-            }
-
-            .main{
-
-                background-color: whitesmoke;
-                margin-left: 20%;
-                margin-top: 5%;
-                width:60%;
-                height:auto;
-            }
-
-            *{
-                margin: 0px;
-                padding:0px;
+               
+                
                 font-family: sans-serif;
+}
+   
+    #profileid
+            {
+                
+              width:8%;
+                height:45px;
 
+                  border-radius: 50%;
+                border:2px solid #34495e;
+         
+                box-sizing: border-box;
+             
+                
+            }
+             .info
+            {
+                float:right;
+
+                background: white;
             }
 
+            input {
+                background: none;
+                color: black;
 
-            .tab {
+            }
+         
+             .tab {
                 overflow: hidden;
                 border: 1px solid #ccc;
                 background-color: #f1f1f1;
                 width:60%;
                 margin-left: 20%;
-                margin-top:4%;
+                margin-top:5%;
+              
             }
 
             /* Style the buttons inside the tab */
@@ -85,9 +107,9 @@
             .tab button.active {
                 background-color: #ccc;
             }
-
-            /* Style the tab content */
-            .tabcontent {
+            
+           
+              .tabcontent {
                 display: none;
                 padding: 6px 12px;
                 border: 1px solid #ccc;
@@ -96,100 +118,93 @@
                 margin-left: 20%;
                 background-color: white;
             }
-            #bar
+            
+         
+
+
+
+
+@media  (max-width: 768px) {
+    
+  
+    .tab {
+                overflow: hidden;
+                border: 1px solid #ccc;
+                background-color: #f1f1f1;
+                width:95%;
+                margin-left: 3%;
+                margin-top:5%;
+               
+            }
+
+            /* Style the buttons inside the tab */
+            .tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 8px 10px;
+                transition: 0.3s;
+                font-size: 12px;
+            }
+
+            /* Change background color of buttons on hover */
+            .tab button:hover {
+                background-color: #ddd;
+            }
+
+            /* Create an active/current tablink class */
+            .tab button.active {
+                background-color: #ccc;
+            }
+            
+              .tabcontent {
+                display: none;
+                padding: 6px 12px;
+                border: 1px solid #ccc;
+                border-top: none;
+                width:95%;
+                margin-left: 3%;
+                background-color: white;
+            }
+              #profileid
             {
-                position: fixed;
-                width:14%;
-                height:100%;
-                background: #33cce6;
-                left: -200px;
-                margin-top:-5%;
-                transition: all 500ms linear;
-            }
-
-
-            #bar.active
-            {
-                left:0px;
-            }
-            #bar ul li{
-                color:rgba(238,230,230,0.9);
-                list-style: none;
-                padding: 15px 10px;
-                border-bottom: 1px solid rgba(100,100,100,0.3)
-            }
-
-            #bar ul li:hover
-            {
-                color:#003333
-            }
-
-            #bar .toggle-btn
-            {
-                position: absolute;
-                left: 230px;
-                top:20px;
-
-            }
-            #bar .toggle-btn span{
-                display: block;
-                width:30px;
-                height: 5px;
-                background: #151719;
-                margin: 3px 0px;
-
-            }
-
-            #profileid
-            {
-                width:36%;
-                height:70px;
-                border-radius: 50%;
+                
+                width:20%;
+                height:40px;
+                  border-radius: 50%;
                 border:2px solid #34495e;
-
+         
                 box-sizing: border-box;
-                position:absolute;
-                margin-top: 1px;
-                margin-left: 10px;
-
+             
+                
             }
-
-            .info
-            {
-                float:right;
-
-                background: white;
-            }
-
-            input {
-                background: none;
-                color: black;
-
-            }
+            
+             
+}
 
 
+</style>
 
-        </style>
-        <script>
-
-
-
-
+<script>
             function togglebar()
             {
                 document.getElementById("bar").classList.toggle('active');
             }
+           
+      $(document).ready(function() {
+         function disablePrev() { window.history.forward() }
+         window.onload = disablePrev();
+         window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
+      });
+   
+             
+           </script>
+</head>
 
 
-
-        </script>
-
-
-
-    </head>
-
-
-    <%!
+   <%!
         // --- String Join Function converts from Java array to javascript string.  
         public String join(ArrayList<?> arr, String del) {
 
@@ -214,72 +229,52 @@
             return output.toString();
         }
     %>  
-
-
-
-
-
-    <body>
-
-
-
-
-
-
-
+<body>
+    
+      <% 
+                 
+                manager e = UserDao.getmanagerBySession((String)session.getAttribute("user"));
+       
+        %>
+        
         <%
 
             manager obj2 = UserDao.getmanagerBySession((String) session.getAttribute("user"));
 
         %>
-
-
-
-    </style> <div id="bar">
-        <div class="toggle-btn"   onclick="togglebar()">
-
-            <span></span>
-            <span></span>
-            <span></span>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
+    <div class="container-fluid">
+        <a href="#"class="navbar-brand mr-3"><img src="<%=e.getBase64Image() %>"  id="profileid" > Contractor</a>
+        
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav">
+                
+            </div>
+            <div class="navbar-nav ml-auto">
+           <a href="page1.jsp" class="nav-item nav-link">Dashboard</a>
+                <a href="reportmanager.jsp" class="nav-item nav-link active">Analysis</a>
+                <a href="notificationmanager.jsp" class="nav-item nav-link">Notification</a>
+                <a href="register.jsp" class="nav-item nav-link">Management</a>
+                  <a href="profilemanager.jsp" class="nav-item nav-link">profile</a>
+                    <a href="index.jsp" class="nav-item nav-link">LogOut</a>
+                
+            </div>
         </div>
-        <ul>
-
-
-            <li>
-                <img src="<%=obj2.getBase64Image()%>" id="profileid" > <p style="padding-left:60%; padding-top: 20px; font-size:1.2vw; "> <%=obj2.getUsername()%> <br> Contractor</P>
-                <br>
-
-            </li>
-            <a href="page1.jsp">  
-                <li style="font-size:1.2vw; color:black"> Dashboard</li
-            </a>
-            <a href="reportmanager.jsp">   
-                <li style="font-size:1.2vw; color:black"> Analysis</li>
-            </a>
-
-            <a href="notificationmanager.jsp">  
-                <li style="font-size:1.2vw; color:black"> Notification</li
-            </a>
-            <a href="register.jsp">  
-                <li style="font-size:1.2vw; color:black"> Management cleaner</li
-            </a>
-            <a href="profilemanager.jsp">  
-                <li style="font-size:1.2vw; color:black">Profile</li>
-            </a>
-            <a href="index.jsp">  
-
-                <li style="font-size:1.2vw; color:black">Log Out</li>
-            </a>        </ul>
-    </div>
-
-
-    <div class="tab">
-        <button class="tablinks" onclick="openCity(event, 'monitor')">Monitor</button>
-        <button class="tablinks" onclick="openCity(event, 'analysis')">analysis</button>
-
-    </div>
-
-    <div id="monitor" class="tabcontent">
+    </div>    
+</nav>
+<div class="tab">
+    
+          <button class="tablinks" onclick="openCity(event, 'monitor')"> Monitor</button>
+        <button class="tablinks" onclick="openCity(event, 'analysis')"> analysis</button>
+             
+    
+</div>
+    
+    
+   <div id="monitor" class="tabcontent">
 
         <div class="info">
 
@@ -326,7 +321,7 @@
 
 
         <%
-            List<result> list = UserDao.getresult();
+            List<result> list = UserDao.getresult((String)session.getAttribute("user"));
             information a = UserDao.getinformationBySession();
             information c = UserDao.getinformationByaltitude();
             for (result obj3 : list) {
@@ -359,7 +354,7 @@
         </script>
 
         <div id="status"></div>
-        <script type="text/javascript">countDown(7, "status");</script>
+        <script type="text/javascript">countDown(10000, "status");</script>
 
 
         <form name="quiz" id="myquiz" onsubmit="return test()" method="post" action="sent.jsp">
@@ -398,16 +393,16 @@
 
 
 
-
-    <div id="analysis" class="tabcontent">
+    
+      
+        <div id="analysis" class="tabcontent">
         <div id="myChart1"></div>  
 
-    </div>
-
-
-
-
-    <%     // --- Create two Java Arrays  
+       </div>
+                     
+          
+     
+<%     // --- Create two Java Arrays  
         ArrayList<Integer> id1 = new ArrayList<Integer>();
         ArrayList<String> time = new ArrayList<String>();
 
@@ -477,7 +472,7 @@
     ArrayList<Integer> distance = new ArrayList<Integer>();
 
     // --- Loop 10 times and create 10 string dates and 10 users  
-    List<result> list5 = UserDao.getresult();
+    List<result> list5 = UserDao.getresult((String)session.getAttribute("user"));
 
     information x = UserDao.getinformationBySession();
     for (result obj : list5) {
@@ -572,7 +567,8 @@
             data: {
                 "type": "bar",
                 "title": {
-                    "text": "Level of Graph Soap"
+                    "text": "Level of Graph Soap",
+                    fontSize: 20
                 },
                 "scale-x": {
 
@@ -580,7 +576,7 @@
                 },
                 "plot": {
                     "animation": {
-                        "delay": "2000",
+                        "delay": "1000",
                         "effect": "4",
                         "method": "5",
                         "sequence": "1"

@@ -17,7 +17,9 @@ public class result {
     int id;
     int distance;
     Timestamp logdate;
-
+    int count;
+    private String location;
+ 
     public String getDeviceid() {
         return deviceid;
     }
@@ -49,6 +51,22 @@ public class result {
 
     public void setLogdate(Timestamp logdate) {
         this.logdate = logdate;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
     
     

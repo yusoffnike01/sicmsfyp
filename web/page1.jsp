@@ -4,6 +4,8 @@
     Author     : user
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="fyp.soap_info"%>
 <%@page import="fyp.information"%>
 
 <%@page import="java.io.*"%>
@@ -14,42 +16,59 @@
 <%@page import="fyp.result"%>
 <%@page import="fyp.User"%>
 <%@page import="fyp.manager"%>
+
+
+
+
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Dashboard</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <title>manager</title>
-        <style>
-            
-              body
-            {
-                   margin: 0;
-                padding: 0;
-                background-image: url("80222-internet_of_things-technology-gadget-electronics-communication-2880x1800.jpg") ;
-                justify-content: center;
-                min-height: 100vh;
+<style>
+     * {
+  box-sizing: border-box;
+}
+body
+{
+     margin: 0%;
+                padding: 0%;
+                background-image: url("80222-internet_of_things-technology-gadget-electronics-communication-2880x1800.jpg");
                 background-size: cover;
-            }
-            
-             *{
-                margin: 0px;
-                padding:0px;
+               
+                
                 font-family: sans-serif;
+}
+
+    #profileid
+            {
+                
+            width:8%;
+                height:45px;
+
+                  border-radius: 50%;
+                border:2px solid #34495e;
+         
+                box-sizing: border-box;
+             
                 
             }
             
+         
              .tab {
                 overflow: hidden;
                 border: 1px solid #ccc;
                 background-color: #f1f1f1;
                 width:60%;
-                margin-left: 17%;
+                margin-left: 20%;
                 margin-top:5%;
+              
             }
 
             /* Style the buttons inside the tab */
@@ -73,142 +92,19 @@
             .tab button.active {
                 background-color: #ccc;
             }
-
-            /* Style the tab content */
-            .tabcontent {
+            
+           
+              .tabcontent {
                 display: none;
                 padding: 6px 12px;
                 border: 1px solid #ccc;
                 border-top: none;
                 width:60%;
-                margin-left: 17%;
+                margin-left: 20%;
                 background-color: white;
             }
-
-            input[type=text]
-            {
-                width:67%;
-
-            }
-
-            input[type=number]
-            {
-                width:67%;
-
-            }
-
-            input[type=password]
-            {
-                width:67%;
-
-            }
-
-            input[type=submit]
-            {
-                border:none;
-                width:80%;
-                background:white;
-                font-size: 16px;
-                line-height: 25px;
-                padding:10px o;
-                border-radius: 15px;
-            }
-
-            input[type=button]:hover
-            {
-                color:#fff;
-                background-color: #A8BEF1;
-            }
-
-            #bar
-            {
-                position: fixed;
-                width:14%;
-                height:100%;
-                background: #33cce6;
-                left: -200px;
-              margin-top:-5%;
-                transition: all 500ms linear;
-            }
             
-            
-            #bar.active
-            {
-                left:0px;
-            }
-            #bar ul li{
-                color:rgba(238,230,230,0.9);
-                list-style: none;
-                padding: 15px 10px;
-                border-bottom: 1px solid rgba(100,100,100,0.3)
-            }
-            
-            #bar ul li:hover
-            {
-                color:#003333
-            }
-            
-            #bar .toggle-btn
-            {
-                position: absolute;
-                left: 230px;
-                top:20px;
-                
-            }
-            #bar .toggle-btn span{
-                display: block;
-                width:30px;
-                height: 5px;
-                background: #151719;
-                margin: 3px 0px;
-                
-            }
-           
-            #kotak
-            {
-                background-color: white;
-                width:50%;
-                height: 620px;
-               border:2px solid red;
-                       margin-left: 24%;
-            }
-            
-            #kotak .in
-            { 
-                
-                margin-left: 5%;
-                width:90%;
-          
-             padding-top: 2%;
-                background-color: white;
-                height:600px;
-                
-                background-image: url("8ZoAeMh.jpg");
-            
-                
-            }
-         
-            
-         
-            #buttonEdit {
-    float: right;
-    margin-right: 50px;
-      background-color: #4CAF50;
-    border-radius: 50px;
-    color: white;
-    font-size: 17px;
-    border: 1px solid red;
-    cursor: pointer;
-    width:auto;
-}
-
-#buttonEdit:hover {
-    background-color: blue;
-}
-
-
-
-.main{
+            .main{
     
     background-color: whitesmoke;
 margin-left: 20%;
@@ -234,12 +130,16 @@ margin-left: 20%;
     color:#ffffff;
     text-align:left;
     font-weight:bold;
+   
     
 }
 
 .content-table th,.content-table td{
     
     padding: 10px 13px;
+     font-size:1em;
+    
+         
    
 }
 
@@ -256,31 +156,6 @@ margin-left: 20%;
     border-bottom: 2px solid #1FF6CB;
 }
 
-
- #profileid
-            {
-                
-                width:36%;
-                height:70px;
-                  border-radius: 50%;
-                border:2px solid #34495e;
-         
-                box-sizing: border-box;
-                position:absolute;
-                margin-top: 1px;
-                margin-left: 10px;
-                
-                
-            }
-            
-                .btn {
-                background-color: #F9384C;
-                border: none;
-                color: white;
-                padding: 8px 12px;
-                font-size: 16px;
-                cursor: pointer;
-            }
 #updateinformation th {
   padding-top: 12px;
   padding-bottom: 12px;
@@ -291,6 +166,7 @@ margin-left: 20%;
             #updateinformation td, #updateinformation th {
   border: 1px solid #ddd;
   padding: 8px;
+   font-size: 1.1em;
 }
 
 table{
@@ -305,9 +181,167 @@ table{
   padding: 16px;
 }
 
+
+@media  (max-width: 768px) {
+    
+    
+    .tab {
+                overflow: hidden;
+                border: 1px solid #ccc;
+                background-color: #f1f1f1;
+                width:95%;
+                margin-left: 3%;
+                margin-top:5%;
+               
+            }
+
+            /* Style the buttons inside the tab */
+            .tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 8px 10px;
+                transition: 0.3s;
+                font-size: 12px;
+            }
+
+            /* Change background color of buttons on hover */
+            .tab button:hover {
+                background-color: #ddd;
+            }
+
+            /* Create an active/current tablink class */
+            .tab button.active {
+                background-color: #ccc;
+            }
             
-        </style>
-        <script>
+              .tabcontent {
+                display: none;
+                padding: 6px 12px;
+                border: 1px solid #ccc;
+                border-top: none;
+                width:95%;
+                margin-left: 3%;
+                background-color: white;
+            }
+              #profileid
+            {
+                
+                width:20%;
+                height:40px;
+                  border-radius: 50%;
+                border:2px solid #34495e;
+         
+                box-sizing: border-box;
+             
+                
+            }
+            
+             .main{
+    
+    background-color: whitesmoke;
+margin-left: 5%;
+    margin-top: 5%;
+    width:90%;
+    height:auto;
+}
+.main h3{
+    font-size: 17px;
+}
+
+.main p
+{
+    font-size: 12px;
+}
+            
+
+
+  input[type=submit]
+            {
+              
+                font-size: 12px;
+          
+          
+           
+            }
+            
+            input[type=text]
+            {
+              
+                font-size: 12px;
+          
+          
+           
+            }
+            
+            .content-table
+{
+    border-collapse: collapse;
+    margin-top:5%;
+  
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+    
+}
+
+.content-table thead tr
+{
+    background-color:#1FF6CB;
+    color:#ffffff;
+    text-align:left;
+    font-weight:bold;
+   
+    
+}
+
+.content-table th,.content-table td{
+    
+    padding: 10px 13px;
+     font-size: 13px;
+    
+         
+   
+}
+
+.content-table tbody tr
+{
+    border-bottom: 1px solid #EE83F2;
+}
+
+
+
+
+.content-table tbody tr:last-of-type
+{
+    border-bottom: 2px solid #1FF6CB;
+}
+
+.tabcontent h3{
+     font-size: 17px;
+}
+
+
+#updateinformation th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+ 
+  
+}
+            #updateinformation td, #updateinformation th {
+  border: 1px solid #ddd;
+  padding: 8px;
+   font-size: 13px;
+}
+
+}
+
+
+</style>
+
+<script>
             function togglebar()
             {
                 document.getElementById("bar").classList.toggle('active');
@@ -321,71 +355,69 @@ table{
    
              
            </script>
-    </head>
-    <body>
-        
-          <div id="bar">
-            <div class="toggle-btn"   onclick="togglebar()">
-                
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-          <ul>
-               <% 
+</head>
+<body>
+    
+      <% 
                  
                 manager e = UserDao.getmanagerBySession((String)session.getAttribute("user"));
        
         %>
-            
-              <li>
-                  <img src="<%=e.getBase64Image() %>"  id="profileid" > <p style="padding-left:60%; padding-top: 20px; font-size:1.2vw;"> <%=e.getUsername() %> <br> Contractor</P>
-                  <br>
-                  <br>
-              </li>
-         
-             
-                <a href="page1.jsp">  
-                    <li style="font-size:1.2vw; color:black"> Dashboard</li
-                </a>
-                <a href="reportmanager.jsp">   
-                    <li style="font-size:1.2vw; color:black"> Analysis</li>
-                </a>
-             
-               <a href="notificationmanager.jsp">  
-                    <li style="font-size:1.2vw; color:black"> Notification</li
-                </a>
-               <a href="register.jsp">  
-                    <li style="font-size:1.2vw; color:black"> Management cleaner</li
-                </a>
-                  <a href="profilemanager.jsp">  
-                <li style="font-size:1.2vw; color:black">Profile</li>
-                  </a>
-                <a href="index.jsp">  
-                    
-                    <li style="font-size:1.2vw; color:black">Log Out</li>
-                </a>
-            </ul>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
+    <div class="container-fluid">
+        <a href="#"class="navbar-brand mr-3"><img src="<%=e.getBase64Image() %>"  id="profileid" > Contractor</a>
+        
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav">
+               
+            </div>
+            <div class="navbar-nav ml-auto">
+           
+                 <a href="page1.jsp" class="nav-item nav-link active">Dashboard</a>
+                <a href="reportmanager.jsp" class="nav-item nav-link">Analysis</a>
+                <a href="notificationmanager.jsp" class="nav-item nav-link">Notification</a>
+                <a href="register.jsp" class="nav-item nav-link">Management</a>
+                  <a href="profilemanager.jsp" class="nav-item nav-link">profile</a>
+                    <a href="index.jsp" class="nav-item nav-link">LogOut</a>
+            </div>
         </div>
-                 
-                  <div class="tab">
-            <button class="tablinks" onclick="openCity(event, 'register')">Register Device</button>
-            <button class="tablinks" onclick="openCity(event, 'table')">List Device</button>
-             <button class="tablinks" onclick="openCity(event, 'update')">Update Level</button>
-
-        </div>
-
-        <div id="register" class="tabcontent">
+    </div>    
+</nav>
+<div class="tab">
+    
+         <button class="tablinks" onclick="openCity(event, 'register')">  Register Device</button>
+            <button class="tablinks" onclick="openCity(event, 'table')">  List Device </button>
+             <button class="tablinks" onclick="openCity(event, 'monitor')"> Monitor </button>
+            <button class="tablinks" onclick="openCity(event, 'update')"> Update Level</button>
+    
+</div>
+    
+    
+      <div id="register" class="tabcontent">
             <div class="main">
                 <br>
                 <h3>Registration Form</h3>
                 <br>
-                <form action=""   method="POST">
+                <form action="process3.jsp"   method="POST">
 
                     <table>
+                        
+                         <tr>
+                            <td>
+                               
+                            </td>
+                            <td>
+                                <input type="hidden" name="contractor" value="">
+                            </td>
+                        </tr>
+                                                
+
                         <tr>
                             <td>
-                                Name :
+                                <p>        Name : </p>
                             </td>
                             <td>
                                 <input type="text" name="name">
@@ -393,15 +425,28 @@ table{
                         </tr>
                         <tr>
                             <td>
-                                Device ID:
+                                <p>        Device ID: </p>
                             </td>
                             <td>
-                                <input type="password" name="device">
+                                <input type="text" name="device">
                             </td>
                         </tr>
-                        
+                        <tr>
+                            
+                             <td>
+                                 <p>               Location : </p>
+                            </td>
                             <td>
-                                <input type="submit" name="submit1" value="submit">
+                                <select name="location">
+  <option  selected>Toilet1</option>
+  <option>Toilet2</option>
+  <option>Toilet3</option>
+ 
+</select>
+                            </td>
+                        </tr>
+                            <td>
+                                <input type="submit" name="submit" value="Submit">
                             </td>
                         </tr>
                     </table>
@@ -410,24 +455,84 @@ table{
             </div>
 
         </div>
+    
+       <div id="table" class="tabcontent">
+            <h3>List of Device</h3>
+            <center>
+                 <div class="table-responsive"> 
+            <table class="content-table">
+                 <thead>
+            <tr>
+                <th>Name</th>
+                <th>DeviceID</th>
+              
+              <th>location</th>
 
-        <div id="table" class="tabcontent">
+     <th width="40%">Action</th>
+            </tr>
+            </thead>
+            <% List <soap_info> nike01=UserDao.listdevice((String)session.getAttribute("user"));
+            
+     
+            for(soap_info objf:nike01)
+{
+           %>
+           
+           <tr>
+               <td><%=objf.getName() %></td>
+               <td><%=objf.getDeviceid() %></td>
+               <td><%=objf.getLocation()  %></td>
+               <td width="40%">  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal<%=objf.getDeviceid() %>">Edit</button>
+ <a href="delete.jsp?id=<%=objf.getDeviceid()  %>" onclick="return confirm('Are you sure to delete?')"><button  type="button" onclick='myfunctional()' class="btn btn-info">Delete</button></a></td>
+           </tr>
+           
+           
+           <div id="myModal<%=objf.getDeviceid() %>" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+			    <div class="modal-content">
+					<div class="modal-header">
+						 <button type="button" class="close" data-dismiss="modal">&times;</button>
+						    <h4 class="modal-title">Update</h4>
+				    </div>
+				    <div class="modal-body">
+                                        <form action="process3.jsp" method="POST">
+                                            <input type="text" name="name" value="<%=objf.getName() %>">
+                                            
+                                            <input type="text" name="id" value="<%=objf.getDeviceid() %>">
+                                              <input type="text" name="location" value="<%=objf.getLocation() %>">
+                                                <input type="submit" name="submit"  value="Edit">
+                                        </form>
+						
+						
+						
+				    </div>
+				</div>
+			</div>
+		</div>
+           <%}%>
+            </table>
+                 </div>
+            
+       </div>   
+            
+            <div id="monitor" class="tabcontent">
             <h3>The record of quantity of soap</h3>
             <center>
+                <div class="table-responsive">
                <table class="content-table">
                 <thead>
             <tr>
-                <th>Device ID</th>
+                <th >Device ID</th>
                 <th>Distance</th>
                 <th>LongDate</th>
                 
               <th>location</th>
-
+         
 
             </tr>
             </thead>
                <%
-              List<result> list = UserDao.getresult();
+              List<result> list = UserDao.getresult((String)session.getAttribute("user"));
 
             for (result obj : list) {
 
@@ -438,12 +543,15 @@ table{
             <tbody>
             <center>
                <tr>
-                <td> <%=obj.getDeviceid() %></td>
+                <td width="30%"> <%=obj.getDeviceid() %></td>
                 <td><%=obj.getDistance() %></td>
 
                 <td><%=obj.getLogdate()%></td>
+  <td><%=obj.getLocation() %></td>
 
-               
+  <td>
+      
+  
             </tr>
             
             </tbody>
@@ -454,20 +562,69 @@ table{
 
 
         </table>
+                </div>
             </center>
-                       
+ 
+ <script>
+            function countDown(secs, elem)
+            {
+                var element = document.getElementById(elem);
+
+                if (secs < 1) {
+                    document.quiz.submit();
+                } else
+                {
+                    secs--;
+                    setTimeout('countDown(' + secs + ',"' + elem + '")', 1500);
+                }
+            }
+
+            function test() {
+                return true;
+            }
+        </script>
+        
+        
+         <script type="text/javascript">countDown(100, "status");</script>
+                      
+<% 
+   result obj1=UserDao.getcount();
+   
+if(obj1.getCount()>0)
+{
+    System.out.println("device okey");
+}
+
+else
+    
+{
+    %>
+      <script type="text/javascript">countDown(100, "status");</script>
+   <form name="quiz" id="myquiz" onsubmit="return test()" method="post" action="sent3.jsp">
+
+            <input type="hidden" name="mail" value="<%=e.getEmail()%>" />
+
+            <input type="hidden" name="sub" value="">
+            <input type="hidden" name="mess" value="Something Wrong to the device or battery. Please check it now" border="none"></input>
+
+        </form>
+
+    
+    
+    <%
+}
+%> 
 
         </div>
-
 
                    <div id="update" class="tabcontent">
                        
                        
                        <table id="updateinformation">
                            
-                           <th>Distance</th>
-                           <th>Details</th>
-                           <th>Action</th>
+                           <th style="font-size:1.3 em;">Distance</th>
+                           <th style="font-size:1.3 em;">Details</th>
+                           <th >Action</th>
                            
                       
                    <%    
@@ -534,7 +691,40 @@ table{
               
  </center>
         </div>
-        <script>
+        
+            
+           
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     <script>
             function openCity(evt, cityName) {
                 var i, tabcontent, tablinks;
                 tabcontent = document.getElementsByClassName("tabcontent");
@@ -552,6 +742,5 @@ table{
             
    
         </script>
-        
-    </body>
+</body>
 </html>

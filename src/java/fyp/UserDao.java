@@ -26,7 +26,7 @@ public class UserDao {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/fypproject", "root", "admin");
+            con = DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12319672", "sql12319672", "YPl1nJWZM1");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -241,32 +241,7 @@ public class UserDao {
 
     }
 
-    public static List<result> getallresult() {
-        List<result> list = new ArrayList<result>();
-
-        try {
-            Connection con = getConnection();
-            PreparedStatement ps = con.prepareStatement(
-                    "SELECT * FROM result");
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                result obj = new result();
-                obj.setId(rs.getInt(1));
-                obj.setDeviceid(rs.getString(2));
-
-                obj.setDistance(rs.getInt(3));
-                obj.setLogdate(rs.getTimestamp(4));
-
-                list.add(obj);
-            }
-            con.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return list;
-    }
-
+    
     public static int getresultsession(String deviceid) {
 
         int status = 0;
@@ -932,14 +907,16 @@ public class UserDao {
         return obj;
     }
 
-    public static List<result> getresult() {
+    public static List<result> getresult( String usernamemanager) {
 
         List<result> list = new ArrayList<result>();
 
         try {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "SELECT id,deviceid,distance,logdate FROM result s1 WHERE logdate = (SELECT MAX(logdate) FROM result s2 WHERE s1.deviceid = s2.deviceid) ORDER BY deviceid, logdate;");
+                    "SELECT s1.id,s1.deviceid,s1.distance,s1.logdate,soap_info.location from result s1 INNER JOIN soap_info on s1.deviceid =soap_info.deviceid where soap_info.usernamemanager=? AND s1.logdate = (SELECT MAX(s1.logdate) FROM result s2 WHERE s1.deviceid = s2.deviceid) ORDER BY deviceid, logdate;");
+              ps.setString(1, usernamemanager);
+            
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
 
@@ -948,6 +925,7 @@ public class UserDao {
                 obj.setDeviceid(rs.getString(2));
                 obj.setDistance(rs.getInt(3));
                 obj.setLogdate(rs.getTimestamp(4));
+                obj.setLocation(rs.getString(5));
 
                 list.add(obj);
             }
@@ -964,14 +942,14 @@ public class UserDao {
 
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO inactive (username, password, name, age, address, city, state) values (?, ?, ?, ?, ?, ?, ?)");
+                    "INSERT INTO inactive (username, name, age, address, city, state) values (?, ?, ?, ?, ?, ?)");
             ps.setString(1, obj.getUsername());
-            ps.setString(2, obj.getPasword());
-            ps.setString(3, obj.getName());
-            ps.setInt(4, obj.getAge());
-            ps.setString(5, obj.getAddress());
-            ps.setString(6, obj.getCity());
-            ps.setString(7, obj.getState());
+
+            ps.setString(2, obj.getName());
+            ps.setInt(3, obj.getAge());
+            ps.setString(4, obj.getAddress());
+            ps.setString(5, obj.getCity());
+            ps.setString(6, obj.getState());
 
             status = ps.executeUpdate();
 
@@ -982,5 +960,126 @@ public class UserDao {
         return status;
 
     }
+    
+    public static  result getcount()
+    {
+        result obj=new result();
+        
 
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT COUNT(*) FROM result WHERE logdate>TIMESTAMP(DATE_SUB(NOW(),INTERVAL 50 MINUTE))");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+               
+              obj.setCount(rs.getInt(1));
+               
+                
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return obj;
+        
+    }
+
+    
+    public static int savedevice(soap_info obj) {
+        int status = 0;
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "INSERT INTO soap_info (usernamemanager, name, deviceid, location) values (?, ?, ?, ?)");
+
+        ps.setString(1, obj.getUsernamemanager());
+        ps.setString(2, obj.getName());
+        ps.setString(3, obj.getDeviceid());
+        ps.setString(4, obj.getLocation());
+
+            status = ps.executeUpdate();
+
+            con.close();
+
+        } catch (Exception m) {
+            m.printStackTrace();
+        }
+        return status;
+    }
+    
+    public static List<soap_info>listdevice(String usernamemanager)
+    {
+        List<soap_info> list = new ArrayList<soap_info>();
+
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT * FROM `soap_info` WHERE usernamemanager=?");
+             ps.setString(1, usernamemanager);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+                soap_info obj = new soap_info();
+               
+                obj.setUsernamemanager(rs.getString(1));
+                obj.setName(rs.getString(2));
+                obj.setDeviceid(rs.getString(3));
+                obj.setLocation(rs.getString(4));
+                
+                
+                
+                
+                list.add(obj);
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    
+    
+      public static int updatedevice(soap_info obj) {
+        int status = 0;
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "UPDATE soap_info SET name=?, deviceid=?, location=? WHERE deviceid=?");
+
+                        ps.setString(1, obj.getName());
+
+            ps.setString(2, obj.getDeviceid());
+            ps.setString(3, obj.getLocation());
+              ps.setString(4, obj.getDeviceid());
+
+            status = ps.executeUpdate();
+
+            con.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return status;
+    }
+
+      
+        public static int getdeletedevice(String deviceid) {
+
+        int status = 0;
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "DELETE FROM soap_info WHERE deviceid = '" + deviceid + "'");
+            status = ps.executeUpdate();
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return status;
+    }
+      
+      
+      
 }

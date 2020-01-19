@@ -10,10 +10,21 @@ package fyp;
  * @author user
  */
 public class soap_info {
-    
+    private String usernamemanager;
     private String name;
     private String deviceid;
+    private String location;
 
+    public String getUsernamemanager() {
+        return usernamemanager;
+    }
+
+    public void setUsernamemanager(String usernamemanager) {
+        this.usernamemanager = usernamemanager;
+    }
+
+    
+    
     public String getName() {
         return name;
     }
@@ -29,6 +40,15 @@ public class soap_info {
     public void setDeviceid(String deviceid) {
         this.deviceid = deviceid;
     }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+    
     
     
 }

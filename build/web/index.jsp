@@ -10,24 +10,26 @@
 <%@page import="fyp.User"%>
 
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>JSP Page</title>
-       
-        <style>
+<html lang="en">
+   <html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <style>
             
+     
+     * {
+  box-sizing: border-box;
+}
             body{
-                 margin: 0;
-                padding: 0;
+                 margin: 0%;
+                padding: 0%;
                 background-image: url("80222-internet_of_things-technology-gadget-electronics-communication-2880x1800.jpg");
                 background-size: cover;
-                 align-items: center;
-                 display:flex;
+               
+                
                 font-family: sans-serif;
-                justify-content: center;
-                min-height: 100vh;
+     
+                
                
                 
             }
@@ -35,9 +37,14 @@
             .main{
                 position:relative;
                 width:50%;
-                min-height: 300px;
+                min-height: 320px;
                 background: rgba(255,255,255,0.05);
                 box-shadow: 0 5px 15px rgba(0,0,0,1);
+              
+                margin-top: 5%;
+          
+                
+                  
       
             }
            .main:before
@@ -69,27 +76,30 @@
            }
            
            .form{
+             
                position:absolute;
-               width:100%;
-               height:100%;
-               padding:40px;
+               width:50%;
+               height:80%;
+               margin-top:5%;
+               margin-left: 16%;
+         
+           ;
               box-sizing: border-box;
               z-index: 1;
            }
            
-           .form h2
+           .form h1
            {
-               margin:0;
-    
-               padding:0;
+          
                color:#000;
-               font-size:24px;
+               font-size:calc(1.5rem + 3vw));
            }
            .form .inputBox
            {
-               witdh:100%;
-               margin-top: 20px;
-               
+               width: 100%;
+               margin-top: 5%;
+               margin-right: 5%;
+           
            }
            .form .inputBox input
            {
@@ -98,15 +108,22 @@
                border:none;
                border-bottom: 2px solid #fff;
                outline:none;
-               font-size: 18px;
+               font-size: 20px;
                font-family: sans-serif;
                
+           }
+           
+           .form p
+           {
+               font-size: 20px;
+               color:black;
            }
            
            ::placeholder
            {
               color:#eee; 
            }
+           
            
            .form .inputBox input[type="submit"]
            {
@@ -127,6 +144,120 @@
            }
         
            
+           @media screen and (max-width: 360px) {
+               
+                .main{
+                position:relative;
+                width:90%;
+                min-height: 320px;
+                background: rgba(255,255,255,0.05);
+                box-shadow: 0 5px 15px rgba(0,0,0,1);
+              
+                margin-top: 5%;
+             color:black;
+                
+                  
+      
+            }
+            
+            
+            .form{
+             
+               position:absolute;
+               width:70%;
+               height:60%;
+               margin-top:5%;
+               margin-left: 16%;
+         
+           ;
+              box-sizing: border-box;
+              z-index: 1;
+           }
+           
+            .form .inputBox
+           {
+               width: 100%;
+               margin-top: 5%;
+               margin-right: 5%;
+           
+           }
+           
+           .form .inputBox input
+           {
+               width:100%;
+               background: transparent;
+               border:none;
+               border-bottom: 2px solid #fff;
+               outline:none;
+               font-size: 15px;
+               font-family: sans-serif;
+               
+           }
+           .form p
+           {
+                 font-size: 15px;
+           }
+  
+  }
+  
+  
+  @media screen and (max-width: 780px) {
+  .main{
+                position:relative;
+                width:90%;
+                min-height: 320px;
+                background: rgba(255,255,255,0.05);
+                box-shadow: 0 5px 15px rgba(0,0,0,1);
+              
+                margin-top: 5%;
+          
+                
+                  
+      
+            }
+            
+            
+            .form{
+             
+               position:absolute;
+               width:70%;
+               height:60%;
+               margin-top:5%;
+               margin-left: 16%;
+         
+           ;
+              box-sizing: border-box;
+              z-index: 1;
+           }
+           
+            .form .inputBox
+           {
+               width: 100%;
+               margin-top: 5%;
+               margin-right: 5%;
+           
+           }
+           
+           .form .inputBox input
+           {
+               width:100%;
+               background: transparent;
+               border:none;
+               border-bottom: 2px solid #fff;
+               outline:none;
+               font-size: 15px;
+               font-family: sans-serif;
+               
+           }
+           .form .p
+           {
+                 font-size: 15px;
+                    color:black;
+           }
+  
+}
+           
+        
           </style>  
          
     </head>
@@ -134,10 +265,14 @@
 	onpageshow="if (event.persisted) noBack();" onunload="">
                
               
-      
+    <center>
         <div class="main">
             <div class="form">
-                <h2>Login Form</h2>
+                
+                
+                <h1>Login Form</h1>
+                
+                
                 <form action="process.jsp" method="POST" autocomplete="off">
                     <div class="inputBox">
                         
@@ -155,13 +290,14 @@
                         <input type="submit" value="Login">
                         
                     </div>
+                    <br><br>
                     <a href="forget.jsp"> <p>Forget Password ?</p></a>
                 </form>
      
             </div>
             
         </div>
-     
+    </center>
         
         
     </body>

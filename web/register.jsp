@@ -1,89 +1,54 @@
-<%-- 
-    Document   : register
-    Created on : Oct 22, 2019, 10:24:10 PM
-    Author     : user
---%>
-
+<%@page import="fyp.message"%>
+<%@page import="fyp.quantityused"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
+<%@page import="fyp.soap_info"%>
+<%@page import="fyp.information"%>
+
+<%@page import="java.io.*"%>
+<%@page import="java.lang.*"%>
+<%@page import="java.util.List"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="fyp.UserDao"%>
+<%@page import="fyp.result"%>
 <%@page import="fyp.User"%>
 <%@page import="fyp.manager"%>
-<%@page import="fyp.UserDao"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+
+
 <!DOCTYPE html>
-<html>
-    <head>
-           <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Management</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+        <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <style>
-            body
-            {
-                margin: 0;
-                padding: 0;
-                background-image: url("80222-internet_of_things-technology-gadget-electronics-communication-2880x1800.jpg") ;
-                justify-content: center;
-                min-height: 100vh;
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<style>
+     * {
+  box-sizing: border-box;
+}
+body
+{
+     margin: 0%;
+                padding: 0%;
+                background-image: url("80222-internet_of_things-technology-gadget-electronics-communication-2880x1800.jpg");
                 background-size: cover;
-
-
-            }
-
-            *{
-                margin: 0px;
-                padding:0px;
+               
+                     
                 font-family: sans-serif;
+}
 
-            }
-
-            /* Style the tab */
-            .tab {
-                overflow: hidden;
-                border: 1px solid #ccc;
-                background-color: #f1f1f1;
-                width:71.8%;
-                margin-left: 17%;
-                margin-top:5%;
-            }
-
-            /* Style the buttons inside the tab */
-            .tab button {
-                background-color: inherit;
-                float: left;
-                border: none;
-                outline: none;
-                cursor: pointer;
-                padding: 14px 16px;
-                transition: 0.3s;
-                font-size: 17px;
-            }
-
-            /* Change background color of buttons on hover */
-            .tab button:hover {
-                background-color: #ddd;
-            }
-
-            /* Create an active/current tablink class */
-            .tab button.active {
-                background-color: #ccc;
-            }
-
-            /* Style the tab content */
-            .tabcontent {
-                display: none;
-                padding: 6px 12px;
-                border: 1px solid #ccc;
-                border-top: none;
-                width:71.7%;
-                margin-left: 17%;
-                background-color: white;
-            }
-
-            input[type=text]
+ input[type=text]
             {
                 width:67%;
 
@@ -91,7 +56,7 @@
 
             input[type=number]
             {
-                width:67%;
+                
 
             }
 
@@ -122,7 +87,7 @@
             {
                 border-collapse: collapse;
                 margin:25px 0;
-                font-size: 0.9em;
+               
                 width: 70%;
                 border-radius: 5px 5px 0 0;
 
@@ -156,178 +121,277 @@
             {
                 border-bottom: 2px solid #1FF6CB;
             }
-
-            #profileid
-            {
-
-                width:36%;
-                height:70px;
-                border-radius: 50%;
-                border:2px solid #34495e;
-
-                box-sizing: border-box;
-                position:absolute;
-                margin-top: 1px;
-                margin-left: 10px;
-
-
-            }
-            #bar
-            {
-                position: fixed;
-                width:14%;
-                height:100%;
-                background: #33cce6;
-                left: -200px;
-                margin-top:-5%;
-                transition: all 500ms linear;
-            }
-
-
-            #bar.active
-            {
-                left:0px;
-            }
-            #bar ul li{
-                color:rgba(238,230,230,0.9);
-                list-style: none;
-                padding: 15px 10px;
-                border-bottom: 1px solid rgba(100,100,100,0.3)
-            }
-
-            #bar ul li:hover
-            {
-                color:#003333
-            }
-
-            #bar .toggle-btn
-            {
-                position: absolute;
-                left: 230px;
-                top:20px;
-
-            }
-            #bar .toggle-btn span{
-                display: block;
-                width:30px;
-                height: 5px;
-                background: #151719;
-                margin: 3px 0px;
-
-            }
-
-            .btn {
-                background-color: #F9384C;
-                border: none;
-                color: white;
-                padding: 12px 16px;
-                font-size: 16px;
-                cursor: pointer;
-            }
-
-            /* Darker background on mouse-over */
-            .btn:hover {
-                background-color: #FF0000;
-            }
             
-            
-             
             .modal fade{
                 width:100%;
             }
-        </style>
+    .navbar-nav
+    {
+      
+       margin-left:520px;
+       
+    }
+    #profileid
+            {
+                
+                width:20%;
+                height:45px;
+                  border-radius: 50%;
+                border:2px solid #34495e;
+         
+                box-sizing: border-box;
+             
+                
+            }
+            
+         
+          .tab {
+                overflow: hidden;
+                border: 1px solid #ccc;
+                background-color: #f1f1f1;
+                width:60%;
+                margin-left: 20%;
+                margin-top:5%;
+              
+            }
+
+            /* Style the buttons inside the tab */
+            .tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+                font-size: 17px;
+            }
+
+            /* Change background color of buttons on hover */
+            .tab button:hover {
+                background-color: #ddd;
+            }
+
+            /* Create an active/current tablink class */
+            .tab button.active {
+                background-color: #ccc;
+            }
+            
+           
+              .tabcontent {
+                display: none;
+                padding: 6px 12px;
+                border: 1px solid #ccc;
+                border-top: none;
+                width:60%;
+                margin-left: 20%;
+                background-color: white;
+            }
+            
+         
 
 
-        <script>
+
+
+@media  (max-width: 768px) {
+    
+     .content-table
+            {
+                border-collapse: collapse;
+                margin:25px 0;
+               
+              
+                border-radius: 5px 5px 0 0;
+
+            }
+            .content-table th,.content-table td{
+
+                padding: 10px 13px;
+                     font-size:12px;
+
+            }
+. content-table 
+{
+    content-table table-responsive;
+}
+            
+            
+    .navbar-nav
+    {
+      
+       margin-left:4%;
+       
+    }
+  
+    .tab {
+                overflow: hidden;
+                border: 1px solid #ccc;
+                background-color: #f1f1f1;
+                width:95%;
+                margin-left: 3%;
+                margin-top:5%;
+               ;
+
+            }
+            
+            .tab p
+            {
+                font-size: 4vw;
+            }
+
+            /* Style the buttons inside the tab */
+            .tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 8px 10px;
+                transition: 0.3s;
+                font-size: 12px;
+            }
+
+            /* Change background color of buttons on hover */
+            .tab button:hover {
+                background-color: #ddd;
+            }
+
+            /* Create an active/current tablink class */
+            .tab button.active {
+                background-color: #ccc;
+            }
+            
+              .tabcontent {
+                display: none;
+                padding: 6px 12px;
+                border: 1px solid #ccc;
+                border-top: none;
+                width:95%;
+                margin-left: 3%;
+                background-color: white;
+            }
+            
+            .tabcontent h3
+            {
+             font-size:    4.5vw;
+            }
+            
+            .tabcontent p
+            {
+                font-size: 3vw;
+                
+            }
+              #profileid
+            {
+                
+                width:20%;
+                height:40px;
+                  border-radius: 50%;
+                border:2px solid #34495e;
+         
+                box-sizing: border-box;
+             
+                
+            }
+            
+             
+}
+
+
+</style>
+
+<script>
             function togglebar()
             {
                 document.getElementById("bar").classList.toggle('active');
             }
-
-            $(document).ready(function () {
-                function disablePrev() {
-                    window.history.forward();
-                }
-                window.onload = disablePrev();
-                window.onpageshow = function (evt) {
-                    if (evt.persisted)
-                        disableBack();
-                };
-            });
-
            
+      $(document).ready(function() {
+         function disablePrev() { window.history.forward() }
+         window.onload = disablePrev();
+         window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
+      });
+   
+    function myfunctional()
+      {
+              <%
+                  String usernamemanager=request.getParameter("usernamanager");
+                  int status=UserDao.deletemessage(usernamemanager);
+                  if(status>0)
+                  {
+                      response.sendRedirect("notificationmanager.jsp");
+                  }
+                   
+                  
+                  
+                  %>
+      }
+   
+   
+             
+           </script>
+</head>
 
-            
 
-          
-                
-                </script>
-
-    </head>
-    <body>
+   
+<body>
+    
+      <% 
+                 
+                manager e = UserDao.getmanagerBySession((String)session.getAttribute("user"));
+       
+        %>
+        
         <%
 
-            manager e = UserDao.getmanagerBySession((String) session.getAttribute("user"));
+            manager obj2 = UserDao.getmanagerBySession((String) session.getAttribute("user"));
 
         %>
-        <div id="bar">
-            <div class="toggle-btn"   onclick="togglebar()">
-
-                <span></span>
-                <span></span>
-                <span></span>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
+    <div class="container-fluid">
+        <a href="#"class="navbar-brand mr-3"><img src="<%=e.getBase64Image() %>"  id="profileid" > Contractor</a>
+        
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav">
+              
+              
             </div>
-            <ul>
-
-
-                <li>
-                    <img src="<%=e.getBase64Image()%>"  id="profileid" > <p style="padding-left:60%; padding-top: 20px; font-size:1.2vw;"> <%=e.getUsername()%> <br> Contractor</P>
-                    <br>
-                    <br>
-                </li>
-
-
-                <a href="page1.jsp">  
-                    <li style="font-size:1.2vw; color:black"> Dashboard</li
-                </a>
-                <a href="reportmanager.jsp">   
-                    <li style="font-size:1.2vw; color:black"> Analysis</li>
-                </a>
-
-                <a href="notificationmanager.jsp">  
-                    <li style="font-size:1.2vw; color:black"> Notification</li
-                </a>
-                <a href="register.jsp">  
-                    <li style="font-size:1.2vw; color:black"> Management cleaner</li
-                </a>
-                <a href="profilemanager.jsp">  
-                    <li style="font-size:1.2vw; color:black">Profile</li>
-                </a>
-                <a href="index.jsp">  
-
-                    <li style="font-size:1.2vw; color:black">Log Out</li>
-                </a>
-            </ul>
+            <div class="navbar-nav ml-auto">
+                  <a href="page1.jsp" class="nav-item nav-link">Dashboard</a>
+                <a href="reportmanager.jsp" class="nav-item nav-link">Analysis</a>
+                <a href="notificationmanager.jsp" class="nav-item nav-link">Notification</a>
+                <a href="register.jsp" class="nav-item nav-link active">Management</a>
+                 <a href="profilemanager.jsp" class="nav-item nav-link">profile</a>
+            <a href="index.jsp" class="nav-item nav-link">LogOut</a>
+                
+            </div>
         </div>
+    </div> 
+        
+       
+</nav>
 
-
-        <div class="tab">
-            <button class="tablinks" onclick="openCity(event, 'register')">Register Cleaner</button>
-            <button class="tablinks" onclick="openCity(event, 'list')">List Cleaner</button>
+ <div class="tab">
+     <button class="tablinks" onclick="openCity(event, 'register')"> <p> Register Cleaner </p></button>
+     <button class="tablinks" onclick="openCity(event, 'list')"><p>List Cleaner  </p></button>
 
         </div>
-
-        <div id="register" class="tabcontent">
-            <div class="main">
-                <br>
+        
+        
+          <div id="register" class="tabcontent">
+           
+                
                 <h3>Registration Form</h3>
-                <br>
+                
                 <form action="updateprofile2.jsp"  enctype="multipart/form-data" method="POST" autocomplete="off">
 
                     <table>
                         <tr>
                             <td>
-                                Username :
+                                <p>              Username: </P>
                             </td>
                             <td>
                                 <input type="text" name="username">
@@ -335,7 +399,7 @@
                         </tr>
                         <tr>
                             <td>
-                                Password:
+                                <p>        Password: </P>
                             </td>
                             <td>
                                 <input type="password" name="password">
@@ -353,7 +417,7 @@
 
                         <tr>
                             <td>
-                                Name:
+                                <p>                      Name: </p>
                             </td>
 
                             <td>
@@ -362,7 +426,7 @@
                         </tr>
                         <tr>
                             <td>
-                                Email:
+                                <p>        Email: <p>
                             </td>
 
                             <td>
@@ -371,7 +435,7 @@
                         </tr>
                         <tr>
                             <td>
-                                Number:
+                                <p>          Number: </p>
                             </td>
 
                             <td>
@@ -381,7 +445,7 @@
                         <tr>
 
                             <td>
-                                Age:
+                                <p>            Age: </p>
                             </td>
                             <td>
                                 <input type="text" name="age">
@@ -389,7 +453,7 @@
                         </tr>
                         <tr>
                             <td>
-                                Address:
+                                <p>               Address: </p>
                             </td>
                             <td>
                                 <input type="text" name="address">
@@ -400,7 +464,7 @@
                         <tr>
 
                             <td>
-                                City:
+                                <p>                           City:  </p>
                             </td>
 
                             <td>
@@ -408,14 +472,14 @@
                             </td>
                         </tr>
                         <td>
-                            State:
+                            <p> State:</p>       
                         </td>
                         <td>
                             <input typ="text" name="state">
                         </td>
                         <tr>
                             <td>
-                                Image:
+                                <p>      Image: </p>
                             </td>
                             <td>
                                 <input type="file" name="image">
@@ -432,14 +496,19 @@
 
             </div>
 
-        </div>
-
-        <div id="list" class="tabcontent">
+   
+                            
+                               <div id="list" class="tabcontent">
+           
+                
+            
             <h3>List of cleaner</h3>
             <center>
-               
-                    <table class="content-table">
-                       
+                <div class="table-responsive">   
+                
+              <form action="delete.jsp" method="POST" id="form12">
+                    <table class=" content-table">
+                        
                         <thead>
                             <tr>
                                 <th>Username</th>
@@ -467,26 +536,32 @@
                             for (User obj : list) {
                         %>
                         <tbody>
-                        
+                       
                             <tr>
-                                <td><input style="border:none" type="text" name="username" value="<%=obj.getUsername()%>"> </td>
+                                <td><%=obj.getUsername()%> </td>
+                             
                                 <td><%=obj.getName()%></td>
-                                <td><%=obj.getEmail()%></td>
+                               
+                               <td><%=obj.getEmail() %></td>
                                 <td><%=obj.getNumber()%></td>
-                                <td><%=obj.getAge()%></td>
-                                <td><%=obj.getAddress()%></td>
-                                <td> <%=obj.getCity()%></td>
-                                <td><%=obj.getState()%></td>
+                              <td><%=obj.getAge() %></td>
+                              <td><%=obj.getAddress() %></td>
+                               <td><%=obj.getCity() %></td>
+                             <td><%=obj.getState() %></td>
                                 <td>  
                                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal<%=obj.getUsername() %>">Edit</button></td>
                                 
-                                <td> <a href="delete.jsp?username=<%=obj.getUsername()  %>" onclick="return confirm('Are you sure to delete?')"><button  type="button" onclick='myfunctional()'  class="btn"><i class="fa fa-trash"></i></button></a></td>
-                            </tr>
+                                <td>     <button type="submit" onclick="return confirm('Are you sure to delete?')"class="btn btn-info" >Delete</button></td>
+                    
                             
+                            </tr>
+                        
                               <%}
                             %>
-
+                    
+                         
                     </table> 
+                          </form>  
                             
                                   <%
 
@@ -618,6 +693,8 @@
 			
 <% }
     %>
+    
+    </div>   
                         </center>
                             </tbody>
 
@@ -631,10 +708,7 @@
 
 
         </div>
-
-
-
-                <script>
+ <script>
                 function openCity(evt, cityName) {
                                                         var i, tabcontent, tablinks;
                                                         tabcontent = document.getElementsByClassName("tabcontent");
@@ -649,6 +723,7 @@
             evt.currentTarget.className += " active";
             }
             </script>
-
 </body>
-</html> 
+
+
+</html>

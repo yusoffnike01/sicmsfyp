@@ -1,6 +1,6 @@
 <%-- 
-    Document   : sent
-    Created on : Dec 11, 2019, 11:12:36 PM
+    Document   : sent2
+    Created on : Jan 17, 2020, 2:23:19 AM
     Author     : user
 --%>
 
@@ -107,14 +107,14 @@
 
         Transport.send(message);
 
-       response.sendRedirect("reportmanager.jsp");
+       response.sendRedirect("Report.jsp");
        System.out.println("succesfull");
 
     } catch (MessagingException mex) {
 
         mex.printStackTrace();
 
-       response.sendRedirect("reportmanager.jsp");
+       response.sendRedirect("Report.jsp");
        System.out.println("lost connection");
 
     }

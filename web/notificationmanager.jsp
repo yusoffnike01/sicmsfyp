@@ -4,124 +4,70 @@
     Author     : user
 --%>
 
-<%@page import="fyp.manager"%>
+<%@page import="fyp.message"%>
+<%@page import="fyp.quantityused"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="fyp.soap_info"%>
+<%@page import="fyp.information"%>
+
+<%@page import="java.io.*"%>
+<%@page import="java.lang.*"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="fyp.UserDao"%>
-<%@page import="fyp.message"%>
-<%@page import="java.util.List"%>
+<%@page import="fyp.result"%>
+<%@page import="fyp.User"%>
+<%@page import="fyp.manager"%>
+
+
+
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <title>JSP Page</title>
-          <style>
-            body
-            {
-                    margin: 0;
-                padding: 0;
-                background-image: url("80222-internet_of_things-technology-gadget-electronics-communication-2880x1800.jpg") ;
-                justify-content: center;
-                min-height: 100vh;
+<html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Notification</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+        <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<style>
+     * {
+  box-sizing: border-box;
+}
+body
+{
+     margin: 0%;
+                padding: 0%;
+                background-image: url("80222-internet_of_things-technology-gadget-electronics-communication-2880x1800.jpg");
                 background-size: cover;
-            }
-            
-             *{
-                margin: 0px;
-                padding:0px;
+               
+                
                 font-family: sans-serif;
-                
-            }
-            #bar
+}
+    
+    #profileid
             {
                 
-                position: fixed;
-                width:14%;
-                height:100%;
-                background: #33cce6;
-                left: -200px;
-             margin-top: -5%;
-                transition: all 500ms linear;
-            }
-            
-            
-            #bar.active
-            {
-                left:0px;
-            }
-            #bar ul li{
-                color:rgba(238,230,230,0.9);
-                list-style: none;
-                padding: 15px 10px;
-                border-bottom: 1px solid rgba(100,100,100,0.3)
-            }
-            
-            #bar ul li:hover
-            {
-                color:#003333
-            }
-            
-            #bar .toggle-btn
-            {
-                position: absolute;
-                left: 230px;
-                top:20px;
-                
-            }
-            #bar .toggle-btn span{
-                display: block;
-                width:30px;
-                height: 5px;
-                background: #151719;
-                margin: 3px 0px;
-                
-            }
-           
-            #kotak
-            {
-                background-color: white;
-                width:50%;
-                height: 620px;
-               border:2px solid red;
-                       margin-left: 24%;
-            }
-            
-            #kotak .in
-            { 
-                
-                margin-left: 5%;
-                width:90%;
-          
-             padding-top: 2%;
-                background-color: white;
-                height:600px;
-                
-                background-image: url("8ZoAeMh.jpg");
-            
-                
-            }
+                                width:8%;
+                height:45px;
+
+                  border-radius: 50%;
+                border:2px solid #34495e;
          
+                box-sizing: border-box;
+             
+                
+            }
             
          
-            #buttonEdit {
-    float: right;
-    margin-right: 50px;
-      background-color: #4CAF50;
-    border-radius: 50px;
-    color: white;
-    font-size: 17px;
-    border: 1px solid red;
-    cursor: pointer;
-    width:auto;
-}
-
-#buttonEdit:hover {
-    background-color: blue;
-}
-
-
-
-.main{
+          .main{
     
     background-color: whitesmoke;
     margin-left: 20%;
@@ -170,44 +116,40 @@
 }
 
 
- #profileid
+
+
+
+@media  (max-width: 768px) {
+   
+  
+   .content-table thead tr
+{
+    background-color:#25f0f7;
+    color:black;
+    text-align:left;
+    font-weight:bold;
+    font-size: 14px;
+}
+              #profileid
             {
                 
-                width:36%;
-                height:70px;
+                width:20%;
+                height:40px;
                   border-radius: 50%;
                 border:2px solid #34495e;
          
                 box-sizing: border-box;
-                position:absolute;
-                margin-top: 1px;
-                margin-left: 10px;
-                
+             
                 
             }
-            .btn {
-  background-color: #F9384C;
-  border: none;
-  color: white;
-  padding: 12px 16px;
-  font-size: 16px;
-  cursor: pointer;
+            
+             
 }
 
-/* Darker background on mouse-over */
-.btn:hover {
-  background-color: #FF0000;
-}
-        </style>
-        
-        
-            <%
-              response.setHeader("Cache-Control","no-cache, no-store,must-revalidate");
-          
-            
-            %>
-       
-        <script>
+
+</style>
+
+<script>
             function togglebar()
             {
                 document.getElementById("bar").classList.toggle('active');
@@ -218,8 +160,8 @@
          window.onload = disablePrev();
          window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
       });
-      
-      function myfunctional()
+   
+    function myfunctional()
       {
               <%
                   String usernamemanager=request.getParameter("usernamanager");
@@ -234,55 +176,53 @@
                   %>
       }
    
+   
              
            </script>
-    </head>
-    <body>
-         <div id="bar">
-            <div class="toggle-btn"   onclick="togglebar()">
-                
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-          <ul>
-               <% 
+</head>
+
+
+   
+<body>
+    
+      <% 
                  
                 manager e = UserDao.getmanagerBySession((String)session.getAttribute("user"));
        
         %>
-            
-              <li>
-                  <img src="<%=e.getBase64Image() %>"  id="profileid" > <p style="padding-left:60%; padding-top: 20px; font-size:1.2vw;"> <%=e.getUsername() %> <br> Contractor</P>
-                  <br>
-                  <br>
-              </li>
-         
-             
-                <a href="page1.jsp">  
-                    <li style="font-size:1.2vw; color:black"> Dashboard</li
-                </a>
-                <a href="reportmanager.jsp">   
-                    <li style="font-size:1.2vw; color:black"> Analysis</li>
-                </a>
-             
-               <a href="notificationmanager.jsp">  
-                    <li style="font-size:1.2vw; color:black"> Notification</li
-                </a>
-               <a href="register.jsp">  
-                    <li style="font-size:1.2vw; color:black"> Management cleaner</li
-                </a>
-                  <a href="profilemanager.jsp">  
-                <li style="font-size:1.2vw; color:black">Profile</li>
-                  </a>
-                <a href="index.jsp">  
-                    
-                    <li style="font-size:1.2vw; color:black">Log Out</li>
-                </a>
-            </ul>
+        
+        <%
+
+            manager obj2 = UserDao.getmanagerBySession((String) session.getAttribute("user"));
+
+        %>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
+    <div class="container-fluid">
+        <a href="#"class="navbar-brand mr-3"><img src="<%=e.getBase64Image() %>"  id="profileid" > Contractor</a>
+        
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav">
+               
+            </div>
+            <div class="navbar-nav ml-auto">
+           
+                 <a href="page1.jsp" class="nav-item nav-link">Dashboard</a>
+                <a href="reportmanager.jsp" class="nav-item nav-link">Analysis</a>
+                <a href="notificationmanager.jsp" class="nav-item nav-link active">Notification</a>
+                <a href="register.jsp" class="nav-item nav-link">Management</a>
+                  <a href="profilemanager.jsp" class="nav-item nav-link">profile</a>
+                    <a href="index.jsp" class="nav-item nav-link">LogOut</a>
+            </div>
         </div>
-             
-                      <div class="main">
+    </div> 
+        
+       
+</nav>
+
+ <div class="main">
             <center>
                 <form action="" method="POST">
             <table class="content-table">
@@ -312,7 +252,7 @@
                 <td> <%=obj.getUsername() %></td>
                 <td><%=obj.getMessage() %></td>
 
-                <td> <button onclick="return confirm('Are you sure to delete?')" onclick='myfunctional()'  class="btn"><i class="fa fa-trash"></i></button></td>
+                <td> <button onclick="return confirm('Are you sure to delete?')" onclick='myfunctional()'  class="btn btn-info">Delete</button></td>
 
                
             </tr>
@@ -327,10 +267,9 @@
         </table>
                 </form>
             
-            
-        </div>
  </center>
         </div>
-       
-    </body>
+</body>
+
+
 </html>

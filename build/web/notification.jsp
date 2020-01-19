@@ -4,92 +4,60 @@
     Author     : user
 --%>
 
-<%@page import="fyp.UserDao"%>
-<%@page import="fyp.User"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="fyp.UserDao"%>
+
+<%@page import="fyp.User"%>
+
+
+
+
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <style>
-            body
-            {
-                     margin: 0;
-                padding: 0;
-                background-image: url("80222-internet_of_things-technology-gadget-electronics-communication-2880x1800.jpg") ;
-                justify-content: center;
-                min-height: 100vh;
+<html lang="en">
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Analysis</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+        <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<style>
+     * {
+  box-sizing: border-box;
+}
+body
+{
+     margin: 0%;
+                padding: 0%;
+                background-image: url("80222-internet_of_things-technology-gadget-electronics-communication-2880x1800.jpg");
                 background-size: cover;
-            }
-            
-             *{
-                margin: 0px;
-                padding:0px;
+               
+                
                 font-family: sans-serif;
-                
-            }
-               #bar
-            {
-                position: fixed;
-                width:14%;
-                height:100%;
-                background: #33cce6;
-                left: -200px;
-               margin-top:-5%;
-                transition: all 500ms linear;
-            }
-            
-            
-            #bar.active
-            {
-                left:0px;
-            }
-            #bar ul li{
-                color:rgba(238,230,230,0.9);
-                list-style: none;
-                padding: 15px 10px;
-                border-bottom: 1px solid rgba(100,100,100,0.3)
-            }
-            
-            #bar ul li:hover
-            {
-                color:#003333
-            }
-            
-            #bar .toggle-btn
-            {
-                position: absolute;
-                left: 230px;
-                top:20px;
-                
-            }
-            #bar .toggle-btn span{
-                display: block;
-                width:30px;
-                height: 5px;
-                background: #151719;
-                margin: 3px 0px;
-                
-            }
-           
-             #profileid
+}
+   
+    #profileid
             {
                 
-                width:36%;
-                height:70px;
+              width:8%;
+                height:45px;
+
                   border-radius: 50%;
                 border:2px solid #34495e;
          
                 box-sizing: border-box;
-                position:absolute;
-                margin-top: 1px;
-                margin-left: 10px;
-                
+             
                 
             }
-            
-            .main{
+         
+         
+
+ .main{
                 width: 50%;
                 color:#fff;
                 background-color: white;
@@ -100,7 +68,7 @@
             }
             
             form{
-                margin-top: 50px;
+                margin-top: 5%;
                 transition: all 4s ease-in-out;
                 
                 
@@ -108,7 +76,7 @@
             
             .form-control
             {
-                width:600px;
+                width:70%;
                 background-color: white;
                 border:none;
                 outline:none;
@@ -141,9 +109,81 @@
            
                 
             }
-            </style>
+
+
+@media  (max-width: 768px) {
+    
+  
+   
+
+              #profileid
+            {
+                
+                width:20%;
+                height:40px;
+                  border-radius: 50%;
+                border:2px solid #34495e;
+         
+                box-sizing: border-box;
+             
+                
+            }
             
-                <script>
+             .main{
+                width: 100%;
+                color:#fff;
+                background-color: white;
+                text-transform: uppercase;
+                transition: all 4s ease-in-out;
+                margin-left: 0%;
+                margin-top: 5%;
+            }
+            
+            form{
+                
+                transition: all 4s ease-in-out;
+                
+                
+            }
+            
+            .form-control
+            {
+                width:60%;
+                background-color: white;
+                border:none;
+                outline:none;
+                border-bottom: 1px solid gray;
+                color:black;
+                font-size: 15px;
+                margin-bottom: 16px;
+            }
+            
+            input{
+                height: 3%;
+               
+                
+                
+            }
+            
+            form .submit{
+                background: #ff5722;
+                border-color:transparent;
+                font-size:15px;
+                font-weight:bold;
+                letter-spacing: 1%;
+                height:50px;
+                margin-top: 5%;
+            }
+            
+           
+
+
+}
+
+
+</style>
+
+<script>
             function togglebar()
             {
                 document.getElementById("bar").classList.toggle('active');
@@ -157,51 +197,43 @@
    
              
            </script>
-           
-    </head>
-    <body>
-          <% 
+</head>
+
+
+  
+<body>
+    
+      <% 
                  
-                User e = UserDao.getUserBySession((String)session.getAttribute("user"));
+               User e = UserDao.getUserBySession((String) session.getAttribute("user"));
        
         %>
-       <div id="bar">
-            <div class="toggle-btn"   onclick="togglebar()">
+        
+       
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
+    <div class="container-fluid">
+        <a href="#"class="navbar-brand mr-3"><img src="<%=e.getBase64Image() %>"  id="profileid" > Contractor</a>
+        
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav">
                 
-                <span></span>
-                <span></span>
-                <span></span>
             </div>
-          <ul>
-              
-            
-              <li>
-                  <img src="<%=e.getBase64Image() %>"  id="profileid" > <p style="padding-left:60%; padding-top: 20px; font-size:1.2vw; color:black"> <%=e.getUsername() %></P>
-                  <br>
-                  <br>
-              </li>
-         
-             
-                <a href="table.jsp">  
-                    <li style="font-size:1.2vw; color:black"> Dashboard</li
-                </a>
-                <a href="Report.jsp">   
-                    <li style="font-size:1.2vw; color:black"> Analysis</li>
-                </a>
+            <div class="navbar-nav ml-auto">
+           <a href="table.jsp" class="nav-item nav-link">Dashboard</a>
+                <a href="Report.jsp" class="nav-item nav-link ">Analysis</a>
+                <a href="notification.jsp" class="nav-item nav-link active">Notification</a>
                
-               <a href="notification.jsp">  
-                    <li style="font-size:1.2vw; color:black"> Notification</li
-                </a>
-                  <a href="profile.jsp">  
-                <li style="font-size:1.2vw; color:black">Profile</li>
-                  </a>
-                <a href="index.jsp">  
-                    
-                    <li style="font-size:1.2vw; color:black">Log Out</li>
-                </a>
-            </ul>
+                  <a href="profile.jsp" class="nav-item nav-link">profile</a>
+                    <a href="index.jsp" class="nav-item nav-link">LogOut</a>
+                
+            </div>
         </div>
-                  <div class="main">
+    </div>    
+</nav>
+   <div class="main">
                       <center>
                       <form id="contact-inform" method="POST" action="processmessage.jsp">
                           <input  type="hidden" name="manager" class="form-control" placeholder="Enter the manager" value="<%=e.getUsernamemanager() %>" >
@@ -211,9 +243,12 @@
 
                            <textarea name="message" class="form-control" placeholder="Message"  required>
                            </textarea><br>
-                              <button onclick="alert('Sucessfull')">SEND MESSAGE</button>
+                              <button onclick="alert('Sucessfull')" class="btn btn-info">SEND MESSAGE</button>
                       </form>
                       </center>
                   </div>
-    </body>
+
+</body>
+
+
 </html>

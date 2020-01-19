@@ -10,21 +10,30 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>update</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+        <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <title>FYP</title>
 
         <style>
             body
             {
-                margin: 0;
-                padding: 0;
+                margin: 0%;
+                padding: 0%;
                 background-image: url("80222-internet_of_things-technology-gadget-electronics-communication-2880x1800.jpg");
                 background-size: cover;
-                align-items: center;
-                display:flex;
+               
+                     
                 font-family: sans-serif;
-                justify-content: center;
-                min-height: 100vh;
 
             }
 
@@ -38,8 +47,8 @@
             form
             {
                  background-color:white;
-                padding: 20px;
-                width: 450px;
+                padding: 1%;
+                width: 40%;
                 margin: 50px auto;
                 border: 2px solid #2481f2;
   border-radius: 8px;
@@ -47,7 +56,7 @@
             
             input[type=text]
             {
-                width:280px;
+                width:85%;
                 padding:8px;
                 margin:5px 0;
                 border-radius: 5px;
@@ -58,7 +67,7 @@
             
                  input[type=email]
             {
-                width:280px;
+                width:85%;
                 padding:8px;
                 margin:5px 0;
                 border-radius: 5px;
@@ -69,7 +78,7 @@
             
             input[type=submit]
             {
-                width:150px;
+                width:40%;
                 height:40px;
                 border-radius:5px;
                 background-color: #4880B0;
@@ -84,17 +93,74 @@
               
             input[type=button]
             {
-                 width:100px;
+                 width:50%;
                 height:40px;
                 border-radius:5px;
                 background-color: #4880B0;
                 border:1px solid #286090;
+                height:40px;
+
                 
             }
             input[type=button]:hover
             {
                 background-color: whitesmoke;
             }
+            
+            
+            @media  (max-width: 768px) 
+            {
+                 .main #id
+            {
+                float:left;
+            }
+            
+            form
+            {
+                 background-color:white;
+                padding: 1%;
+                width: 100%;
+                margin: 50px auto;
+                border: 2px solid #2481f2;
+  border-radius: 8px;
+            }
+                 input[type=button]
+            {
+                 width:80%;
+                height:40px;
+                border-radius:5px;
+                background-color: #4880B0;
+                border:1px solid #286090;
+                
+            }
+                  input[type=text]
+            {
+                width:80%;
+                padding:8px;
+                margin:5px 0;
+                border-radius: 5px;
+                border:1px solid #33cce6;
+                
+                
+            }
+            
+                 input[type=email]
+            {
+                width:80%;
+                padding:8px;
+                margin:5px 0;
+                border-radius: 5px;
+                border:1px solid #33cce6;
+                
+                
+            }
+            
+                
+            }
+            
+            
+            
+            
         </style>
         <script type="text/javascript">
             function validate()
