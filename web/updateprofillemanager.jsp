@@ -206,7 +206,7 @@
         %>
         <%            String name = request.getParameter("username");
             manager e = UserDao.getmanagerBySession(name);
-
+               manager a=UserDao.getforgetsession(name);
 
         %>
 
@@ -286,6 +286,15 @@
                         </td>
 
                     </tr>
+                     <tr>
+                        <td>
+                            <label>Favourite:</label>
+                        </td>
+                        <td>
+                            <input type="text" name="favourite" value="<%=a.getFavourite() %>">
+                        </td>
+
+                    </tr>
                     <tr>
                         <td>
                             <label>Choose your profile picture :</label>
@@ -303,7 +312,7 @@
                         </td>
 
                         <td>
-                            <input type="submit" name="submit"  value="EditProfiler">
+                            <input type="submit" name="Submit"  value="EditProfiler">
                         </td>
                     </tr>
 

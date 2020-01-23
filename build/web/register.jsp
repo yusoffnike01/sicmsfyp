@@ -37,17 +37,19 @@
      * {
   box-sizing: border-box;
 }
-body
-{
-     margin: 0%;
+            body{
+                 margin: 0%;
                 padding: 0%;
                 background-image: url("80222-internet_of_things-technology-gadget-electronics-communication-2880x1800.jpg");
                 background-size: cover;
                
-                     
+                
                 font-family: sans-serif;
-}
-
+     
+                
+               
+                
+            }
  input[type=text]
             {
                 width:67%;
@@ -488,7 +490,7 @@ body
                         <tr>
                             <td></td>
                             <td>
-                                <input type="submit" name="submit" value="register">
+                                <input type="submit" name="Submit" value="register">
                             </td>
                         </tr>
                     </table>
@@ -506,7 +508,7 @@ body
             <center>
                 <div class="table-responsive">   
                 
-              <form action="delete.jsp" method="POST" id="form12">
+          
                     <table class=" content-table">
                         
                         <thead>
@@ -551,7 +553,7 @@ body
                                 <td>  
                                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal<%=obj.getUsername() %>">Edit</button></td>
                                 
-                                <td>     <button type="submit" onclick="return confirm('Are you sure to delete?')"class="btn btn-info" >Delete</button></td>
+                                <td><a href="delete.jsp?name=<%=obj.getUsername() %>"     <button type="submit" onclick="return confirm('Are you sure to delete?')"class="btn btn-info"  >Delete</button></td>
                     
                             
                             </tr>
@@ -561,7 +563,7 @@ body
                     
                          
                     </table> 
-                          </form>  
+                      
                             
                                   <%
 

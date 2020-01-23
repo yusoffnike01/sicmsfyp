@@ -325,13 +325,14 @@ margin-left: 75%;
                             
                             <br><br>
                             State:<%=e.getState() %>
+                            
                         </h4>
                    
                      
                        
                        <div id="buttonEdit">
 
-                    <a href="updateprofillemanager.jsp?username=<%=e.getUsername()%>">Edit Profile</a>
+                    <a href="updateprofile.jsp?username=<%=e.getUsername()%>">Edit Profile</a>
 
                 
                     </div> 

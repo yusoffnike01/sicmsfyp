@@ -23,7 +23,7 @@ public class manager {
     private String city;
     private String state;
      private Part part;
-
+    private String favourite;
     public String getName() {
         return name;
     }
@@ -114,6 +114,15 @@ public class manager {
     public void setBase64Image(String base64Image) {
         this.base64Image = base64Image;
     }
+
+    public String getFavourite() {
+        return favourite;
+    }
+
+    public void setFavourite(String favourite) {
+        this.favourite = favourite;
+    }
+    
     
     
     

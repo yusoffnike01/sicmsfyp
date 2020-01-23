@@ -143,6 +143,23 @@ body
                 
             }
             
+               .main{
+    
+    background-color: whitesmoke;
+    margin-left: 0%;
+    margin-top: 5%;
+    width:100%;
+    height:auto;
+}
+.content-table
+{
+    border-collapse: collapse;
+    margin:25px 0;
+    font-size: 0.9em;
+    width: 90%;
+    border-radius: 5px 5px 0 0;
+    
+}
              
 }
 
@@ -224,6 +241,7 @@ body
 
  <div class="main">
             <center>
+                                <div class="table-responsive">   
                 <form action="" method="POST">
             <table class="content-table">
                 <thead>
@@ -266,6 +284,7 @@ body
 
         </table>
                 </form>
+                                </div>
             
  </center>
         </div>

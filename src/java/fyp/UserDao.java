@@ -26,7 +26,7 @@ public class UserDao {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12319672", "sql12319672", "YPl1nJWZM1");
+            con = DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net/sql12319672", "sql12319672", "YPl1nJWZM1");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -38,7 +38,7 @@ public class UserDao {
         try {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "UPDATE cleaner SET username=?, password=?, usernamemanager=?, name=?, email=?, number=?, age=?, address=?, city=?, state=?, image=? WHERE username=?");
+ "UPDATE cleaner SET username=?, password=?, usernamemanager=?, name=?, email=?, number=?, age=?, address=?, city=?, state=?, image=? WHERE username=?");
 
             InputStream is = e.getPart().getInputStream();
 
@@ -57,7 +57,6 @@ public class UserDao {
             ps.setString(12, e.getUsername());
 
             status = ps.executeUpdate();
-
             con.close();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -297,13 +296,13 @@ public class UserDao {
         return list;
     }
 
-    public static forget getforgetsession(String username, String favourite) {
-        forget obj = new forget();
+    public static manager getforgetsession(String username, String favourite) {
+        manager obj = new manager();
         try {
             Connection con = getConnection();
 
             PreparedStatement ps = con.prepareStatement(
-                    "SELECT * FROM forget WHERE username=? and favourite=?");
+                    "SELECT * FROM forgetcontractor WHERE usernamemanager=? and favourite=?");
             ps.setString(1, username);
             ps.setString(2, favourite);
             ResultSet rs = ps.executeQuery();
@@ -762,9 +761,9 @@ public class UserDao {
         return obj;
     }
 
-    public static forget getforgetsession(String usernamemanager) {
+    public static manager getforgetsession(String usernamemanager) {
 
-        forget obj = new forget();
+        manager obj = new manager();
         try {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
@@ -786,9 +785,9 @@ public class UserDao {
         return obj;
     }
 
-    public static forget getforgetcleaner(String username) {
+    public static User getforgetcleaner(String username) {
 
-        forget obj = new forget();
+        User obj = new User();
         try {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
@@ -797,7 +796,7 @@ public class UserDao {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                obj.setUsername(rs.getString(1));
+                obj.setId(rs.getInt(1));
                 obj.setUsername(rs.getString(2));
                 obj.setFavourite(rs.getString(3));
 
@@ -809,31 +808,44 @@ public class UserDao {
 
         return obj;
     }
-
-    public static List<forget> getforget() {
-
-        List<forget> list = new ArrayList<forget>();
-
+public static int getupdateforget(User obj) {
+        int status = 0;
         try {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "SELECT * FROM forgetmanager");
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
+                    "UPDATE forget SET favourite=? WHERE username=?");
+            ps.setString(1, obj.getFavourite());
+            ps.setString(2, obj.getUsername());
+ 
+            status = ps.executeUpdate();
 
-                forget obj = new forget();
-                obj.setUsername(rs.getString(1));
-                obj.setFavourite(rs.getString(2));
-
-                list.add(obj);
-            }
             con.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
-        return list;
+        return status;
     }
 
+
+public static int getupdateforgetcontractor(manager obj) {
+        int status = 0;
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "UPDATE forgetcontractor SET favourite=? WHERE usernamemanager=?");
+            ps.setString(1, obj.getFavourite());
+            ps.setString(2, obj.getUsername());
+ 
+            status = ps.executeUpdate();
+
+            con.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return status;
+    }
+
+  
     public static information getinformationByaltitude() {
         information obj = new information();
 

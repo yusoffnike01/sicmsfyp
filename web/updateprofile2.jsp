@@ -20,54 +20,12 @@
       
       
      
-      String submit=request.getParameter("submit");
+     String submit=request.getParameter("Submit");
               
-      if(submit.equalsIgnoreCase("Edit"))
-              {
-                  String username = request.getParameter("username");
-            String password=request.getParameter("password");
-            String usernamemanager=request.getParameter("usernamemanager");
-            String name = request.getParameter("name");
-            String email=request.getParameter("email");
-            String number=request.getParameter("number");
-            int age = Integer.parseInt(request.getParameter("age"));
-         
-            String address = request.getParameter("address");
-               String city = request.getParameter("city");
-                  String state = request.getParameter("state");
-                  Part part=request.getPart("image");
-           
-                
-           User e = new User();
-                      e.setUsername(username);
-                      e.setPasword(password);
-                      e.setUsernamemanager(usernamemanager);
-                      e.setName(name);
-                      e.setEmail(email);
-                      e.setNumber(number);
-                      e.setAge(age);
-                      e.setAddress(address);
-                      e.setCity(city);
-                      e.setState(state);
-                      e.setPart(part);
-                  
-                                       int status=UserDao.updateUser(e);
-                                       
-                                       
-                                        if(status > 0) {
-                    System.out.println("Successful");
-                    
-                    response.sendRedirect("register.jsp");
-                }
-                                        else
-                                        {
-                                            response.sendRedirect("register.jsp");
-                                             System.out.println("failed");
-
-                                        }
-              }
       
-      else if(submit.equalsIgnoreCase("EditProfiler"))
+      
+     
+       if(submit.equalsIgnoreCase("EditProfiler"))
       {
           String username = request.getParameter("username");
             String password=request.getParameter("password");
@@ -80,6 +38,7 @@
             String address = request.getParameter("address");
                String city = request.getParameter("city");
                   String state = request.getParameter("state");
+                  String favourite=request.getParameter("favourite");
                   Part part=request.getPart("image");
            
                 
@@ -94,11 +53,12 @@
                       e.setAddress(address);
                       e.setCity(city);
                       e.setState(state);
+                      e.setFavourite(favourite);
                       e.setPart(part);
                       
                       int status=UserDao.updatemanager(e);
-          
-              if(status > 0) {
+                         int status2=UserDao.getupdateforgetcontractor(e);
+              if(status > 0&& status2>0) {
                     System.out.println("Successful");
                     
                     response.sendRedirect("profilemanager.jsp");
@@ -142,8 +102,8 @@
                       e.setPart(part);
                       
                       int status=UserDao.save(e);
-                      
-                      if(status>0)
+                      int status2=UserDao.inactive(e);
+                      if(status>0&& status2>0)
                       {
                           response.sendRedirect("register.jsp");
                           System.out.println("Succesfull");
@@ -168,9 +128,10 @@
             String address = request.getParameter("address");
                String city = request.getParameter("city");
                   String state = request.getParameter("state");
+                  String favourite=request.getParameter("favourite");
                   Part part=request.getPart("image");
            
-                
+               
            User e = new User();
                       e.setUsername(username);
                       e.setPasword(password);
@@ -182,9 +143,11 @@
                       e.setAddress(address);
                       e.setCity(city);
                       e.setState(state);
+                      e.setFavourite(favourite);
                       e.setPart(part);
                       int status=UserDao.updateUser(e);
-                      if(status>0)
+                      int     statusa=UserDao.getupdateforget(e);
+                      if(status>0&& statusa>0)
                       {
                           response.sendRedirect("profile.jsp");
                       }

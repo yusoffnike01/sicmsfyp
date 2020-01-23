@@ -17,29 +17,15 @@
         
         
             <%
-                String username = request.getParameter("username12");
+                String username = request.getParameter("name");
                
-                String password=request.getParameter("password");
-          String name = request.getParameter("namelala");
-                System.out.println("hgd"+" "+name);
-                int age=Integer.parseInt(request.getParameter("age"));
-                String address=request.getParameter("address");
-                String city=request.getParameter("city");
-                String state=request.getParameter("state");
-                
+      
                 
                 String deviceid=request.getParameter("id");
                 int status = UserDao.getdeleteprofile(username);
                 
-                User obj= new User();
-                obj.setUsername(username);
-                obj.setName(name);
-                obj.setPasword(password);
-                   obj.setAge(age);
-                obj.setAddress(address);
-                obj.setCity(city);
-                obj.setState(state);
-               int  status3=UserDao.inactive(obj);
+     
+         
                 int status2=UserDao.getdeletedevice(deviceid);
                if(status>0)
                    

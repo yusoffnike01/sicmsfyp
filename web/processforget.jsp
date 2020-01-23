@@ -6,7 +6,7 @@
 
 <%@page import="fyp.manager"%>
 <%@page import="fyp.User"%>
-<%@page import="fyp.forget"%>
+
 <%@page import="fyp.UserDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -228,8 +228,8 @@ input[type=text]
                   String username=request.getParameter("username");
                   String favourite=request.getParameter("favourite");
                   String role=request.getParameter("role");
-                    forget obj=UserDao.getforgetsession(username);
-                  forget obj3=UserDao.getforgetcleaner(username);
+                    manager obj=UserDao.getforgetsession(username);
+                  User obj3=UserDao.getforgetcleaner(username);
 
 if(username.equals(obj.getUsername())&&favourite.equals(obj.getFavourite())&&role.equalsIgnoreCase("CO"))
 

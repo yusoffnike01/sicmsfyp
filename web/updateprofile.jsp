@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="fyp.User" %>
 <%@page import="fyp.UserDao"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -158,7 +159,8 @@
         %>
         <%            String name = request.getParameter("username");
             User e = UserDao.getUserBySession(name);
-
+            User a=UserDao.getforgetcleaner(name);
+             
 
         %>
 
@@ -247,6 +249,16 @@
                         </td>
 
                     </tr>
+                    
+                     <tr>
+                        <td>
+                            <label>favourite:</label>
+                        </td>
+                        <td>
+                            <input type="text" name="favourite" value="<%=a.getFavourite() %>">
+                        </td>
+
+                    </tr>
                     <tr>
                         <td>
                             <label>Choose your profile picture :</label>
@@ -264,7 +276,7 @@
                         </td>
 
                         <td>
-                            <input type="submit" name="submit"  value="Edit1">
+                            <input type="submit" name="Submit"  value="Edit1">
                         </td>
                     </tr>
 

@@ -4,7 +4,6 @@
     Author     : user
 --%>
 
-<%@page import="fyp.forget"%>
 <%@page import="fyp.UserDao"%>
 <%@page import="fyp.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

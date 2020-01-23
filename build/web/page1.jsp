@@ -49,7 +49,7 @@ body
     #profileid
             {
                 
-            width:8%;
+            width:10%;
                 height:45px;
 
                   border-radius: 50%;
@@ -229,7 +229,7 @@ table{
               #profileid
             {
                 
-                width:20%;
+                width:16%;
                 height:40px;
                   border-radius: 50%;
                 border:2px solid #34495e;
@@ -468,7 +468,7 @@ margin-left: 5%;
               
               <th>location</th>
 
-     <th width="40%">Action</th>
+              <th colspan="2">Action</th>
             </tr>
             </thead>
             <% List <soap_info> nike01=UserDao.listdevice((String)session.getAttribute("user"));
@@ -482,8 +482,8 @@ margin-left: 5%;
                <td><%=objf.getName() %></td>
                <td><%=objf.getDeviceid() %></td>
                <td><%=objf.getLocation()  %></td>
-               <td width="40%">  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal<%=objf.getDeviceid() %>">Edit</button>
- <a href="delete.jsp?id=<%=objf.getDeviceid()  %>" onclick="return confirm('Are you sure to delete?')"><button  type="button" onclick='myfunctional()' class="btn btn-info">Delete</button></a></td>
+               <td>  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal<%=objf.getDeviceid() %>">Edit</button></td>
+               <td><a href="delete.jsp?id=<%=objf.getDeviceid()  %>" onclick="return confirm('Are you sure to delete?')"><button  type="button" class="btn btn-info">Delete</button></a></td>
            </tr>
            
            

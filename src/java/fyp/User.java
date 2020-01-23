@@ -27,7 +27,24 @@ public class User {
     private Part image;
     private String base64Image;
 
-    
+    private String favourite;
+    private int id;
+
+    public String getFavourite() {
+        return favourite;
+    }
+
+    public void setFavourite(String favourite) {
+        this.favourite = favourite;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
   
 
