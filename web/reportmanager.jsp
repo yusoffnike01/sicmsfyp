@@ -50,10 +50,16 @@ body
                 font-family: sans-serif;
 }
    
+.navbar-nav
+    {
+      
+       margin-left:420px;
+       
+    }
     #profileid
             {
                 
-              width:8%;
+              width:12%;
                 height:45px;
 
                   border-radius: 50%;
@@ -123,9 +129,13 @@ body
 
 
 
-
 @media  (max-width: 768px) {
     
+    
+#myChart
+{
+    width:100%;
+}
   
     .tab {
                 overflow: hidden;
@@ -171,7 +181,7 @@ body
               #profileid
             {
                 
-                width:20%;
+                width:18%;
                 height:40px;
                   border-radius: 50%;
                 border:2px solid #34495e;
@@ -180,6 +190,7 @@ body
              
                 
             }
+            
             
              
 }

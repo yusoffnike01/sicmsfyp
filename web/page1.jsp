@@ -35,6 +35,14 @@
      * {
   box-sizing: border-box;
 }
+
+ .navbar-nav
+    {
+      
+       margin-left:4%;
+       
+    }
+  
 body
 {
      margin: 0%;
@@ -45,11 +53,16 @@ body
                 
                 font-family: sans-serif;
 }
-
+.navbar-nav
+    {
+      
+       margin-left:420px;
+       
+    }
     #profileid
             {
                 
-            width:10%;
+            width:12%;
                 height:45px;
 
                   border-radius: 50%;
@@ -229,7 +242,7 @@ table{
               #profileid
             {
                 
-                width:16%;
+                width:18%;
                 height:40px;
                   border-radius: 50%;
                 border:2px solid #34495e;

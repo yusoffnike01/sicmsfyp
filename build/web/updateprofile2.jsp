@@ -27,6 +27,7 @@
      
        if(submit.equalsIgnoreCase("EditProfiler"))
       {
+          try{
           String username = request.getParameter("username");
             String password=request.getParameter("password");
             String usernamemanager=request.getParameter("usernamemanager");
@@ -34,46 +35,64 @@
             String email=request.getParameter("email");
             String number=request.getParameter("number");
             int age = Integer.parseInt(request.getParameter("age"));
-         
+       
             String address = request.getParameter("address");
                String city = request.getParameter("city");
                   String state = request.getParameter("state");
                   String favourite=request.getParameter("favourite");
                   Part part=request.getPart("image");
-           
+  
                 
            manager e = new manager();
                       e.setUsername(username);
+                      
                       e.setPassword(password);
                    System.out.println(username);
                       e.setName(name);
                       e.setEmail(email);
                       e.setNumber(number);
                       e.setAge(age);
+                     
                       e.setAddress(address);
                       e.setCity(city);
                       e.setState(state);
                       e.setFavourite(favourite);
-                      e.setPart(part);
-                      
+                    
+                       e.setPart(part);
                       int status=UserDao.updatemanager(e);
                          int status2=UserDao.getupdateforgetcontractor(e);
+                        int status3=UserDao.updateimage(e);
               if(status > 0&& status2>0) {
                     System.out.println("Successful");
                     
                     response.sendRedirect("profilemanager.jsp");
                 }
-                                        else
+              else if(status3>0)
+              {
+                   System.out.println("Successful");
+                    
+                    response.sendRedirect("profilemanager.jsp");
+              }
+            
+                                                    else
                                         {
                                             response.sendRedirect("profilemanager.jsp");
                                              System.out.println("failed");
 
                                         }
-          
+          }catch(NumberFormatException m)  
+          {
+              
+              response.sendRedirect("profilemanager.jsp");
+             
+              
+              System.out.println("invalid input");
+          }
           
       }
       else if(submit.equalsIgnoreCase("register"))
       {
+           try{
            String username = request.getParameter("username");
             String password=request.getParameter("password");
             String usernamemanager=request.getParameter("usernamemanager");
@@ -114,9 +133,16 @@
                           
                           
                       }
+                      
+                        }catch(NumberFormatException m)  
+          {
+              response.sendRedirect("register.jsp");
+              System.out.println("invalid input");
+          }
       } else if(submit.equalsIgnoreCase("Edit1"))
       
       {
+          try{
              String username = request.getParameter("username");
             String password=request.getParameter("password");
             String usernamemanager=request.getParameter("usernamemanager");
@@ -155,8 +181,52 @@
                       {
                           response.sendRedirect("profile.jsp");
                       }
-                      
+                        }catch(NumberFormatException m)  
+          {
+              response.sendRedirect("profile.jsp");
+              System.out.println("invalid input");
+          }
                      
+      }
+      else if(submit.equalsIgnoreCase("picturecc"))
+      {
+          
+           String username = request.getParameter("username");
+             Part part=request.getPart("image");
+           
+                
+           manager e = new manager();
+            e.setUsername(username);
+                      e.setPart(part);
+                      int status=UserDao.updateimage(e);
+                      
+                      if(status>0)
+                      {
+                           response.sendRedirect("profilemanager.jsp");
+                          
+                      }
+                      else
+                      {
+                           response.sendRedirect("profilemanager.jsp");
+                           System.out.println("fail");
+                      }
+      } else if(submit.equalsIgnoreCase("picture"))
+      {
+           String username = request.getParameter("username");
+             Part part=request.getPart("image");
+             User obj=new User();
+             obj.setUsername(username);
+             obj.setPart(part);
+             int status=UserDao.updateimagecleaner(obj);
+             if(status>0)
+             {
+                 response.sendRedirect("profile.jsp");
+             }
+             else
+             {
+                 response.sendRedirect("profile.jsp");
+             }
+          
       }
      
                        

@@ -54,18 +54,22 @@ body
     
     #profileid
             {
-                
-                                width:8%;
+                 width:12%;
                 height:45px;
-
                   border-radius: 50%;
                 border:2px solid #34495e;
          
                 box-sizing: border-box;
              
+             
                 
             }
-            
+          .navbar-nav
+    {
+      
+       margin-left:420px;
+       
+    }  
          
           .main{
     
@@ -133,7 +137,7 @@ body
               #profileid
             {
                 
-                width:20%;
+                width:18%;
                 height:40px;
                   border-radius: 50%;
                 border:2px solid #34495e;

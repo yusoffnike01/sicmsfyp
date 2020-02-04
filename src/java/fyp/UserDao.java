@@ -25,8 +25,8 @@ public class UserDao {
         Connection con = null;
 
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net/sql12319672", "sql12319672", "YPl1nJWZM1");
+            Class.forName("org.postgreql.Driver");
+            con = DriverManager.getConnection("jdbc:postgresql://ec2-18-233-211-251.compute-1.amazonaws.com:5432/d2nau8rig8ahna?sslmode=require", "pocfkmfmsvqxbt", "e424d347ba97906b4b01c25be5747c604984da3ea5b9cddeed47bf197e1599f4");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -38,9 +38,12 @@ public class UserDao {
         try {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
- "UPDATE cleaner SET username=?, password=?, usernamemanager=?, name=?, email=?, number=?, age=?, address=?, city=?, state=?, image=? WHERE username=?");
+ "UPDATE cleaner SET username=?, password=?, usernamemanager=?, name=?, email=?, number=?, age=?, address=?, city=?, state=? WHERE username=?");
 
-            InputStream is = e.getPart().getInputStream();
+          
+           
+
+         
 
             ps.setString(1, e.getUsername());
             ps.setString(2, e.getPasword());
@@ -53,8 +56,51 @@ public class UserDao {
             ps.setString(9, e.getCity());
             ps.setString(10, e.getState());
 
-            ps.setBlob(11, is);
-            ps.setString(12, e.getUsername());
+           
+            ps.setString(11, e.getUsername());
+
+            status = ps.executeUpdate();
+            con.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return status;
+    }
+    
+     public static int updateimagecleaner(User e) {
+        int status = 0;
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+ "UPDATE cleaner SET username=?, image=? WHERE username=?");
+
+            InputStream is = e.getPart().getInputStream();
+
+           
+ps.setString(1, e.getUsername());
+            ps.setBlob(2, is);
+            ps.setString(3, e.getUsername());
+
+            status = ps.executeUpdate();
+            con.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return status;
+    }
+ public static int updateimage(manager e) {
+        int status = 0;
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+ "UPDATE contractor SET usernamemanager=?, image=? WHERE usernamemanager=?");
+
+            InputStream is = e.getPart().getInputStream();
+
+           
+ps.setString(1, e.getUsername());
+            ps.setBlob(2, is);
+            ps.setString(3, e.getUsername());
 
             status = ps.executeUpdate();
             con.close();
@@ -640,7 +686,8 @@ public class UserDao {
 
         } catch (Exception m) {
             m.printStackTrace();
-        }
+            
+        } 
         return status;
     }
 
@@ -649,9 +696,9 @@ public class UserDao {
         try {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "UPDATE contractor SET usernamemanager=?, password=?, name=?, email=?, number=?, age=?, address=?, city=?, state=?, image=? WHERE usernamemanager=?");
+                    "UPDATE contractor SET usernamemanager=?, password=?, name=?, email=?, number=?, age=?, address=?, city=?, state=? WHERE usernamemanager=?");
 
-            InputStream is = obj.getPart().getInputStream();
+
 
             ps.setString(1, obj.getUsername());
             ps.setString(2, obj.getPassword());
@@ -663,8 +710,8 @@ public class UserDao {
             ps.setString(8, obj.getCity());
             ps.setString(9, obj.getState());
 
-            ps.setBlob(10, is);
-            ps.setString(11, obj.getUsername());
+       
+            ps.setString(10, obj.getUsername());
 
             status = ps.executeUpdate();
 

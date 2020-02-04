@@ -56,7 +56,7 @@ body
             {
                 
                 width:12%;
-                height:40px;
+                height:45px;
                   border-radius: 50%;
                 border:2px solid #34495e;
          

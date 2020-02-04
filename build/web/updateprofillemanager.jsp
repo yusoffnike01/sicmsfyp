@@ -300,7 +300,7 @@
                             <label>Choose your profile picture :</label>
                         </td>
                         <td>
-                            <input type="file" name="image"><br><br>
+                             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal<%=e.getUsername() %>">Picture</button><br><br>
                         </td>
 
                     </tr>
@@ -315,13 +315,35 @@
                             <input type="submit" name="Submit"  value="EditProfiler">
                         </td>
                     </tr>
-
+              
 
 
 
                 </table>
             </form>
+         
         </div>
-
+ <div id="myModal<%=e.getUsername() %>" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+			    <div class="modal-content">
+					<div class="modal-header">
+						 <button type="button" class="close" data-dismiss="modal">&times;</button>
+						    <h4 class="modal-title">Update</h4>
+				    </div>
+				    <div class="modal-body">
+                               <form name="myForm"  action="updateprofile2.jsp" enctype="multipart/form-data" method="post" id="register"   onsubmit="validate()">
+                                            <input type="hidden"   name="username" value="<%=e.getUsername() %>">
+                                            <input type="file" name="image">
+                                            
+                                    
+                                            <input type="submit" name="Submit" value="picturecc">
+                                        </form>
+						
+						
+						
+				    </div>
+				</div>
+			</div>
+		</div>
     </body>
 </html>

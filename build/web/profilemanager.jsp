@@ -71,21 +71,10 @@ body
     .navbar-nav
     {
       
-       margin-left:520px;
+       margin-left:420px;
        
     }
-    #profileid
-            {
-                
-                width:20%;
-                height:45px;
-                  border-radius: 50%;
-                border:2px solid #34495e;
-         
-                box-sizing: border-box;
-             
-                
-            }
+    
             
        
 
@@ -133,6 +122,21 @@ body
 
             #buttonEdit:hover {
                 background-color: #b9c7f0;
+            }
+            @media(min-width:1440px)
+            {
+                #profileid
+            {
+                
+                width:14.1%;
+                height:45px;
+                  border-radius: 50%;
+                border:2px solid #34495e;
+         
+                box-sizing: border-box;
+             
+                
+            }
             }
 @media  (max-width: 768px) {
                     
@@ -192,7 +196,7 @@ margin-left: 75%;
               #profileid
             {
                 
-                width:20%;
+                width:18%;
                 height:40px;
                   border-radius: 50%;
                 border:2px solid #34495e;

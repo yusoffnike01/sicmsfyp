@@ -47,7 +47,7 @@ body
     #profileid
             {
                 
-              width:8%;
+              width:6%;
                 height:45px;
 
                   border-radius: 50%;
@@ -248,8 +248,8 @@ body
                 <a href="Report.jsp" class="nav-item nav-link active">Analysis</a>
                 <a href="notification.jsp" class="nav-item nav-link">Notification</a>
              
-                  <a href="#" class="nav-item nav-link">profile</a>
-                    <a href="#" class="nav-item nav-link">LogOut</a>
+                  <a href="profile.jsp" class="nav-item nav-link">profile</a>
+                    <a href="index.jsp" class="nav-item nav-link">LogOut</a>
                 
             </div>
         </div>

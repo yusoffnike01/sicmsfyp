@@ -130,13 +130,13 @@
     .navbar-nav
     {
       
-       margin-left:520px;
+       margin-left:420px;
        
     }
     #profileid
             {
                 
-                width:20%;
+                width:12%;
                 height:45px;
                   border-radius: 50%;
                 border:2px solid #34495e;
@@ -192,7 +192,21 @@
             
          
 
-
+  @media(min-width:1440px)
+            {
+                #profileid
+            {
+                
+                width:14.1%;
+                height:45px;
+                  border-radius: 50%;
+                border:2px solid #34495e;
+         
+                box-sizing: border-box;
+             
+                
+            }
+            }
 
 
 @media  (max-width: 768px) {
@@ -286,7 +300,7 @@
               #profileid
             {
                 
-                width:20%;
+                width:18%;
                 height:40px;
                   border-radius: 50%;
                 border:2px solid #34495e;

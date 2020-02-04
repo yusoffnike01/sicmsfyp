@@ -4,7 +4,7 @@
     Author     : user
 --%>
 
-<%@page import="fyp.forget"%>
+
 <%@page import="fyp.information"%>
 <%@page import="fyp.manager"%>
 <%@page import="fyp.keycode"%>

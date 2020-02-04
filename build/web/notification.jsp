@@ -44,7 +44,7 @@ body
     #profileid
             {
                 
-              width:8%;
+              width:6%;
                 height:45px;
 
                   border-radius: 50%;
@@ -92,6 +92,13 @@ body
                 
                 
             }
+            
+             .navbar-nav
+    {
+      
+       margin-left:520px;
+       
+    }
             
             form .submit{
                 background: #ff5722;

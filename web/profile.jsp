@@ -72,7 +72,7 @@ body
     #profileid
             {
                 
-                width:20%;
+                width:12.8%;
                 height:45px;
                   border-radius: 50%;
                 border:2px solid #34495e;
@@ -129,7 +129,24 @@ body
             #buttonEdit:hover {
                 background-color: #b9c7f0;
             }
+            @media(min-width:1440px)
+            {
+                #profileid
+            {
+                
+                width:12.2%;
+                height:45px;
+                  border-radius: 50%;
+                border:2px solid #34495e;
+         
+                box-sizing: border-box;
+             
+                
+            }
+                
+            }
 @media  (max-width: 768px) {
+    
                     
 
             
