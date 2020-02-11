@@ -545,7 +545,7 @@ margin-left: 5%;
             </tr>
             </thead>
                <%
-              List<result> list = UserDao.getresult((String)session.getAttribute("user"));
+              List<result> list = UserDao.getresult(e.getUsername());
 
             for (result obj : list) {
 

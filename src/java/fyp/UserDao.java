@@ -25,8 +25,8 @@ public class UserDao {
         Connection con = null;
 
         try {
-            Class.forName("org.postgreql.Driver");
-            con = DriverManager.getConnection("jdbc:postgresql://ec2-18-233-211-251.compute-1.amazonaws.com:5432/d2nau8rig8ahna?sslmode=require", "pocfkmfmsvqxbt", "e424d347ba97906b4b01c25be5747c604984da3ea5b9cddeed47bf197e1599f4");
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12321894", "sql12321894", "eZnzZlT6yn");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -973,7 +973,7 @@ public static int getupdateforgetcontractor(manager obj) {
         try {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "SELECT s1.id,s1.deviceid,s1.distance,s1.logdate,soap_info.location from result s1 INNER JOIN soap_info on s1.deviceid =soap_info.deviceid where soap_info.usernamemanager=? AND s1.logdate = (SELECT MAX(s1.logdate) FROM result s2 WHERE s1.deviceid = s2.deviceid) ORDER BY deviceid, logdate;");
+                    "select t.id, t.deviceid, t.distance, t.logdate, soap_info.location from ((result t inner join ( select deviceid, max(logdate) as MaxDate from result group by deviceid ) tm on t.deviceid = tm.deviceid and t.logdate = tm.MaxDate) inner join soap_info on t.deviceid=soap_info.deviceid ) where soap_info.usernamemanager=?");
               ps.setString(1, usernamemanager);
             
             ResultSet rs = ps.executeQuery();
