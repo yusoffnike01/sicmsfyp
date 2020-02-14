@@ -344,7 +344,7 @@ body
         </script>
 
         <div id="status"></div>
-        <script type="text/javascript">countDown(10000, "status");</script>
+        <script type="text/javascript">countDown(1800, "status");</script>
 
 
         <form name="quiz" id="myquiz" onsubmit="return test()" method="post" action="sent2.jsp">
