@@ -598,7 +598,7 @@ margin-left: 5%;
         </script>
         
         
-         <script type="text/javascript">countDown(3600, "status");</script>
+         <script type="text/javascript">countDown(1200, "status");</script>
                       
 <% 
    result obj1=UserDao.getcount();
@@ -612,7 +612,7 @@ else
     
 {
     %>
-      <script type="text/javascript">countDown(3600, "status");</script>
+      <script type="text/javascript">countDown(1200, "status");</script>
    <form name="quiz" id="myquiz" onsubmit="return test()" method="post" action="sent3.jsp">
 
             <input type="hidden" name="mail" value="<%=e.getEmail()%>" />
