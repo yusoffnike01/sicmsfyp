@@ -27,6 +27,7 @@
      
          
                 int status2=UserDao.getdeletedevice(deviceid);
+                int status3=UserDao.getdeletedevice1(deviceid);
                if(status>0)
                    
                    
@@ -36,6 +37,11 @@
 }
 else if(status2>0){
     response.sendRedirect("page1.jsp");
+    System.out.println("sucessful");
+}
+else if(status3>0)
+{
+    response.sendRedirect("page2.jsp");
     System.out.println("sucessful");
 }
 

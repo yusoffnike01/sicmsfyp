@@ -1,7 +1,13 @@
+<%-- 
+    Document   : analysis2
+    Created on : Feb 19, 2020, 12:24:30 AM
+    Author     : user
+--%>
+
 <%@page import="fyp.quantityused"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@page import="fyp.soap_info"%>
+<%@page import="fyp.count"%>
 <%@page import="fyp.information"%>
 
 <%@page import="java.io.*"%>
@@ -44,10 +50,16 @@ body
                 font-family: sans-serif;
 }
    
+.navbar-nav
+    {
+      
+       margin-left:420px;
+       
+    }
     #profileid
             {
                 
-              width:6%;
+              width:12%;
                 height:45px;
 
                   border-radius: 50%;
@@ -113,7 +125,15 @@ body
                 background-color: white;
             }
             
-         .dropdown {
+         .dropbtn {
+  
+
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+.dropdown {
   position: relative;
   display: inline-block;
 }
@@ -145,10 +165,13 @@ body
 
 
 
-
-
 @media  (max-width: 768px) {
     
+    
+#myChart
+{
+    width:100%;
+}
   
     .tab {
                 overflow: hidden;
@@ -194,7 +217,7 @@ body
               #profileid
             {
                 
-                width:20%;
+                width:18%;
                 height:40px;
                   border-radius: 50%;
                 border:2px solid #34495e;
@@ -203,6 +226,7 @@ body
              
                 
             }
+            
             
              
 }
@@ -256,14 +280,18 @@ body
     
       <% 
                  
-               User e = UserDao.getUserBySession((String) session.getAttribute("user"));
+                manager e = UserDao.getmanagerBySession((String)session.getAttribute("user"));
        
         %>
         
-       
+        <%
+
+            manager obj2 = UserDao.getmanagerBySession((String) session.getAttribute("user"));
+
+        %>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
     <div class="container-fluid">
-        <a href="#"class="navbar-brand mr-3"><img src="<%=e.getBase64Image() %>"  id="profileid" > Cleaner</a>
+        <a href="#"class="navbar-brand mr-3"><img src="<%=e.getBase64Image() %>"  id="profileid" > Contractor</a>
         
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -273,82 +301,43 @@ body
                 
             </div>
             <div class="navbar-nav ml-auto">
-           <div class="dropdown">
-                     <a href="#" class="nav-item nav-link">Dashboard</a>
-                     <div class="dropdown-content">
-  <a href="table.jsp">Dashboard 1</a>
-  <a href="table2.jsp">Dashboard 2</a>
-                 </div>
-                    
-                </div>
-                 
-                  
-                  <div class="dropdown">
-                  
-                <a href="#" class="nav-item nav-link active ">Analysis</a>
+          <div class="dropdown">
+               <a href="#"class="nav-item nav-link ">Dashboard</a>
                  <div class="dropdown-content">
-  <a href="Report.jsp">Analysis 1</a>
-  <a href="report2.jsp">Analysis 2</a>
+  <a href="page1.jsp">Dashboard 1</a>
+  <a href="page2.jsp">Dashboard 2</a>
                  </div>
-                  </div>
-                <a href="notification.jsp" class="nav-item nav-link">Notification</a>
-            
-                 <a href="profile.jsp" class="nav-item nav-link">profile</a>
-            <a href="index.jsp" class="nav-item nav-link">LogOut</a>
+           </div>
+                 
+               <div class="dropdown">   
+                 
+                <a href="#" class="nav-item nav-link active">Analysis</a>
                 
+                <div class="dropdown-content">
+  <a href="reportmanager.jsp">Analysis 1</a>
+  <a href="analysis2.jsp">Analysis 2</a>
+                 </div>
+                </div>
+                <a href="notificationmanager.jsp" class="nav-item nav-link">Notification</a>
+                <a href="register.jsp" class="nav-item nav-link">Management</a>
+                  <a href="profilemanager.jsp" class="nav-item nav-link">profile</a>
+                    <a href="index.jsp" class="nav-item nav-link">LogOut</a>
             </div>
         </div>
-    </div> 
-        
-       
+    </div>    
 </nav>
 <div class="tab">
     
           <button class="tablinks" onclick="openCity(event, 'monitor')"> Monitor</button>
-        <button class="tablinks" onclick="openCity(event, 'analysis')"> analysis</button>
-             
+    
+
     
 </div>
     
     
    <div id="monitor" class="tabcontent">
 
-        <div class="info">
-
-            <table style="border:'1px'">
-                <thead>
-                    <tr>
-                        <th>Level</th>
-                        <th>details</th>
-                    </tr>
-                </thead>
-
-                <%
-                    List<information> list2 = UserDao.getdisplayinformation1();
-
-                    for (information obj : list2) {
-
-                %>
-
-                <tbody>
-                <center>
-                    <tr>
-
-                        <td><%=obj.getDistance()%></td>
-                        <td> <%=obj.getDetail()%></td>
-
-
-
-                    </tr>
-                </center>
-
-                </tbody>
-
-                <%}%>
-
-
-            </table>
-        </div>
+       
         <br><br><br>
 
 
@@ -357,59 +346,9 @@ body
 
 
 
-        <%
-            List<result> list = UserDao.getresult(e.getUsernamemanager());
-            information a = UserDao.getinformationBySession();
-            information c = UserDao.getinformationByaltitude();
-            for (result obj3 : list) {
+      
 
-                if ((c.getDistance() - obj3.getDistance()) >= a.getDistance()) {
-
-        %>
-        <p>full</p>
-
-        <%        } else if ((c.getDistance() - obj3.getDistance()) < a.getDistance()) {
-        %>
-
-        <script>
-            function countDown(secs, elem)
-            {
-                var element = document.getElementById(elem);
-
-                if (secs < 1) {
-                    document.quiz.submit();
-                } else
-                {
-                    secs--;
-                    setTimeout('countDown(' + secs + ',"' + elem + '")', 1500);
-                }
-            }
-
-            function test() {
-                return true;
-            }
-        </script>
-
-        <div id="status"></div>
-        <script type="text/javascript">countDown(900, "status");</script>
-
-
-        <form name="quiz" id="myquiz" onsubmit="return test()" method="post" action="sent2.jsp">
-
-            <input type="hidden" name="mail" value="<%=e.getEmail()%>" />
-
-            <input type="hidden" name="sub" value="Cleaning Servis">
-            <input type="text" name="mess" value="needs to be filled" border="none"></input>
-
-        </form>
-
-
-        <%
-                }
-            }
-
-        %>
-
+       
 
 
 
@@ -439,20 +378,7 @@ body
                      
           
      
-<%     // --- Create two Java Arrays  
-        ArrayList<Integer> id1 = new ArrayList<Integer>();
-        ArrayList<String> time = new ArrayList<String>();
 
-        // --- Loop 10 times and create 10 string dates and 10 users  
-        List<quantityused> list6 = UserDao.getalldisplay();
-        for (quantityused obj : list6) {
-
-            id1.add(obj.getId());
-            time.add(obj.getTime());
-        }
-
-
-    %>  
 
 
 
@@ -462,12 +388,7 @@ body
         // --- add a comma after each value in the array and convert to javascript string representing an array  
 
 
-        var Data2 = [<%= join(time, ",")%>];
-
-
-
-        var Data = [<%= join(id1, ",")%>];
-
+       
     </script>
 
 
@@ -506,17 +427,17 @@ body
     // --- Create two Java Arrays  
 
     ArrayList<String> id = new ArrayList<String>();
-    ArrayList<Integer> distance = new ArrayList<Integer>();
+    ArrayList<Integer> count = new ArrayList<Integer>();
 
     // --- Loop 10 times and create 10 string dates and 10 users  
-    List<result> list5 = UserDao.getresult(e.getUsernamemanager());
+    List<count> list5 = UserDao.getresult1((String)session.getAttribute("user"));
 
-    information x = UserDao.getinformationBySession();
-    for (result obj : list5) {
-        information b = UserDao.getinformationByaltitude();
+    
+    for (count obj : list5) {
+     
 
         id.add("" + obj.getDeviceid());
-        distance.add(b.getDistance() - obj.getDistance());
+        count.add(obj.getCount());
 
     }
 
@@ -526,30 +447,16 @@ body
     // --- add a comma after each value in the array and convert to javascript string representing an array  
 
 
-    var monthData2 = [<%= join(id, ",")%>];
+    var id = [<%= join(id, ",")%>];
 
 
 
-    var monthData = [<%= join(distance, ",")%>];
+    var monthData = [<%= join(count, ",")%>];
 
 
 
 
-    var backgroundColor = [];
-    for (var data of monthData) {
-        if (data < <%=x.getDistance()%>)
-        {
-            backgroundColor.push("#FF6347");
-        } else if (data === <%=x.getDistance()%>)
-        {
-            backgroundColor.push("#FFFF00");
-        } else
-        {
-            backgroundColor.push("#0066cc");
-        }
-
-    }
-
+   
 
 
 
@@ -566,36 +473,7 @@ body
 
 
     window.onload = function () {
-        zingchart.render({
-            id: "myChart1",
-            width: "100%",
-            height: 380,
-            data: {
-                "type": "bar",
-                "title": {
-                    "text": "Usage of Soap"
-                },
-                "scale-x": {
-
-                    "labels": Data2
-                },
-                "plot": {
-                    "line-width": 1
-                },
-                "series": [{
-
-                        "values": Data
-
-
-
-
-                    }
-
-
-                ]
-            }
-        });
-
+       
         zingchart.render({
             id: "myChart",
             width: "100%",
@@ -604,12 +482,12 @@ body
             data: {
                 "type": "bar",
                 "title": {
-                    "text": "Level of Graph Soap",
+                    "text": " Graph Count of People",
                     fontSize: 20
                 },
                 "scale-x": {
 
-                    "labels": [<%= join(id, ",")%>]
+                    "labels": id,
                 },
                 "plot": {
                     "animation": {
@@ -627,7 +505,7 @@ body
 
                         "values": monthData,
 
-                        "styles": backgroundColor
+                    
 
 
 

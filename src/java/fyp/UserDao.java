@@ -26,7 +26,7 @@ public class UserDao {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net/sql12322395", "sql12322395", "I6NMDIFDX4");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/smarttoilet", "root", "admin");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -1139,6 +1139,152 @@ public static int getupdateforgetcontractor(manager obj) {
         return status;
     }
       
+       public static int savedevice2(count obj) {
+        int status = 0;
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "INSERT INTO count_info (usernamemanager, name, deviceid, location) values (?, ?, ?, ?)");
+
+        ps.setString(1, obj.getUsernamemanager());
+        ps.setString(2, obj.getName());
+        ps.setString(3, obj.getDeviceid());
+        ps.setString(4, obj.getLocation());
+
+            status = ps.executeUpdate();
+
+            con.close();
+
+        } catch (Exception m) {
+            m.printStackTrace();
+        }
+        return status;
+    }
       
-      
+       public static int updatedevice2(count obj) {
+        int status = 0;
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "UPDATE count_info SET name=?, deviceid=?, location=? WHERE deviceid=?");
+
+                        ps.setString(1, obj.getName());
+
+            ps.setString(2, obj.getDeviceid());
+            ps.setString(3, obj.getLocation());
+              ps.setString(4, obj.getDeviceid());
+
+            status = ps.executeUpdate();
+
+            con.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return status;
+    }
+       
+         
+    public static List<count>listdevice1(String usernamemanager)
+    {
+        List<count> list = new ArrayList<count>();
+
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT * FROM `count_info` WHERE usernamemanager=?");
+             ps.setString(1, usernamemanager);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+                count obj = new count();
+               
+                obj.setUsernamemanager(rs.getString(1));
+                obj.setName(rs.getString(2));
+                obj.setDeviceid(rs.getString(3));
+                obj.setLocation(rs.getString(4));
+                
+                
+                
+                
+                list.add(obj);
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    
+    
+    public static List<count> getresult1( String usernamemanager) {
+
+        List<count> list = new ArrayList<count>();
+
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "select m.id, m.deviceid, m.count, m.logdate, count_info.location from ((resultcount m inner join ( select deviceid, max(logdate) as MaxDate from resultcount group by deviceid ) tm on m.deviceid = tm.deviceid and m.logdate = tm.MaxDate) inner join count_info on m.deviceid=count_info.deviceid ) where count_info.usernamemanager=?");
+              ps.setString(1, usernamemanager);
+            
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+                count obj = new count();
+                obj.setId(rs.getInt(1));
+                obj.setDeviceid(rs.getString(2));
+                obj.setCount(rs.getInt(3));
+                obj.setLogdate(rs.getTimestamp(4));
+                obj.setLocation(rs.getString(5));
+
+                list.add(obj);
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+     public static int getdeletedevice1(String deviceid) {
+
+        int status = 0;
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "DELETE FROM count_info WHERE deviceid = '" + deviceid + "'");
+            status = ps.executeUpdate();
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return status;
+    }
+     
+     
+     public static  count getstatus()
+    {
+        count obj=new count();
+        
+
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT COUNT(*) FROM resultcount WHERE logdate>TIMESTAMP(DATE_SUB(NOW(),INTERVAL 50 MINUTE))");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+               
+              obj.setStatus(rs.getInt(1));
+               
+                
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return obj;
+        
+    }
+
 }

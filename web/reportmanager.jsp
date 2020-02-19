@@ -125,7 +125,43 @@ body
                 background-color: white;
             }
             
-         
+         .dropbtn {
+  
+
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
 
 
 
@@ -265,13 +301,27 @@ body
                 
             </div>
             <div class="navbar-nav ml-auto">
-           <a href="page1.jsp" class="nav-item nav-link">Dashboard</a>
-                <a href="reportmanager.jsp" class="nav-item nav-link active">Analysis</a>
+          <div class="dropdown">
+               <a href="#"class="nav-item nav-link active">Dashboard</a>
+                 <div class="dropdown-content">
+  <a href="page1.jsp">Dashboard 1</a>
+  <a href="page2.jsp">Dashboard 2</a>
+                 </div>
+           </div>
+                 
+               <div class="dropdown">   
+                 
+                <a href="reportmanager.jsp" class="nav-item nav-link">Analysis</a>
+                
+                <div class="dropdown-content">
+  <a href="reportmanager.jsp">Analysis 1</a>
+  <a href="analysis2.jsp">Analysis 2</a>
+                 </div>
+                </div>
                 <a href="notificationmanager.jsp" class="nav-item nav-link">Notification</a>
                 <a href="register.jsp" class="nav-item nav-link">Management</a>
                   <a href="profilemanager.jsp" class="nav-item nav-link">profile</a>
                     <a href="index.jsp" class="nav-item nav-link">LogOut</a>
-                
             </div>
         </div>
     </div>    
@@ -280,7 +330,7 @@ body
     
           <button class="tablinks" onclick="openCity(event, 'monitor')"> Monitor</button>
         <button class="tablinks" onclick="openCity(event, 'analysis')"> analysis</button>
-             
+
     
 </div>
     

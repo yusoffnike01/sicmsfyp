@@ -1,11 +1,11 @@
 <%-- 
-    Document   : page1
-    Created on : Oct 10, 2019, 11:57:55 PM
+    Document   : page2
+    Created on : Feb 18, 2020, 12:52:05 AM
     Author     : user
 --%>
 
 <%@page import="java.util.List"%>
-<%@page import="fyp.soap_info"%>
+<%@page import="fyp.count"%>
 <%@page import="fyp.information"%>
 
 <%@page import="java.io.*"%>
@@ -432,20 +432,14 @@ margin-left: 5%;
                  </div>
            </div>
                  
-                <div class="dropdown">
-                     <a href="#" class="nav-item nav-link">Analysis</a>
-                    <div class="dropdown-content">
-  <a href="reportmanager.jsp">Analysis 1</a>
+                 
+                 <div class="dropdown">
+                <a href="#" class="nav-item nav-link">Analysis</a>
+                <div class="dropdown-content">
+  <a href="reportmanager.jsp"> Analysis 1</a>
   <a href="analysis2.jsp">Analysis 2</a>
                  </div>
-                     
-                </div>      
-                 
-               
-                
-                
-                
-                
+                 </div>
                 <a href="notificationmanager.jsp" class="nav-item nav-link">Notification</a>
                 <a href="register.jsp" class="nav-item nav-link">Management</a>
                   <a href="profilemanager.jsp" class="nav-item nav-link">profile</a>
@@ -459,7 +453,7 @@ margin-left: 5%;
          <button class="tablinks" onclick="openCity(event, 'register')">  Register Device</button>
             <button class="tablinks" onclick="openCity(event, 'table')">  List Device </button>
              <button class="tablinks" onclick="openCity(event, 'monitor')"> Monitor </button>
-            <button class="tablinks" onclick="openCity(event, 'update')"> Update Level</button>
+            
     
 </div>
     
@@ -469,7 +463,7 @@ margin-left: 5%;
                 <br>
                 <h3>Registration Form</h3>
                 <br>
-                <form action="process3.jsp"   method="POST">
+                <form action="process4.jsp"   method="POST">
 
                     <table>
                         
@@ -539,10 +533,10 @@ margin-left: 5%;
               <th colspan="2">Action</th>
             </tr>
             </thead>
-            <% List <soap_info> nike01=UserDao.listdevice((String)session.getAttribute("user"));
+            <% List <count> nike01=UserDao.listdevice1((String)session.getAttribute("user"));
             
      
-            for(soap_info objf:nike01)
+            for(count objf:nike01)
 {
            %>
            
@@ -563,7 +557,7 @@ margin-left: 5%;
 						    <h4 class="modal-title">Update</h4>
 				    </div>
 				    <div class="modal-body">
-                                        <form action="process3.jsp" method="POST">
+                                        <form action="process4.jsp" method="POST">
                                             <input type="text" name="name" value="<%=objf.getName() %>">
                                             
                                             <input type="text" name="id" value="<%=objf.getDeviceid() %>">
@@ -584,14 +578,14 @@ margin-left: 5%;
        </div>   
             
             <div id="monitor" class="tabcontent">
-            <h3>The record of quantity of soap</h3>
+            <h3>The record of  count of people</h3>
             <center>
                 <div class="table-responsive">
                <table class="content-table">
                 <thead>
             <tr>
                 <th >Device ID</th>
-                <th>Distance</th>
+                <th>Count </th>
                 <th>LongDate</th>
                 
               <th>location</th>
@@ -600,9 +594,9 @@ margin-left: 5%;
             </tr>
             </thead>
                <%
-              List<result> list = UserDao.getresult(e.getUsername());
+              List<count> list = UserDao.getresult1(e.getUsername());
 
-            for (result obj : list) {
+            for (count obj : list) {
 
 
 
@@ -611,11 +605,11 @@ margin-left: 5%;
             <tbody>
             <center>
                <tr>
-                <td width="30%"> <%=obj.getDeviceid() %></td>
-                <td><%=obj.getDistance() %></td>
+                <td> <%=obj.getDeviceid() %></td>
+                <td><%=obj.getCount() %></td>
 
                 <td><%=obj.getLogdate()%></td>
-  <td><%=obj.getLocation() %></td>
+  <td width="30%"><%=obj.getLocation() %></td>
 
   <td>
       
@@ -653,7 +647,7 @@ margin-left: 5%;
         </script>
         
         
-         <script type="text/javascript">countDown(10, "status");</script>
+         <script type="text/javascript">countDown(1200, "status");</script>
                       
 <% 
    result obj1=UserDao.getcount();
@@ -685,77 +679,7 @@ else
 
         </div>
 
-                   <div id="update" class="tabcontent">
-                       
-                       
-                       <table id="updateinformation">
-                           
-                           <th style="font-size:1.3 em;">Distance</th>
-                           <th style="font-size:1.3 em;">Details</th>
-                           <th >Action</th>
-                           
-                      
-                   <%    
-                       List<information> list4=UserDao.getdisplayinformation();
-                        
-
-                       
-    for (information obj : list4) {
-
-            
-             %>
-                               
-                              <tr>
-
-                        <td><%=obj.getDistance()%></td>
-                        <td> <%=obj.getDetail()%></td>
-                        <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal<%=obj.getId() %>">Edit</button></td>
-                                
-                        
-                            
-                        
-                        
-                    
-
-
-                
-                    </tr>   
-                    	<div id="myModal<%=obj.getId() %>" class="modal fade" role="dialog">
-			<div class="modal-dialog">
-			    <div class="modal-content">
-					<div class="modal-header">
-						 <button type="button" class="close" data-dismiss="modal">&times;</button>
-						    <h4 class="modal-title">Update</h4>
-				    </div>
-				    <div class="modal-body">
-                                        <form action="testprocess.jsp" method="POST">
-                                            <input type="hidden" name="id" value="<%=obj.getId() %>">
-                                            
-                                            <input type="text" name="distance" value="<%=obj.getDistance() %>">
-                                              <input type="hidden" name="detail" value="<%=obj.getDetail() %>">
-                                                <input type="submit" name="Submit"  value="Edit Profile">
-                                        </form>
-						
-						
-						
-				    </div>
-				</div>
-			</div>
-		</div>
-                             
-   <% }%>
-                   
-
-
-                                 
-                                 </table>   
-                                 
-                         
-                                     
-                      
-                                           
-        </div>
-                     
+    
               
  </center>
         </div>

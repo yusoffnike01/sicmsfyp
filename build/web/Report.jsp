@@ -113,7 +113,36 @@ body
                 background-color: white;
             }
             
-         
+         .dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
 
 
 
@@ -244,16 +273,34 @@ body
                 
             </div>
             <div class="navbar-nav ml-auto">
-           <a href="table.jsp" class="nav-item nav-link">Dashboard</a>
-                <a href="Report.jsp" class="nav-item nav-link active">Analysis</a>
+           <div class="dropdown">
+                     <a href="#" class="nav-item nav-link">Dashboard</a>
+                     <div class="dropdown-content">
+  <a href="table.jsp">Dashboard 1</a>
+  <a href="table2.jsp">Dashboard 2</a>
+                 </div>
+                    
+                </div>
+                 
+                  
+                  <div class="dropdown">
+                  
+                <a href="#" class="nav-item nav-link active ">Analysis</a>
+                 <div class="dropdown-content">
+  <a href="Report.jsp">Analysis 1</a>
+  <a href="report2.jsp">Analysis 2</a>
+                 </div>
+                  </div>
                 <a href="notification.jsp" class="nav-item nav-link">Notification</a>
-             
-                  <a href="profile.jsp" class="nav-item nav-link">profile</a>
-                    <a href="index.jsp" class="nav-item nav-link">LogOut</a>
+            
+                 <a href="profile.jsp" class="nav-item nav-link">profile</a>
+            <a href="index.jsp" class="nav-item nav-link">LogOut</a>
                 
             </div>
         </div>
-    </div>    
+    </div> 
+        
+       
 </nav>
 <div class="tab">
     

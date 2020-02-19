@@ -1,6 +1,6 @@
 <%-- 
-    Document   : table
-    Created on : Jul 16, 2019, 8:32:59 AM
+    Document   : table2
+    Created on : Feb 19, 2020, 1:26:40 AM
     Author     : user
 --%>
 
@@ -9,7 +9,7 @@
 <%@page import="java.util.List"%>
 
 <%@page import="fyp.UserDao"%>
-<%@page import="fyp.result"%>
+<%@page import="fyp.count"%>
 <%@page import="fyp.User"%>
 
 
@@ -291,7 +291,7 @@ body
             </div>
             <div class="navbar-nav ml-auto">
                 <div class="dropdown">
-                     <a href="#" class="nav-item nav-link active">Dashboard</a>
+                     <a href="table.jsp" class="nav-item nav-link active">Dashboard</a>
                      <div class="dropdown-content">
   <a href="table.jsp">Dashboard 1</a>
   <a href="table2.jsp">Dashboard 2</a>
@@ -301,13 +301,8 @@ body
                  
                   
                   
-                  <div class="dropdown">
+                  
                 <a href="Report.jsp" class="nav-item nav-link">Analysis</a>
-                 <div class="dropdown-content">
-  <a href="Report.jsp">Analysis 1</a>
-  <a href="report2.jsp">Analysis 2</a>
-                 </div>
-                  </div>
                 <a href="notification.jsp" class="nav-item nav-link">Notification</a>
             
                  <a href="profile.jsp" class="nav-item nav-link">profile</a>
@@ -336,9 +331,9 @@ body
                         </tr>
                     </thead>
                     <%
-                        List<result> list = UserDao.getresult(e.getUsernamemanager());
+                        List<count> list = UserDao.getresult1(e.getUsernamemanager());
 
-                        for (result obj : list) {
+                        for (count obj : list) {
 
 
                     %>
@@ -347,7 +342,7 @@ body
                     <center
                         <tr>
                             <td> <%=obj.getDeviceid()%></td>
-                            <td><%=obj.getDistance()%></td>
+                            <td><%=obj.getCount() %></td>
 
                             <td><%=obj.getLogdate()%></td>
 
@@ -391,9 +386,9 @@ body
          <script type="text/javascript">countDown(1200, "status");</script>
                       
 <% 
-   result obj1=UserDao.getcount();
+   count obj1=UserDao.getstatus();
    
-if(obj1.getCount()>0)
+if(obj1.getStatus()>0)
 {
     System.out.println("device okey");
 }
@@ -402,7 +397,7 @@ else
     
 {
     %>
-      <script type="text/javascript">countDown(1200, "status");</script>
+      <script type="text/javascript">countDown(10, "status");</script>
    <form name="quiz" id="myquiz" onsubmit="return test()" method="post" action="sent4.jsp">
 
             <input type="hidden" name="mail" value="<%=e.getEmail()%>" />
