@@ -26,7 +26,7 @@ public class UserDao {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/smarttoilet", "root", "admin");
+            con = DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net/sql12322395", "sql12322395", "I6NMDIFDX4");
         } catch (Exception e) {
             System.out.println(e);
         }
