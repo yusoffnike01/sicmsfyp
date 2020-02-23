@@ -327,8 +327,8 @@ body
                     <thead>
                         <tr>
                             <th>Device ID</th>
-                            <th>Distance</th>
-                            <th>LogDate</th>
+                            <th>Distance sensor from soap</th>
+                            <th>Date</th>
                            <th>Location</th>
 
 

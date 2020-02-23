@@ -324,27 +324,52 @@ body
                 </thead>
 
                 <%
-                    List<information> list2 = UserDao.getdisplayinformation1();
-
-                    for (information obj : list2) {
+                    List <information> mm=UserDao.getid1();
+                         List<information> nn=UserDao.getid2();
+                         List<information> pp=UserDao.getid3();
+                        for(information n:mm)
+                        {
 
                 %>
 
                 <tbody>
                 <center>
+                     <tr>
+                        
+                        <td><%=n.getDistance() %></td>
+                        <%
+                            }
+                        %>
+<td bgcolor="red"></td>
+                    </tr>
+                                        <tr>
+                        <%
+                        for(information p:nn)
+                        {
+                            %>
+                            <td><%=p.getDistance() %></td>
+                            <%
+                            }
+                            %>
+                        <td bgcolor="yellow"></td>
+                    </tr>
                     <tr>
-
-                        <td><%=obj.getDistance()%></td>
-                        <td> <%=obj.getDetail()%></td>
-
-
+                        <%
+                        for(information l:pp)
+                        {
+                        %>
+                        <td><%=l.getDistance() %></td>
+                        <%
+                            }
+                            %>
+                                                <td bgcolor="blue"></td>
 
                     </tr>
                 </center>
 
                 </tbody>
 
-                <%}%>
+
 
 
             </table>
@@ -571,7 +596,7 @@ body
             width: "100%",
             height: 380,
             data: {
-                "type": "bar",
+                "type": "line",
                 "title": {
                     "text": "Usage of Soap"
                 },

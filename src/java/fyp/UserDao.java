@@ -26,7 +26,7 @@ public class UserDao {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net/sql12322395", "sql12322395", "I6NMDIFDX4");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/smarttoilet", "root", "admin");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -47,6 +47,7 @@ public class UserDao {
 
             ps.setString(1, e.getUsername());
             ps.setString(2, e.getPasword());
+         
             ps.setString(3, e.getUsernamemanager());
             ps.setString(4, e.getName());
             ps.setString(5, e.getEmail());
@@ -129,14 +130,15 @@ ps.setString(1, e.getUsername());
 
                 e.setUsername(rs.getString(1));
                 e.setPasword(rs.getString(2));
-                e.setUsernamemanager(rs.getString(3));
-                e.setName(rs.getString(4));
-                e.setEmail(rs.getString(5));
-                e.setNumber(rs.getString(6));
-                e.setAge(rs.getInt(7));
-                e.setAddress(rs.getString(8));
-                e.setCity(rs.getString(9));
-                e.setState(rs.getString(10));
+                e.setIc(rs.getString(3));
+                e.setUsernamemanager(rs.getString(4));
+                e.setName(rs.getString(5));
+                e.setEmail(rs.getString(6));
+                e.setNumber(rs.getString(7));
+                e.setAge(rs.getInt(8));
+                e.setAddress(rs.getString(9));
+                e.setCity(rs.getString(10));
+                e.setState(rs.getString(11));
 
                 img = rs.getBlob("image");
                 inputStream = img.getBinaryStream();
@@ -183,14 +185,15 @@ ps.setString(1, e.getUsername());
 
                 e.setUsername(rs.getString(1));
                 e.setPasword(rs.getString(2));
-                e.setUsernamemanager(rs.getString(3));
-                e.setName(rs.getString(4));
-                e.setEmail(rs.getString(5));
-                e.setNumber(rs.getString(6));
-                e.setAge(rs.getInt(7));
-                e.setAddress(rs.getString(8));
-                e.setCity(rs.getString(9));
-                e.setState(rs.getString(10));
+                e.setIc(rs.getString(3));
+                e.setUsernamemanager(rs.getString(4));
+                e.setName(rs.getString(5));
+                e.setEmail(rs.getString(6));
+                e.setNumber(rs.getString(7));
+                e.setAge(rs.getInt(8));
+                e.setAddress(rs.getString(9));
+                e.setCity(rs.getString(10));
+                e.setState(rs.getString(11));
 
                 img = rs.getBlob("image");
                 inputStream = img.getBinaryStream();
@@ -233,16 +236,17 @@ ps.setString(1, e.getUsername());
 
                 e.setUsername(rs.getString(1));
                 e.setPasword(rs.getString(2));
-                e.setUsernamemanager(rs.getString(3));
-                e.setName(rs.getString(4));
-                e.setEmail(rs.getString(5));
-                e.setNumber(rs.getString(6));
-                e.setAge(rs.getInt(7));
-                e.setAddress(rs.getString(8));
-                e.setCity(rs.getString(9));
-                e.setState(rs.getString(10));
+                e.setIc(rs.getString(3));
+                e.setUsernamemanager(rs.getString(4));
+                e.setName(rs.getString(5));
+                e.setEmail(rs.getString(6));
+                e.setNumber(rs.getString(7));
+                e.setAge(rs.getInt(8));
+                e.setAddress(rs.getString(9));
+                e.setCity(rs.getString(10));
+                e.setState(rs.getString(11));
 
-                img = rs.getBlob(11);
+                img = rs.getBlob(12);
                 inputStream = img.getBinaryStream();
                 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
                 byte[] buffer = new byte[4096];
@@ -479,14 +483,16 @@ ps.setString(1, e.getUsername());
         try {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "SELECT * FROM quantityused ORDER BY id DESC LIMIT 1");
+                    "SELECT DATE(time) Date, COUNT(DISTINCT id) totalCOunt FROM quantityused GROUP BY DATE(time)");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 quantityused e = new quantityused();
 
-                e.setId(rs.getInt(1));
-                e.setCode(rs.getString(2));
-                e.setTime(rs.getString(3));
+                  e.setTime(rs.getString(1));
+                    e.setId(rs.getInt(2));
+                 
+              
+               
 
                 list.add(e);
             }
@@ -535,14 +541,16 @@ ps.setString(1, e.getUsername());
             while (rs.next()) {
                 manager e = new manager();
                 e.setUsername(rs.getString(1));
+             
                 e.setPassword(rs.getString(2));
-                e.setName(rs.getString(3));
-                e.setEmail(rs.getString(4));
-                e.setNumber(rs.getString(5));
-                e.setAge(rs.getInt(6));
-                e.setAddress(rs.getString(7));
-                e.setCity(rs.getString(8));
-                e.setState(rs.getString(9));
+                 e.setIc(rs.getString(3));
+                e.setName(rs.getString(4));
+                e.setEmail(rs.getString(5));
+                e.setNumber(rs.getString(6));
+                e.setAge(rs.getInt(7));
+                e.setAddress(rs.getString(8));
+                e.setCity(rs.getString(9));
+                e.setState(rs.getString(10));
 
                 img = rs.getBlob("image");
                 inputStream = img.getBinaryStream();
@@ -583,16 +591,18 @@ ps.setString(1, e.getUsername());
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 e.setUsername(rs.getString(1));
+               
                 e.setPassword(rs.getString(2));
-                e.setName(rs.getString(3));
-                e.setEmail(rs.getString(4));
-                e.setNumber(rs.getString(5));
-                e.setAge(rs.getInt(6));
-                e.setAddress(rs.getString(7));
-                e.setCity(rs.getString(8));
-                e.setState(rs.getString(9));
+                 e.setIc(rs.getString(3));
+                e.setName(rs.getString(4));
+                e.setEmail(rs.getString(5));
+                e.setNumber(rs.getString(6));
+                e.setAge(rs.getInt(7));
+                e.setAddress(rs.getString(8));
+                e.setCity(rs.getString(9));
+                e.setState(rs.getString(10));
 
-                img = rs.getBlob(10);
+                img = rs.getBlob(11);
                 inputStream = img.getBinaryStream();
                 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
                 byte[] buffer = new byte[4096];
@@ -665,20 +675,21 @@ ps.setString(1, e.getUsername());
         try {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO cleaner (username, password, usernamemanager, name, email, number, age, address, city, state, image) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    "INSERT INTO cleaner (username, password, ic, usernamemanager, name, email, number, age, address, city, state, image) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
             InputStream obj = e.getPart().getInputStream();
             ps.setString(1, e.getUsername());
             ps.setString(2, e.getPasword());
-            ps.setString(3, e.getUsernamemanager());
-            ps.setString(4, e.getName());
-            ps.setString(5, e.getEmail());
-            ps.setString(6, e.getNumber());
-            ps.setInt(7, e.getAge());
-            ps.setString(8, e.getAddress());
-            ps.setString(9, e.getCity());
-            ps.setString(10, e.getState());
-            ps.setBlob(11, obj);
+            ps.setString(3, e.getIc());
+            ps.setString(4, e.getUsernamemanager());
+            ps.setString(5, e.getName());
+            ps.setString(6, e.getEmail());
+            ps.setString(7, e.getNumber());
+            ps.setInt(8, e.getAge());
+            ps.setString(9, e.getAddress());
+            ps.setString(10, e.getCity());
+            ps.setString(11, e.getState());
+            ps.setBlob(12, obj);
 
             status = ps.executeUpdate();
 
@@ -701,6 +712,7 @@ ps.setString(1, e.getUsername());
 
 
             ps.setString(1, obj.getUsername());
+      
             ps.setString(2, obj.getPassword());
             ps.setString(3, obj.getName());
             ps.setString(4, obj.getEmail());
@@ -1233,7 +1245,7 @@ public static int getupdateforgetcontractor(manager obj) {
                 obj.setId(rs.getInt(1));
                 obj.setDeviceid(rs.getString(2));
                 obj.setCount(rs.getInt(3));
-                obj.setLogdate(rs.getTimestamp(4));
+                obj.setLogdate(rs.getString(4));
                 obj.setLocation(rs.getString(5));
 
                 list.add(obj);
@@ -1286,5 +1298,108 @@ public static int getupdateforgetcontractor(manager obj) {
         return obj;
         
     }
+     
+       public static  List<information> getid1()
+       {
+         List  <information> obj=new  ArrayList <information>();
+           try{
+               Connection  con=getConnection();
+               
+       
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT * FROM information where id='1'");
+          
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                information e = new information();
+                e.setId(rs.getInt(1));
+                e.setDistance(rs.getInt(2));
+                e.setDetail(rs.getString(3));
 
+                 obj.add(e);
+            }
+            con.close();
+           }catch(Exception e){
+               e.printStackTrace();
+           }
+           return obj;
+       }
+     
+       public static  List<information> getid2()
+       {
+         List  <information> obj=new  ArrayList <information>();
+           try{
+               Connection  con=getConnection();
+               
+       
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT * FROM information where id='2'");
+          
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                information e = new information();
+                e.setId(rs.getInt(1));
+                e.setDistance(rs.getInt(2));
+                e.setDetail(rs.getString(3));
+
+                 obj.add(e);
+            }
+            con.close();
+           }catch(Exception e){
+               e.printStackTrace();
+           }
+           return obj;
+       }
+     
+          public static  List<information> getid3()
+       {
+         List  <information> obj=new  ArrayList <information>();
+           try{
+               Connection  con=getConnection();
+               
+       
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT * FROM information where id='3'");
+          
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                information e = new information();
+                e.setId(rs.getInt(1));
+                e.setDistance(rs.getInt(2));
+                e.setDetail(rs.getString(3));
+
+                 obj.add(e);
+            }
+            con.close();
+           }catch(Exception e){
+               e.printStackTrace();
+           }
+           return obj;
+       }
+          
+           public static List<count> getallcount() {
+        List<count> list = new ArrayList<count>();
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT SUM(count), Date(logdate) FROM resultcount");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                count e = new count();
+
+                  e.setCount(rs.getInt(1));
+                     e.setLogdate(rs.getString(2));
+                 
+              
+               
+
+                list.add(e);
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+          
 }

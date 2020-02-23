@@ -55,7 +55,7 @@ body
                   background-image: url("102456.jpg");
                  width:50%;
                  
-                height:540px;
+                height:590px;
                 border: 2px solid #2481f2;
   border-radius: 5px;
                 margin-left: 350px;
@@ -375,8 +375,9 @@ margin-left: 75%;
                           </h1>
                 
                      
-                        <h4> Name:<%=e.getName() %>
-                            
+                          <h4> Name:<%=e.getName() %> <br><br>
+                   IC:<%=e.getIc() %>
+                          
                             <br><br>
                             Email:<%=e.getEmail()  %>
                             

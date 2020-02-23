@@ -330,16 +330,6 @@ body
 
 
 
-        <form action='process2.jsp' method='POST'>
-            Key in Code:<input type="code" name="code">
-            <br>
-            Device &nbsp;  &nbsp; &nbsp; &nbsp;  :<select name="device">
-                <option>Device01</option>
-                <option>Device02</option>
-            </select>
-            <br>
-            &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;   <input type="submit" value="Submit">
-        </form>
         <br>
     </div>
 

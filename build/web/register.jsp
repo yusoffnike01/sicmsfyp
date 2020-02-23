@@ -190,7 +190,11 @@
                 background-color: white;
             }
             
-         
+       .required
+       {
+           color:red;
+           
+       }
 
   @media(min-width:1440px)
             {
@@ -462,18 +466,26 @@
                     <table>
                         <tr>
                             <td>
-                                <p>              Username: </P>
+                                <p>              Username<span class="required">*</span>: </P>
                             </td>
                             <td>
-                                <input type="text" name="username">
+                                <input type="text" name="username" required>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <p>        Password: </P>
+                                <p>        Password <span class="required">*</span>: </P>
                             </td>
                             <td>
-                                <input type="password" name="password">
+                                <input type="password" name="password" required="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>             Ic <span class="required">*</span>: </P>
+                            </td>
+                            <td>
+                                <input type="text" name="ic" required>
                             </td>
                         </tr>
                         <tr>
@@ -488,11 +500,11 @@
 
                         <tr>
                             <td>
-                                <p>                      Name: </p>
+                                <p>                      Name<span class="required">*</span>: </p>
                             </td>
 
                             <td>
-                                <input type="text" name="name">
+                                <input type="text" name="name" required>
                             </td>
                         </tr>
                         <tr>
@@ -506,7 +518,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <p>          Number: </p>
+                                <p>          No.Phone: </p>
                             </td>
 
                             <td>
@@ -546,7 +558,23 @@
                             <p> State:</p>       
                         </td>
                         <td>
-                            <input typ="text" name="state">
+                            <select name="state">
+                            <option  selected>...</option>
+                            <option>KEDAH</option>
+  <option>KELANTAN</option>
+  <option>MELAKA</option>
+  <option>NEGERI SEMBILAN</option>
+   <option>PAHANG</option>
+   <option>PERAK</option>
+    <option>PERLIS</option>
+     <option>PULAU PINANG</option>
+      <option>SABAH</option>
+       <option>SARAWAK</option>
+        <option>TERENGGANU</option>
+         <option>W.P(KUALA LUMPUR)</option>
+          <option>W.P(LABUAN)</option>
+           <option>W.P(PUTRAJAYA)</option>
+</select>
                         </td>
                         <tr>
                             <td>
@@ -585,6 +613,7 @@
                                 <th>Username</th>
 
                                 <th>Name</th>
+                                <th>IC</th>
                                 <th>Email</th>
                                 <th>Number</th>
                                 <th>Age</th>
@@ -610,9 +639,9 @@
                        
                             <tr>
                                 <td><%=obj.getUsername()%> </td>
-                             
+                              
                                 <td><%=obj.getName()%></td>
-                               
+                                 <td><%=obj.getIc()  %></td>
                                <td><%=obj.getEmail() %></td>
                                 <td><%=obj.getNumber()%></td>
                               <td><%=obj.getAge() %></td>

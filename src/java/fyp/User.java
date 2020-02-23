@@ -17,6 +17,7 @@ public class User {
     private String usernamemanager;
     private String username;
     private String pasword;
+    private String ic;
     private String name;
     private int age;
     private String email;
@@ -34,6 +35,15 @@ public class User {
         return favourite;
     }
 
+    public String getIc() {
+        return ic;
+    }
+
+    public void setIc(String ic) {
+        this.ic = ic;
+    }
+
+    
     public void setFavourite(String favourite) {
         this.favourite = favourite;
     }

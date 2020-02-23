@@ -231,6 +231,52 @@ table{
 .dropdown:hover .dropbtn {
   background-color: #3e8e41;
 }
+.click
+{
+    float:right;
+}
+
+
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
 @media  (max-width: 768px) {
     
     
@@ -465,6 +511,28 @@ margin-left: 5%;
     
     
       <div id="register" class="tabcontent">
+          
+        <div class="click">  <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Click Me</button>
+        </div>
+          
+          <div id="id01" class="modal">
+  
+  <form class="modal-content animate">
+      <div class="instruction">
+          
+          <h3>     Instruction </h3>
+          <br>
+          1) Enter the device name<br>
+          2) Next, enter the device id <br>
+          3) Set the id <br>
+          4) Set the location<br>
+          5)Turn on the power device <br>
+          6) configure the WiFi device and connected the device<br>
+          
+      </div>
+  </form>
+</div>
+
             <div class="main">
                 <br>
                 <h3>Registration Form</h3>
@@ -591,8 +659,8 @@ margin-left: 5%;
                 <thead>
             <tr>
                 <th >Device ID</th>
-                <th>Distance</th>
-                <th>LongDate</th>
+                <th>Distance sensor from soap</th>
+                <th>Date</th>
                 
               <th>location</th>
          
@@ -612,7 +680,7 @@ margin-left: 5%;
             <center>
                <tr>
                 <td width="30%"> <%=obj.getDeviceid() %></td>
-                <td><%=obj.getDistance() %></td>
+                <td><%=obj.getDistance() %>cm</td>
 
                 <td><%=obj.getLogdate()%></td>
   <td><%=obj.getLocation() %></td>
@@ -653,7 +721,7 @@ margin-left: 5%;
         </script>
         
         
-         <script type="text/javascript">countDown(10, "status");</script>
+         <script type="text/javascript">countDown(100, "status");</script>
                       
 <% 
    result obj1=UserDao.getcount();
@@ -809,6 +877,16 @@ else
             
             
    
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
         </script>
 </body>
 </html>

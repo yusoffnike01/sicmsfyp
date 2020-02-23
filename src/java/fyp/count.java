@@ -6,6 +6,7 @@
 package fyp;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -16,7 +17,7 @@ public class count {
     private String name;
     private String deviceid;
     private String location;
-     Timestamp logdate;
+     String logdate;
      int id;
     int count;
     int status;
@@ -63,11 +64,11 @@ public class count {
         this.location = location;
     }
 
-    public Timestamp getLogdate() {
+    public String getLogdate() {
         return logdate;
     }
 
-    public void setLogdate(Timestamp logdate) {
+    public void setLogdate(String logdate) {
         this.logdate = logdate;
     }
 

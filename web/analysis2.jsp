@@ -329,7 +329,7 @@ body
 <div class="tab">
     
           <button class="tablinks" onclick="openCity(event, 'monitor')"> Monitor</button>
-    
+    <button class="tablinks" onclick="openCity(event, 'analysis')"> Analysis</button>
 
     
 </div>
@@ -353,16 +353,7 @@ body
 
 
 
-        <form action='process2.jsp' method='POST'>
-            Key in Code:<input type="code" name="code">
-            <br>
-            Device &nbsp;  &nbsp; &nbsp; &nbsp;  :<select name="device">
-                <option>Device01</option>
-                <option>Device02</option>
-            </select>
-            <br>
-            &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;   <input type="submit" value="Submit">
-        </form>
+       
         <br>
     </div>
 
@@ -436,13 +427,38 @@ body
     for (count obj : list5) {
      
 
-        id.add("" + obj.getDeviceid());
+        id.add("" + obj.getLocation());
         count.add(obj.getCount());
 
     }
 
 
 %>  
+
+
+
+
+<%
+        // --- Create two Java Arrays  
+        ArrayList<Integer> id1 = new ArrayList<Integer>();
+        ArrayList<String> time = new ArrayList<String>();
+
+        // --- Loop 10 times and create 10 string dates and 10 users  
+        List<count> list6 = UserDao.getallcount();
+        for (count obj : list6) {
+
+            id1.add(obj.getCount());
+            time.add("" +obj.getLogdate());
+        }
+
+
+    %>  
+
+    
+    
+    
+    
+    %>
 <script>
     // --- add a comma after each value in the array and convert to javascript string representing an array  
 
@@ -462,7 +478,17 @@ body
 
 </script>  
 
+<script>
+        // --- add a comma after each value in the array and convert to javascript string representing an array  
 
+
+        var Data2 = [<%= join(time, ",")%>];
+
+
+
+        var Data = [<%= join(id1, ",")%>];
+
+    </script>
 <script>
 
 
@@ -473,6 +499,39 @@ body
 
 
     window.onload = function () {
+       
+       
+         zingchart.render({
+            id: "myChart1",
+            width: "100%",
+            height: 380,
+            data: {
+                "type": "line",
+                "title": {
+                    "text": "Analysis count"
+                },
+                "scale-x": {
+
+                    "labels": Data2
+                },
+                "plot": {
+                    "line-width": 1
+                },
+                "series": [{
+
+                        "values": Data
+
+
+
+
+                    }
+
+
+                ]
+            }
+        });
+
+       
        
         zingchart.render({
             id: "myChart",

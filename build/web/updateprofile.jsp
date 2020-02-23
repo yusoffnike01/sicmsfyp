@@ -237,10 +237,10 @@
 
                     <tr>
                         <td>
-                            <label>Name:</label>
+                           
                         </td>
                         <td>
-                            <input type="text" name="name"   value="<%=e.getName()%>">
+                            <input type="hidden" name="name"   value="<%=e.getName()%>">
                         </td>
 
                     </tr>
@@ -308,14 +308,32 @@
                             <label>State:</label>
                         </td>
                         <td>
-                            <input type="text" name="state" value="<%=e.getState()%>">
+                            <select name="state">
+                                 <option  selected><%=e.getState() %></option>
+                            <option>KEDAH</option>
+  <option>KELANTAN</option>
+  <option>MELAKA</option>
+  <option>NEGERI SEMBILAN</option>
+   <option>PAHANG</option>
+   <option>PERAK</option>
+    <option>PERLIS</option>
+     <option>PULAU PINANG</option>
+      <option>SABAH</option>
+       <option>SARAWAK</option>
+        <option>TERENGGANU</option>
+         <option>W.P(KUALA LUMPUR)</option>
+          <option>W.P(LABUAN)</option>
+           <option>W.P(PUTRAJAYA)</option>
+                                
+                                
+                            </select>
                         </td>
 
                     </tr>
                     
                      <tr>
                         <td>
-                            <label>favourite:</label>
+                            <label>Secure:</label>
                         </td>
                         <td>
                             <input type="text" name="favourite" value="<%=a.getFavourite() %>">

@@ -14,6 +14,7 @@ import javax.servlet.http.Part;
 public class manager {
     
     private String username;
+    private String ic;
     private String password;
     private String name;
     private String email;
@@ -23,7 +24,11 @@ public class manager {
     private String city;
     private String state;
      private Part part;
+
+   
     private String favourite;
+    
+    
     public String getName() {
         return name;
     }
@@ -123,7 +128,13 @@ public class manager {
         this.favourite = favourite;
     }
     
-    
+     public String getIc() {
+        return ic;
+    }
+
+    public void setIc(String ic) {
+        this.ic = ic;
+    }
     
     
 }

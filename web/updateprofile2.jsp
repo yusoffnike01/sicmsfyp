@@ -95,21 +95,33 @@
            try{
            String username = request.getParameter("username");
             String password=request.getParameter("password");
+            String ic=request.getParameter("ic");
             String usernamemanager=request.getParameter("usernamemanager");
             String name = request.getParameter("name");
             String email=request.getParameter("email");
             String number=request.getParameter("number");
             int age = Integer.parseInt(request.getParameter("age"));
          
+            
             String address = request.getParameter("address");
                String city = request.getParameter("city");
                   String state = request.getParameter("state");
                   Part part=request.getPart("image");
-           
+            if(age<18||age>40)
+            {
+                response.sendRedirect("register.jsp");
+            }
+            if(ic.length()<12||ic.length()>13)
+            {
+                                response.sendRedirect("register.jsp");
+
+            }
+            else{
                 
            User e = new User();
                       e.setUsername(username);
                       e.setPasword(password);
+                      e.setIc(ic);
                       e.setUsernamemanager(usernamemanager);
                       e.setName(name);
                       e.setEmail(email);
@@ -122,7 +134,10 @@
                       
                       int status=UserDao.save(e);
                       int status2=UserDao.inactive(e);
-                      if(status>0&& status2>0)
+                      
+            
+                   
+                       if(status>0&& status2>0)
                       {
                           response.sendRedirect("register.jsp");
                           System.out.println("Succesfull");
@@ -133,6 +148,10 @@
                           
                           
                       }
+                       
+                   
+                
+                   }
                       
                         }catch(NumberFormatException m)  
           {
@@ -156,7 +175,11 @@
                   String state = request.getParameter("state");
                   String favourite=request.getParameter("favourite");
                   Part part=request.getPart("image");
-           
+             if(age<18||age>40)
+            {
+                response.sendRedirect("profile.jsp");
+            }
+             else{
                
            User e = new User();
                       e.setUsername(username);
@@ -181,6 +204,7 @@
                       {
                           response.sendRedirect("profile.jsp");
                       }
+             }
                         }catch(NumberFormatException m)  
           {
               response.sendRedirect("profile.jsp");

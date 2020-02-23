@@ -322,7 +322,7 @@ body
                     <thead>
                         <tr>
                             <th>Device ID</th>
-                            <th>Distance</th>
+                            <th>Count</th>
                             <th>LogDate</th>
                            <th>Location</th>
 
