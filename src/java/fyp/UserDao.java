@@ -26,7 +26,7 @@ public class UserDao {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/smarttoilet", "root", "admin");
+            con = DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12322395", "sql12322395", "I6NMDIFDX4");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -593,16 +593,17 @@ ps.setString(1, e.getUsername());
                 e.setUsername(rs.getString(1));
                
                 e.setPassword(rs.getString(2));
-                 e.setIc(rs.getString(3));
-                e.setName(rs.getString(4));
-                e.setEmail(rs.getString(5));
-                e.setNumber(rs.getString(6));
-                e.setAge(rs.getInt(7));
-                e.setAddress(rs.getString(8));
-                e.setCity(rs.getString(9));
-                e.setState(rs.getString(10));
+                e.setCompany(rs.getString(3));
+                 e.setIc(rs.getString(4));
+                e.setName(rs.getString(5));
+                e.setEmail(rs.getString(6));
+                e.setNumber(rs.getString(7));
+                e.setAge(rs.getInt(8));
+                e.setAddress(rs.getString(9));
+                e.setCity(rs.getString(10));
+                e.setState(rs.getString(11));
 
-                img = rs.getBlob(11);
+                img = rs.getBlob(12);
                 inputStream = img.getBinaryStream();
                 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
                 byte[] buffer = new byte[4096];
@@ -1013,14 +1014,16 @@ public static int getupdateforgetcontractor(manager obj) {
 
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO inactive (username, name, age, address, city, state) values (?, ?, ?, ?, ?, ?)");
+                    "INSERT INTO inactive (username, name, ic, email,  age, address, city, state) values (?, ?, ?, ?, ?, ?, ?, ?)");
             ps.setString(1, obj.getUsername());
 
             ps.setString(2, obj.getName());
-            ps.setInt(3, obj.getAge());
-            ps.setString(4, obj.getAddress());
-            ps.setString(5, obj.getCity());
-            ps.setString(6, obj.getState());
+            ps.setString(3, obj.getIc());
+            ps.setString(4, obj.getEmail());
+            ps.setInt(5, obj.getAge());
+            ps.setString(6, obj.getAddress());
+            ps.setString(7, obj.getCity());
+            ps.setString(8, obj.getState());
 
             status = ps.executeUpdate();
 
@@ -1382,7 +1385,7 @@ public static int getupdateforgetcontractor(manager obj) {
         try {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "SELECT SUM(count), Date(logdate) FROM resultcount");
+                    "SELECT count, Date(logdate) FROM resultcount WHERE logdate IN (SELECT max(logdate) FROM resultcount)");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 count e = new count();
@@ -1401,5 +1404,127 @@ public static int getupdateforgetcontractor(manager obj) {
         }
         return list;
     }
+           
+           
+              public static int savesecure(User obj) {
+        int status = 0;
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "INSERT INTO  forget (username, favourite) values (?, ?)");
+
+        ps.setString(1, obj.getUsername());
+        ps.setString(2, obj.getFavourite());
+     
+
+            status = ps.executeUpdate();
+
+            con.close();
+
+        } catch (Exception m) {
+            m.printStackTrace();
+        }
+        return status;
+    }
+            public static manager getmanagerBySession1() {
+        manager e = new manager();
+        String base64Image = "", x = "";
+        InputStream inputStream;
+        Blob img;
+        int bytesRead = -1;
+        byte[] imageBytes;
+
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT * FROM contractor WHERE usernamemanager='uk1234'");
           
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                e.setUsername(rs.getString(1));
+               
+                e.setPassword(rs.getString(2));
+                e.setCompany(rs.getString(3));
+                 e.setIc(rs.getString(4));
+                e.setName(rs.getString(5));
+                e.setEmail(rs.getString(6));
+                e.setNumber(rs.getString(7));
+                e.setAge(rs.getInt(8));
+                e.setAddress(rs.getString(9));
+                e.setCity(rs.getString(10));
+                e.setState(rs.getString(11));
+
+                img = rs.getBlob(12);
+                inputStream = img.getBinaryStream();
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                byte[] buffer = new byte[4096];
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+                imageBytes = outputStream.toByteArray();
+                base64Image = Base64.getEncoder().encodeToString(imageBytes);
+                inputStream.close();
+                outputStream.close();
+                x = "data:image/jpg;base64," + base64Image;
+
+                e.setBase64Image(x);
+            }
+            con.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return e;
+    }
+            
+             public static manager getmanagerBySession2() {
+        manager e = new manager();
+        String base64Image = "", x = "";
+        InputStream inputStream;
+        Blob img;
+        int bytesRead = -1;
+        byte[] imageBytes;
+
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT * FROM contractor WHERE usernamemanager='uk5678'");
+          
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                e.setUsername(rs.getString(1));
+               
+                e.setPassword(rs.getString(2));
+                e.setCompany(rs.getString(3));
+                 e.setIc(rs.getString(4));
+                e.setName(rs.getString(5));
+                e.setEmail(rs.getString(6));
+                e.setNumber(rs.getString(7));
+                e.setAge(rs.getInt(8));
+                e.setAddress(rs.getString(9));
+                e.setCity(rs.getString(10));
+                e.setState(rs.getString(11));
+
+                img = rs.getBlob(12);
+                inputStream = img.getBinaryStream();
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                byte[] buffer = new byte[4096];
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+                imageBytes = outputStream.toByteArray();
+                base64Image = Base64.getEncoder().encodeToString(imageBytes);
+                inputStream.close();
+                outputStream.close();
+                x = "data:image/jpg;base64," + base64Image;
+
+                e.setBase64Image(x);
+            }
+            con.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return e;
+    }
+
+
 }

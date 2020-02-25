@@ -4,6 +4,7 @@
     Author     : user
 --%>
 
+<%@page import="fyp.information"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@page import="java.util.List"%>
@@ -302,10 +303,10 @@ body
                   
                   
                   <div class="dropdown">
-                <a href="Report.jsp" class="nav-item nav-link">Analysis</a>
+                <a href="#" class="nav-item nav-link">Monitor</a>
                  <div class="dropdown-content">
-  <a href="Report.jsp">Analysis 1</a>
-  <a href="report2.jsp">Analysis 2</a>
+  <a href="Report.jsp">Monitor 1</a>
+  <a href="report2.jsp">Monitor 2</a>
                  </div>
                   </div>
                 <a href="notification.jsp" class="nav-item nav-link">Notification</a>
@@ -327,7 +328,7 @@ body
                     <thead>
                         <tr>
                             <th>Device ID</th>
-                            <th>Distance sensor from soap</th>
+                            <th>Level soap</th>
                             <th>Date</th>
                            <th>Location</th>
 
@@ -337,7 +338,7 @@ body
                     </thead>
                     <%
                         List<result> list = UserDao.getresult(e.getUsernamemanager());
-
+                     information c = UserDao.getinformationByaltitude();
                         for (result obj : list) {
 
 
@@ -347,7 +348,7 @@ body
                     <center
                         <tr>
                             <td> <%=obj.getDeviceid()%></td>
-                            <td><%=obj.getDistance()%></td>
+                            <td><%= c.getDistance()-obj.getDistance() %> cm</td>
 
                             <td><%=obj.getLogdate()%></td>
 

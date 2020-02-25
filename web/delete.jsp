@@ -18,12 +18,13 @@
         
             <%
                 String username = request.getParameter("name");
-               
+              
       
                 
                 String deviceid=request.getParameter("id");
                 int status = UserDao.getdeleteprofile(username);
-                
+               
+             
      
          
                 int status2=UserDao.getdeletedevice(deviceid);

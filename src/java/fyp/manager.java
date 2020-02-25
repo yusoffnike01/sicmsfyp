@@ -25,8 +25,16 @@ public class manager {
     private String state;
      private Part part;
 
-   
+   private String company;
     private String favourite;
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
     
     
     public String getName() {

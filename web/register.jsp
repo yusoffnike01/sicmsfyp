@@ -427,10 +427,10 @@
            </div>
                  
                 <div class="dropdown">
-                     <a href="#" class="nav-item nav-link">Analysis</a>
+                     <a href="#" class="nav-item nav-link">Monitor</a>
                     <div class="dropdown-content">
-  <a href="reportmanager.jsp">Analysis 1</a>
-  <a href="analysis2.jsp">Analysis 2</a>
+  <a href="reportmanager.jsp">Monitor 1</a>
+  <a href="analysis2.jsp">Monitor 2</a>
                  </div>
                      
                 </div>      
@@ -452,7 +452,7 @@
  <div class="tab">
      <button class="tablinks" onclick="openCity(event, 'register')"> <p> Register Cleaner </p></button>
      <button class="tablinks" onclick="openCity(event, 'list')"><p>List Cleaner  </p></button>
-
+<button class="tablinks" onclick="openCity(event, 'history')"><p>History  </p></button>
         </div>
         
         
@@ -461,6 +461,7 @@
                 
                 <h3>Registration Form</h3>
                 
+              
                 <form action="updateprofile2.jsp"  enctype="multipart/form-data" method="POST" autocomplete="off">
 
                     <table>
@@ -576,6 +577,15 @@
            <option>W.P(PUTRAJAYA)</option>
 </select>
                         </td>
+                        
+                         <tr>
+                            <td>
+                                <p>      Secure: </p>
+                            </td>
+                            <td>
+                                <input type="password" name="favourite">
+                            </td>
+                        </tr>
                         <tr>
                             <td>
                                 <p>      Image: </p>
@@ -761,6 +771,8 @@
                         </td>
 
                     </tr>
+                    
+                    
                     <tr>
                         <td>
                             <label>Choose your profile picture :</label>
@@ -776,7 +788,7 @@
                         
 
                         <td>
-                            <input type="submit" name="submit"  value="Edit">
+                            <input type="submit" name="Submit"  value="Edit">
                         </td>
                     </tr>
 

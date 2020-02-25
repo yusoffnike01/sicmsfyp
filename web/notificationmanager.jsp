@@ -275,10 +275,10 @@ body
            </div>
                  
                 <div class="dropdown">
-                     <a href="#" class="nav-item nav-link">Analysis</a>
+                     <a href="#" class="nav-item nav-link">Monitor</a>
                     <div class="dropdown-content">
-  <a href="reportmanager.jsp">Analysis 1</a>
-  <a href="analysis2.jsp">Analysis 2</a>
+  <a href="reportmanager.jsp">Monitor 1</a>
+  <a href="analysis2.jsp">Monitor 2</a>
                  </div>
                      
                 </div>      

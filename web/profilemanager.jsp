@@ -55,13 +55,24 @@ body
                   background-image: url("102456.jpg");
                  width:50%;
                  
-                height:590px;
+                height:630px;
                 border: 2px solid #2481f2;
   border-radius: 5px;
                 margin-left: 350px;
             }
             
-            
+             #profileid
+            {
+                
+                width:14.1%;
+                height:45px;
+                  border-radius: 50%;
+                border:2px solid #34495e;
+         
+                box-sizing: border-box;
+             
+                
+            }
             .kotak h4
             
             {
@@ -337,10 +348,10 @@ margin-left: 75%;
            </div>
                  
                 <div class="dropdown">
-                     <a href="#" class="nav-item nav-link">Analysis</a>
+                     <a href="#" class="nav-item nav-link">Monitor</a>
                     <div class="dropdown-content">
-  <a href="reportmanager.jsp">Analysis 1</a>
-  <a href="analysis2.jsp">Analysis 2</a>
+  <a href="reportmanager.jsp">Monitor 1</a>
+  <a href="analysis2.jsp">Monitor 2</a>
                  </div>
                      
                 </div>      
@@ -378,6 +389,8 @@ margin-left: 75%;
                           <h4> Name:<%=e.getName() %> <br><br>
                    IC:<%=e.getIc() %>
                           
+                   <br><br>
+                   Comapny:<%=e.getCompany() %>
                             <br><br>
                             Email:<%=e.getEmail()  %>
                             

@@ -479,10 +479,10 @@ margin-left: 5%;
            </div>
                  
                 <div class="dropdown">
-                     <a href="#" class="nav-item nav-link">Analysis</a>
+                     <a href="#" class="nav-item nav-link">Monitor</a>
                     <div class="dropdown-content">
-  <a href="reportmanager.jsp">Analysis 1</a>
-  <a href="analysis2.jsp">Analysis 2</a>
+  <a href="reportmanager.jsp">Monitor 1</a>
+  <a href="analysis2.jsp">Monitor 2</a>
                  </div>
                      
                 </div>      
@@ -512,7 +512,7 @@ margin-left: 5%;
     
       <div id="register" class="tabcontent">
           
-        <div class="click">  <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Click Me</button>
+        <div class="click">  <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Instruction</button>
         </div>
           
           <div id="id01" class="modal">
@@ -524,10 +524,10 @@ margin-left: 5%;
           <br>
           1) Enter the device name<br>
           2) Next, enter the device id <br>
-          3) Set the id <br>
-          4) Set the location<br>
-          5)Turn on the power device <br>
-          6) configure the WiFi device and connected the device<br>
+     
+          3) Set the location<br>
+          4)Turn on the power device <br>
+          5) configure the WiFi device and connected the device<br>
           
       </div>
   </form>
@@ -659,7 +659,7 @@ margin-left: 5%;
                 <thead>
             <tr>
                 <th >Device ID</th>
-                <th>Distance sensor from soap</th>
+                <th> level soap</th>
                 <th>Date</th>
                 
               <th>location</th>
@@ -669,7 +669,7 @@ margin-left: 5%;
             </thead>
                <%
               List<result> list = UserDao.getresult(e.getUsername());
-
+  information c = UserDao.getinformationByaltitude();
             for (result obj : list) {
 
 
@@ -680,7 +680,7 @@ margin-left: 5%;
             <center>
                <tr>
                 <td width="30%"> <%=obj.getDeviceid() %></td>
-                <td><%=obj.getDistance() %>cm</td>
+                <td><%= c.getDistance()-obj.getDistance() %>cm</td>
 
                 <td><%=obj.getLogdate()%></td>
   <td><%=obj.getLocation() %></td>
@@ -758,7 +758,7 @@ else
                        
                        <table id="updateinformation">
                            
-                           <th style="font-size:1.3 em;">Distance</th>
+                           <th style="font-size:1.3 em;">Level</th>
                            <th style="font-size:1.3 em;">Details</th>
                            <th >Action</th>
                            
@@ -775,7 +775,7 @@ else
                                
                               <tr>
 
-                        <td><%=obj.getDistance()%></td>
+                        <td><%=obj.getDistance()%> cm</td>
                         <td> <%=obj.getDetail()%></td>
                         <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal<%=obj.getId() %>">Edit</button></td>
                                 

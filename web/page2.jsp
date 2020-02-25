@@ -517,7 +517,7 @@ margin-left: 5%;
     
     
       <div id="register" class="tabcontent">
-            <div class="click">  <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Click Me</button>
+            <div class="click">  <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Instruction</button>
         </div>
           
           <div id="id01" class="modal">

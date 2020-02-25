@@ -344,10 +344,10 @@ margin-left: 75%;
                   
                   
                   <div class="dropdown">
-                <a href="#" class="nav-item nav-link">Analysis</a>
+                <a href="#" class="nav-item nav-link">Monitor</a>
                  <div class="dropdown-content">
-  <a href="Report.jsp">Analysis 1</a>
-  <a href="report2.jsp">Analysis 2</a>
+  <a href="Report.jsp">Monitor 1</a>
+  <a href="report2.jsp">Monitor 2</a>
                  </div>
                   </div>
                 <a href="notification.jsp" class="nav-item nav-link">Notification</a>

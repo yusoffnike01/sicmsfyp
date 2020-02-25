@@ -342,37 +342,6 @@ body
                      
           
      
-<%     // --- Create two Java Arrays  
-        ArrayList<Integer> id1 = new ArrayList<Integer>();
-        ArrayList<String> time = new ArrayList<String>();
-
-        // --- Loop 10 times and create 10 string dates and 10 users  
-        List<quantityused> list6 = UserDao.getalldisplay();
-        for (quantityused obj : list6) {
-
-            id1.add(obj.getId());
-            time.add(obj.getTime());
-        }
-
-
-    %>  
-
-
-
-
-
-    <script>
-        // --- add a comma after each value in the array and convert to javascript string representing an array  
-
-
-        var Data2 = [<%= join(time, ",")%>];
-
-
-
-        var Data = [<%= join(id1, ",")%>];
-
-    </script>
-
 
 
 
@@ -418,7 +387,7 @@ body
     for (count obj : list5) {
       ;
 
-        id.add("" + obj.getDeviceid());
+        id.add("" + obj.getLocation());
         count.add(obj.getCount());
 
     }

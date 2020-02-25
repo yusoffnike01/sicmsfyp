@@ -285,10 +285,10 @@ body
                   
                   <div class="dropdown">
                   
-                <a href="#" class="nav-item nav-link active ">Analysis</a>
+                <a href="#" class="nav-item nav-link active ">Monitor</a>
                  <div class="dropdown-content">
-  <a href="Report.jsp">Analysis 1</a>
-  <a href="report2.jsp">Analysis 2</a>
+  <a href="Report.jsp">Monitor 1</a>
+  <a href="report2.jsp">Monitor 2</a>
                  </div>
                   </div>
                 <a href="notification.jsp" class="nav-item nav-link">Notification</a>
@@ -305,7 +305,7 @@ body
 <div class="tab">
     
           <button class="tablinks" onclick="openCity(event, 'monitor')"> Monitor</button>
-        <button class="tablinks" onclick="openCity(event, 'analysis')"> analysis</button>
+
              
     
 </div>
@@ -391,7 +391,7 @@ body
                 if ((c.getDistance() - obj3.getDistance()) >= a.getDistance()) {
 
         %>
-        <p>full</p>
+        
 
         <%        } else if ((c.getDistance() - obj3.getDistance()) < a.getDistance()) {
         %>
@@ -424,12 +424,17 @@ body
             <input type="hidden" name="mail" value="<%=e.getEmail()%>" />
 
             <input type="hidden" name="sub" value="Cleaning Servis">
-            <input type="text" name="mess" value="needs to be filled" border="none"></input>
-
+            <table>
+                <tr><td width="30%">
+                        <p><%=obj3.getDeviceid() %></p> </td> <td width="70%">  <input type="text" name="mess" value="needs to be filled" border="none"></input> </div>
+                    </td>
+            </tr>
+            </table>
         </form>
 
 
         <%
+            
                 }
             }
 
@@ -443,9 +448,15 @@ body
             Key in Code:<input type="code" name="code">
             <br>
             Device &nbsp;  &nbsp; &nbsp; &nbsp;  :<select name="device">
+                
+                
                 <option>Device01</option>
                 <option>Device02</option>
             </select>
+                
+                
+                
+                
             <br>
             &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;   <input type="submit" value="Submit">
         </form>
@@ -457,11 +468,7 @@ body
 
     
       
-        <div id="analysis" class="tabcontent">
-        <div id="myChart1"></div>  
-
-       </div>
-                     
+              
           
      
 <%     // --- Create two Java Arrays  
@@ -591,35 +598,7 @@ body
 
 
     window.onload = function () {
-        zingchart.render({
-            id: "myChart1",
-            width: "100%",
-            height: 380,
-            data: {
-                "type": "line",
-                "title": {
-                    "text": "Usage of Soap"
-                },
-                "scale-x": {
-
-                    "labels": Data2
-                },
-                "plot": {
-                    "line-width": 1
-                },
-                "series": [{
-
-                        "values": Data
-
-
-
-
-                    }
-
-
-                ]
-            }
-        });
+ 
 
         zingchart.render({
             id: "myChart",

@@ -311,11 +311,11 @@ body
                  
                <div class="dropdown">   
                  
-                <a href="reportmanager.jsp" class="nav-item nav-link">Analysis</a>
+                <a href="reportmanager.jsp" class="nav-item nav-link">Monitor</a>
                 
                 <div class="dropdown-content">
-  <a href="reportmanager.jsp">Analysis 1</a>
-  <a href="analysis2.jsp">Analysis 2</a>
+  <a href="reportmanager.jsp">Monitor 1</a>
+  <a href="analysis2.jsp">Monitor 2</a>
                  </div>
                 </div>
                 <a href="notificationmanager.jsp" class="nav-item nav-link">Notification</a>
@@ -451,7 +451,12 @@ body
             <input type="hidden" name="mail" value="<%=obj2.getEmail()%>" />
 
             <input type="hidden" name="sub" value="Cleaning Servis">
-            <input type="text" name="mess" value="needs to be filled" border="none"></input>
+        <table>
+                <tr><td width="30%">
+                        <p><%=obj3.getDeviceid() %></p> </td> <td width="70%">  <input type="text" name="mess" value="needs to be filled" border="none"></input> </div>
+                    </td>
+            </tr>
+            </table>
 
         </form>
 
@@ -623,7 +628,7 @@ body
             width: "100%",
             height: 380,
             data: {
-                "type": "line",
+                "type": "bar",
                 "title": {
                     "text": "Usage of Soap"
                 },
@@ -656,7 +661,7 @@ body
             data: {
                 "type": "bar",
                 "title": {
-                    "text": "Level of Graph Soap",
+                    "text": "Level  Soap",
                     fontSize: 20
                 },
                 "scale-x": {

@@ -506,7 +506,7 @@ body
             width: "100%",
             height: 380,
             data: {
-                "type": "line",
+                "type": "bar",
                 "title": {
                     "text": "Analysis count"
                 },

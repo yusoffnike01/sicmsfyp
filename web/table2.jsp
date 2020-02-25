@@ -289,9 +289,9 @@ body
               
               
             </div>
-            <div class="navbar-nav ml-auto">
+              <div class="navbar-nav ml-auto">
                 <div class="dropdown">
-                     <a href="table.jsp" class="nav-item nav-link active">Dashboard</a>
+                     <a href="#" class="nav-item nav-link active">Dashboard</a>
                      <div class="dropdown-content">
   <a href="table.jsp">Dashboard 1</a>
   <a href="table2.jsp">Dashboard 2</a>
@@ -301,8 +301,13 @@ body
                  
                   
                   
-                  
-                <a href="Report.jsp" class="nav-item nav-link">Analysis</a>
+                  <div class="dropdown">
+                <a href="#" class="nav-item nav-link">Analysis</a>
+                 <div class="dropdown-content">
+  <a href="Report.jsp">Analysis 1</a>
+  <a href="report2.jsp">Analysis 2</a>
+                 </div>
+                  </div>
                 <a href="notification.jsp" class="nav-item nav-link">Notification</a>
             
                  <a href="profile.jsp" class="nav-item nav-link">profile</a>
@@ -323,7 +328,7 @@ body
                         <tr>
                             <th>Device ID</th>
                             <th>Count</th>
-                            <th>LogDate</th>
+                            <th>Date</th>
                            <th>Location</th>
 
 
