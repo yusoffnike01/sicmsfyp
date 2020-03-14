@@ -26,7 +26,7 @@ public class UserDao {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12322395", "sql12322395", "I6NMDIFDX4");
+            con = DriverManager.getConnection("jdbc:mysql://103.6.198.22:3306/musproje_smart_soap", "musproje_yusoff", "yusoffnike01");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -638,7 +638,7 @@ ps.setString(1, e.getUsername());
                 e.setUsernamemanager(rs.getString(1));
                 e.setUsername(rs.getString(2));
                 e.setMessage(rs.getString(3));
-
+               e.setTime(rs.getString(4));
                 list.add(e);
             }
             con.close();
@@ -1238,7 +1238,7 @@ public static int getupdateforgetcontractor(manager obj) {
         try {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "select m.id, m.deviceid, m.count, m.logdate, count_info.location from ((resultcount m inner join ( select deviceid, max(logdate) as MaxDate from resultcount group by deviceid ) tm on m.deviceid = tm.deviceid and m.logdate = tm.MaxDate) inner join count_info on m.deviceid=count_info.deviceid ) where count_info.usernamemanager=?");
+                    "select m.id, m.deviceid,m.count, m.logdate, count_info.location from ((resultcount m inner join ( select deviceid, max(logdate) as MaxDate from resultcount group by deviceid ) tm on m.deviceid = tm.deviceid and m.logdate = tm.MaxDate) inner join count_info on m.deviceid=count_info.deviceid ) where count_info.usernamemanager=? GROUP BY DATE(m.logdate) ORDER BY m.logdate DESC limit 1");
               ps.setString(1, usernamemanager);
             
             ResultSet rs = ps.executeQuery();

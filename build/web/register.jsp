@@ -648,7 +648,7 @@
                         <tbody>
                        
                             <tr>
-                                <td><%=obj.getUsername()%> </td>
+                                <td> <%=obj.getUsername()%> </td>
                               
                                 <td><%=obj.getName()%></td>
                                  <td><%=obj.getIc()  %></td>

@@ -9,12 +9,14 @@ package fyp;
  *
  * @author user
  */
+
+import java.sql.Timestamp;
 public class message {
     
     private String usernamemanager;
     private String username;
     private String  message;
-
+    private String time;
     public String getUsernamemanager() {
         return usernamemanager;
     }
@@ -41,5 +43,14 @@ public class message {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+    
     
 }

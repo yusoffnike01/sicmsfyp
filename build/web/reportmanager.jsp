@@ -1,3 +1,4 @@
+
 <%-- 
     Document   : reportmanager
     Created on : Oct 17, 2019, 12:43:28 AM
@@ -418,9 +419,20 @@ body
                 if ((c.getDistance() - obj3.getDistance()) >= a.getDistance()) {
 
         %>
-        <p>full</p>
+        
+      
 
         <%        } else if ((c.getDistance() - obj3.getDistance()) < a.getDistance()) {
+
+
+                    %>
+                    
+                   
+                     
+                     
+                     
+                    <%
+               
         %>
 
         <script>
@@ -475,9 +487,30 @@ body
             Key in Code:<input type="code" name="code">
             <br>
             Device &nbsp;  &nbsp; &nbsp; &nbsp;  :<select name="device">
-                <option>Device01</option>
-                <option>Device02</option>
-            </select>
+                 <%
+            List<result> liste = UserDao.getresult((String)session.getAttribute("user"));
+            information l = UserDao.getinformationBySession();
+            information k = UserDao.getinformationByaltitude();
+            for (result obj9 : liste) {
+
+                if ((k.getDistance() - obj9.getDistance()) >= l.getDistance()) {
+
+        %>
+        
+      
+
+        <%        } else if ((k.getDistance() - obj9.getDistance()) < l.getDistance()) {
+
+
+                    %>
+                    
+                <option><%=obj9.getDeviceid() %></option>
+            
+                <%
+                    }
+                }
+%>
+</select>
             <br>
             &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;   <input type="submit" value="Submit">
         </form>

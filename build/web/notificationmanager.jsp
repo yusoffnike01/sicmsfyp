@@ -305,6 +305,7 @@ body
             <tr>
                 <th>username</th>
                 <th>message</th>
+                <th>Date</th>
                 
   <th colspan="1">Action</th>
 
@@ -326,6 +327,7 @@ body
                 <input  type="hidden" name="usernamanager" value="<%=obj.getUsernamemanager() %>"> 
                 <td> <%=obj.getUsername() %></td>
                 <td><%=obj.getMessage() %></td>
+                <td><%=obj.getTime() %></td>
 
                 <td> <button onclick="return confirm('Are you sure to delete?')" onclick='myfunctional()'  class="btn btn-info">Delete</button></td>
 
