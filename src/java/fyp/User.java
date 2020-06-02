@@ -28,12 +28,20 @@ public class User {
     private Part image;
     private String base64Image;
 
-    private String favourite;
+private String national;
+
+    public String getNational() {
+        return national;
+    }
+
+    public void setNational(String national) {
+        this.national = national;
+    }
+
+
     private int id;
 
-    public String getFavourite() {
-        return favourite;
-    }
+    
 
     public String getIc() {
         return ic;
@@ -44,9 +52,7 @@ public class User {
     }
 
     
-    public void setFavourite(String favourite) {
-        this.favourite = favourite;
-    }
+    
 
     public int getId() {
         return id;

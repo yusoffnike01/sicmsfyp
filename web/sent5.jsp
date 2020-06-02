@@ -19,7 +19,7 @@
 
     final String to = request.getParameter("mail");
 
-    final String subject = request.getParameter("sub");
+   
 
     final String messg = request.getParameter("mess");
 
@@ -97,7 +97,7 @@
 
         // Set Subject: header field
 
-        message.setSubject(subject);
+        message.setSubject("Smart I-Cleaning Management System");
 
         // Now set the actual message
 

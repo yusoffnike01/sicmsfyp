@@ -55,7 +55,7 @@ body
                   background-image: url("102456.jpg");
                  width:50%;
                  
-                height:630px;
+                height:640px;
                 border: 2px solid #2481f2;
   border-radius: 5px;
                 margin-left: 350px;
@@ -340,18 +340,16 @@ margin-left: 75%;
             </div>
             <div class="navbar-nav ml-auto">
                   <div class="dropdown">
-               <a href="#"class="nav-item nav-link">Dashboard</a>
+               <a href="page1.jsp"class="nav-item nav-link">Dashboard</a>
                  <div class="dropdown-content">
-  <a href="page1.jsp">Dashboard 1</a>
-  <a href="page2.jsp">Dashboard 2</a>
+  
                  </div>
            </div>
                  
                 <div class="dropdown">
-                     <a href="#" class="nav-item nav-link">Monitor</a>
+                     <a href="reportmanager.jsp" class="nav-item nav-link">Monitor</a>
                     <div class="dropdown-content">
-  <a href="reportmanager.jsp">Monitor 1</a>
-  <a href="analysis2.jsp">Monitor 2</a>
+  
                  </div>
                      
                 </div>      
@@ -390,7 +388,7 @@ margin-left: 75%;
                    IC:<%=e.getIc() %>
                           
                    <br><br>
-                   Comapny:<%=e.getCompany() %>
+                   Company:<%=e.getCompany() %>
                             <br><br>
                             Email:<%=e.getEmail()  %>
                             
@@ -400,6 +398,9 @@ margin-left: 75%;
                             
                             <br><br>
                             Age:<%=e.getAge() %>
+                            
+                            <br><br>
+                            National:<%=e.getNation() %>
                             <br><br>
                             Address:<%=e.getAddress() %>
                         

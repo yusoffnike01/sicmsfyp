@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <style>
+  .main-navbar {
+    background-color: #4489f6;
+}
+
+.spacing-for-navbar {
+    margin-top: 52px;
+}
+
+.home-header {
+    height: calc(98vh - 52px);
+    background-image: url("smart_restrooms_Atlanta_PR.jpg");
+    background-size: cover;
+    color: white;
+}
+
+.home-header-title {
+    font-size: calc(20px + 7vw);
+}
+
+.home-header-desc {
+    font-size: calc(10px + 2.3vw);
+}
+.circle-border {
+    border-radius: 50%;
+    border-width: 2px;
+    border-style: solid;
+    border-color: white;
+}
+
+.profile-photo {
+    width: calc(100px + 5vw);
+}
+
+.dangling-bottom {
+    margin-bottom: -50px;
+}
+
+.top-background {
+    height: calc(80px + 6vw);
+    background-color: #9bd6ef;
+}
+
+.profile-box {
+    margin-top: 50px;
+    width: 100%;
+    max-width: 540px;
+}
+
+.profile-inner-box {
+    width: 100%;
+    max-width: 500px;
+}
+
+.error-text {
+    color: #c13545;
+}
+
+.register-box {
+    background-color: #d1f3ff;
+}
+
+.locations-box {
+    background-color: #edf9f9;
+}
+
+.register-cleaner-box {
+    max-width: 400px;
+    background-color: #f9e5f2;
+}
+
+.device-card {
+    max-width: 240px;
+    background-color: #aadef9;
+}
+
+@media (max-width: 527px) {
+    .device-card {
+        max-width: 100%;
+    }
+}
+
+.con {
+    max-width: 100%;
+    margin: auto;
+}
+
+.who h3 {
+    color: white;
+    text-shadow: 2px 2px 5px blue;
+    font-weight: bold;
+    text-align: center;
+    padding: 30px 0 0 0;
+}
+
+#who h3 {
+    color: black;
+    text-shadow: 2px 2px 5px blue;
+    font-weight: bold;
+    text-align: center;
+    padding: 30px 0 0 0;
+}
+
+
+.who p {
+    color: white;
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    padding: 0;
+}
+
+@media screen and (min-width: 601px) {
+    .who p {
+        font-size: 80px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .who p {
+        font-size: 30px;
+    }
+}
+
+.about-us-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    font-family: arial, serif;
+    background: #5f9cf6;
+    color: white;
+    padding: 16px;
+}
+
+.about-us-cardimg {
+    width: 100%;
+    height: 200px;
+}
+
+.col p {
+    color: white;
+    font-size: 1.5vw;
+    text-align: center;
+    width: 50%;
+    margin: auto;
+
+}
+
+.col {
+    color: white;
+}
+
+.col a {
+    color: white;
+}
+
+.con2 {
+    max-width: 100%;
+    padding: 0 0 100px 0;
+    margin: 50px 0 0 0;
+}
+
+.con2 p {
+    color: white;
+    text-align: center;
+    width: 50%;
+    margin: auto;
+    padding: 0;
+}
+
+@media screen and (min-width: 641px) {
+    .con2 p {
+        font-size: 16px;
+        width: 65%;
+
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .con2 p {
+        font-size: 14px;
+        width: 100%;
+    }
+}
+
+.con3 {
+    max-width: 100%;
+    background: midnightblue;
+    height: 50px;
+    text-align: center;
+    color: white;
+}
+
+#device-soap-level-chart {
+    width: 75vw;
+}
+
+.device-info h3,
+.device-info h5 {
+    margin: 0;
+}
+
+.device-info img {
+    width: calc(50px + 0.5vw);
+}
+
+.clickable-row:hover {
+    cursor: pointer;
+}
+
+.battery {
+    width: calc(30px + 0.5vw);
+    height: auto;
+}
+
+.dashboard-button {
+    all: initial;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    min-width: 170px;
+    max-width: 200px;
+    background-color: #b5dcf7;
+    padding: 16px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.dashboard-button:hover {
+    cursor: pointer;
+    background-color: #a3c6de;
+    text-decoration: none;
+    color: black;
+}
+
+.dashboard-button img {
+    width: inherit;
+    height: 100px;
+    object-fit: contain;
+}
+
+.dashboard-button p {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+  </style>
+  <script>
+      
+      $(document).ready(function() {
+         function disablePrev() { window.history.forward() }
+         window.onload = disablePrev();
+         window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
+      });
+     
+      </script>
+ 
+  <title>Home | Smart Toilet System</title>
+</head>
+<body class="">
+
+<div data-role="appbar" class="fg-white bg-lightCobalt" data-expand-point="md">
+  
+    <a href="/" class="brand no-hover">
+      <h4>SICMS</h4>
+    </a>
+  
+
+  <ul class="app-bar-menu ml-auto">
+    <li><a href="homepage.html">Home</a></li>
+    
+      <li>
+        <a href="#" class="dropdown-toggle">Features</a>
+        <ul class="d-menu" data-role="dropdown">
+          <li><a href="/login.jsp">Admin</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="index.jsp">Login</a>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="spacing-for-navbar"></div>
+
+<script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
+
+  
+
+  <div class="d-flex flex-column flex-justify-center flex-align-center home-header pl-5 pr-5">
+    <h4 class="text-bold text-center m-0 home-header-title">Smart I-Cleaning Management System</h4>
+    <h3 class="mt-5 text-center home-header-desc">An IoT powered toilet system for your daily
+      needs.</h3>
+  </div>
+  <h1 class="text-center text-bold fg-darkBlue">ABOUT US</h1>
+  <div class="con bg-lightCobalt pb-5">
+    <div class="who">
+      <h3 class="text-center">WHO ARE WE?</h3>
+    </div>
+    <div class="about-us-cardrow d-flex flex-wrap flex-justify-center">
+      <div class="about-us-card mx-4 mt-5">
+        <img src="download1111.jpg" class="about-us-cardimg" alt="">
+        <p>To see just how far technology has been advanced throughout the years,
+          we are aware that smart technologies are brought to everywhere in our lives and it is
+          time for public toilets.</p>
+      </div>
+      <div class="about-us-card mx-4 mt-5">
+        <img src="SM0619-IoT.jpg" class="about-us-cardimg" alt="">
+        <p>Isn't it amazing to have a toilet where you can track the level of soap left
+          in the soap dispenser and identify how many people go through the toilet's door? If
+          you are looking into upgrading your toilet, this Smart I-Cleaning Management System can be a great
+          choice!</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="who">
+    <h3 class="text-center">OUR PRODUCTS</h3>
+  </div>
+  <div class="d-flex flex-wrap flex-justify-center about-us-cardrow">
+    <div class="about-us-card mx-2 mt-4 text-center">
+      <img src="/static/img/product1.32a74fb79fa7.jpg" class="about-us-cardimg" alt="">
+      <h4>Smart Soap Dispenser</h4>
+      <p>Smart Soap Dispenser use low power model to save battery life. The level of soap can be
+        tracked in smartphone and notifies particular devices the toilet's location when the soap is
+        running low.</p>
+    </div>
+ 
+  </div>
+
+  <div class="con2 bg-lightCobalt p-5">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="text-center">Contact Us</h5>
+        <p>Our amazing team of Smart I-Cleaning Management  System are ready to answer any questions
+          you might have about our products. If you need any help, just give us a shout using
+          the
+          details.</p>
+      </div>
+      <div class="col l6 s12">
+        <h6 class="text-center" style="color: white;"> EMAIL US:</h6>
+        <p><a href="mailto:fawwazyusran@gmail.com">tengkuyusoff19@gmail.com</a></p>
+        <h6 class="text-center" style="color: white"> CALL US: </h6>
+        <p>011-64219239</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="con3">
+      © 2020 Copyright Smart I-Cleaning Management System
+    </div>
+  </div>
+
+
+
+
+
+
+
+</body>
+</html>

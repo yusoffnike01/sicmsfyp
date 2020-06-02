@@ -24,12 +24,15 @@
     <body>
         <%
                     
+                String submit=request.getParameter("Submit");
                 
-              String username=request.getParameter("username");
+                if(submit.equalsIgnoreCase("Login"))
+                {
+                     String username=request.getParameter("username");
               String password=request.getParameter("password");
            
               User obj =UserDao.getLoginBySession(username, password);
-            
+              System.out.println("name"+ obj.getUsername());
               manager obj2=UserDao.getLoginmanagerBySession(username, password);
             
               if(username.equals(obj.getUsername())&&password.equals(obj.getPasword()))
@@ -71,17 +74,21 @@
                   int b=0 ;
                   List<manager>list2=UserDao.getAllmanager();
                   
-for(manager m:list2)
-                  
-{
-    if(username.equals(m.getUsername()))
-    {
-        b=0;
-        session.setAttribute("user", m.getUsername());
-    }
-    b++;
-}
-
+ for(manager e:list2)
+             {
+             
+                 if(username.equals(e.getUsername()))
+                 {
+                       b=0;
+                      session.setAttribute("user", e.getUsername());
+                              
+                 }
+                    
+                 b++;
+             }
+              
+                }
+             
 
 
                 %>

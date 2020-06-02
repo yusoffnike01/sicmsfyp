@@ -10,9 +10,6 @@
 <%@page import="java.util.List"%>
 <%@page import="fyp.soap_info"%>
 <%@page import="fyp.information"%>
-
-<%@page import="java.io.*"%>
-<%@page import="java.lang.*"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="fyp.UserDao"%>
@@ -164,7 +161,31 @@ body
   background-color: #3e8e41;
 }
 
+  input[type=submit]
+                {
 
+      
+                   box-shadow: 0px 0px 0px 2px #9fb4f2;
+	background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+	background-color:#7892c2;
+	border-radius:10px;
+	border:1px solid #4e6096;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	padding:12px 37px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #283966;
+                }
+                
+                input[type=submit]:hover
+                {
+                    
+                    background:linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+	background-color:#476e9e;
+                }
 
 @media  (max-width: 768px) {
     
@@ -227,7 +248,32 @@ body
              
                 
             }
-            
+            input[type=submit]
+                {
+
+      
+                   box-shadow: 0px 0px 0px 2px #9fb4f2;
+	background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+	background-color:#7892c2;
+	border-radius:10px;
+	border:1px solid #4e6096;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:14px;
+	padding:12px 37px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #283966;
+                }
+                
+                input[type=submit]:hover
+                {
+                    
+                    background:linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+	background-color:#476e9e;
+                }
+
             
              
 }
@@ -303,20 +349,15 @@ body
             </div>
             <div class="navbar-nav ml-auto">
           <div class="dropdown">
-               <a href="#"class="nav-item nav-link active">Dashboard</a>
-                 <div class="dropdown-content">
-  <a href="page1.jsp">Dashboard 1</a>
-  <a href="page2.jsp">Dashboard 2</a>
-                 </div>
-           </div>
+               <a href="page1.jsp"class="nav-item nav-link ">Dashboard</a>
+                            </div>
                  
                <div class="dropdown">   
                  
-                <a href="reportmanager.jsp" class="nav-item nav-link">Monitor</a>
+                <a href="reportmanager.jsp" class="nav-item nav-link active">Monitor</a>
                 
                 <div class="dropdown-content">
-  <a href="reportmanager.jsp">Monitor 1</a>
-  <a href="analysis2.jsp">Monitor 2</a>
+  
                  </div>
                 </div>
                 <a href="notificationmanager.jsp" class="nav-item nav-link">Notification</a>
@@ -329,8 +370,10 @@ body
 </nav>
 <div class="tab">
     
-          <button class="tablinks" onclick="openCity(event, 'monitor')"> Monitor</button>
+          <button class="tablinks" onclick="openCity(event, 'monitor')"> Monitor Soap</button>
+          <button class="tablinks" onclick="openCity(event, 'battery')"> Monitor Battery</button>
         <button class="tablinks" onclick="openCity(event, 'analysis')"> analysis</button>
+        <button class="tablinks" onclick="openCity(event, 'monitor1')"> Monitor Toilet</button>
 
     
 </div>
@@ -343,7 +386,7 @@ body
             <table style="border:'1px'">
                 <thead>
                     <tr>
-                        <th>Level</th>
+                        <th colspan="2">Level</th>
                         <th>details</th>
                     </tr>
                 </thead>
@@ -363,6 +406,7 @@ body
                 <tbody>
                 <center>
                     <tr>
+                        <td>Low</td>
                         
                         <td><%=n.getDistance() %></td>
                         <%
@@ -371,6 +415,7 @@ body
 <td bgcolor="red"></td>
                     </tr>
                     <tr>
+                        <td>Medium</td>
                         <%
                         for(information p:nn)
                         {
@@ -382,6 +427,7 @@ body
                         <td bgcolor="yellow"></td>
                     </tr>
                     <tr>
+                        <td>High</td>
                         <%
                         for(information l:pp)
                         {
@@ -504,7 +550,7 @@ body
 
                     %>
                     
-                <option><%=obj9.getDeviceid() %></option>
+                <option value="<%=obj9.getDeviceid() %>"><%=obj9.getDeviceid() %></option>
             
                 <%
                     }
@@ -519,15 +565,45 @@ body
 
 
 
-
     
+
+
+    <div id="battery" class="tabcontent">
+
+        
+                
+
+                        
+
+        <div id="mybatteryChart"></div>  
+
+
+
+
+       
+
+
+
+
+       
+    </div>
+
       
         <div id="analysis" class="tabcontent">
         <div id="myChart1"></div>  
-
+        <form action="truncate.jsp" method="POST">
+            
+            <input type="submit" name="Submit" value="Clear all"></input>
+        </form>
        </div>
                      
           
+    
+     <div id="monitor1" class="tabcontent">
+
+           <div id="myChart2"></div>  
+
+    </div>
      
 <%     // --- Create two Java Arrays  
         ArrayList<Integer> id1 = new ArrayList<Integer>();
@@ -546,6 +622,10 @@ body
 
 
 
+    
+    
+   
+
 
 
     <script>
@@ -557,6 +637,8 @@ body
 
 
         var Data = [<%= join(id1, ",")%>];
+        
+      
 
     </script>
 
@@ -590,7 +672,7 @@ body
 
 
 
-</div>
+
 
 <%
     // --- Create two Java Arrays  
@@ -612,13 +694,73 @@ body
 
 
 %>  
+
+
+<%
+    // --- Create two Java Arrays  
+
+    ArrayList<String> iddevice = new ArrayList<String>();
+    ArrayList<Integer> battery = new ArrayList<Integer>();
+
+    // --- Loop 10 times and create 10 string dates and 10 users  
+    List<result> test = UserDao.getresult((String)session.getAttribute("user"));
+
+    
+    for (result obj : test) {
+     
+
+        iddevice.add("" + obj.getDeviceid());
+        System.out.println("device"+iddevice);
+        battery.add(obj.getBattery());
+
+    }
+
+
+%>  
+
+
+
+
+<%
+    // --- Create two Java Arrays  
+
+    ArrayList<String> location = new ArrayList<String>();
+    ArrayList<Integer> code = new ArrayList<Integer>();
+
+    // --- Loop 10 times and create 10 string dates and 10 users  
+    List<soap_info> objn = UserDao.getresult3((String)session.getAttribute("user"));
+
+    
+    for (soap_info m : objn) {
+     
+
+        location.add("" + m.getLocation());
+        System.out.println("location"+location);
+        code.add(m.getId());
+        System.out.println("code"+code);
+
+    }
+
+
+%>  
+
+
+
+
+
+
+
+
+
+
+
 <script>
     // --- add a comma after each value in the array and convert to javascript string representing an array  
 
-
+ var battery = [<%= join(battery, ",")%>];
     var monthData2 = [<%= join(id, ",")%>];
 
-
+ 
 
     var monthData = [<%= join(distance, ",")%>];
 
@@ -640,10 +782,11 @@ body
 
     }
 
-
-
-
+var a=[<%= join(location, ",") %>];
+var b=[<%= join(code, ",") %>];
 </script>  
+
+
 
 
 <script>
@@ -663,7 +806,7 @@ body
             data: {
                 "type": "bar",
                 "title": {
-                    "text": "Usage of Soap"
+                    "text": "Usage of Soap in Every Month"
                 },
                 "scale-x": {
 
@@ -717,7 +860,7 @@ body
 
                         "values": monthData,
 
-                        "styles": backgroundColor
+                            "styles": backgroundColor
 
 
 
@@ -729,11 +872,80 @@ body
 
         );
 
+zingchart.render({
+            id: "mybatteryChart",
+            width: "100%",
+            height: 380,
 
-    <%
+            data: {
+                "type": "line",
+                "title": {
+                    "text": "Level  Battery",
+                    fontSize: 20
+                },
+                "scale-x": {
+
+                    "labels": [<%= join(id, ",")%>]
+                },
+                "plot": {
+                    "animation": {
+                        "delay": "1000",
+                        "effect": "4",
+                        "method": "5",
+                        "sequence": "1"
+                    }
 
 
-    %>
+                },
+                "series": [
+
+                    {
+
+                        "values": battery,
+
+                        
+
+
+
+
+                    },
+                ]
+            }
+        }
+
+        );
+
+   zingchart.render({
+            id: "myChart2",
+            width: "100%",
+            height: 380,
+            data: {
+                "type": "bar",
+                "title": {
+                    "text": "Monitor the frequency of soap usage in Toilet"
+                },
+                "scale-x": {
+
+                    "labels": a
+                },
+                "plot": {
+                    "line-width": 1
+                },
+                "series": [{
+
+                        "values": b
+
+
+
+
+                    }
+
+
+                ]
+            }
+        });
+
+
 
 
 

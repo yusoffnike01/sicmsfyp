@@ -26,7 +26,7 @@ public class UserDao {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://103.6.198.22:3306/musproje_smart_soap", "musproje_yusoff", "yusoffnike01");
+            con = DriverManager.getConnection("jdbc:mysql://103.6.198.22:3306/musproje_smart_soap", "musproje_yusoff","yusoffnike01");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -191,9 +191,10 @@ ps.setString(1, e.getUsername());
                 e.setEmail(rs.getString(6));
                 e.setNumber(rs.getString(7));
                 e.setAge(rs.getInt(8));
-                e.setAddress(rs.getString(9));
-                e.setCity(rs.getString(10));
-                e.setState(rs.getString(11));
+                e.setNational(rs.getString(9));
+                e.setAddress(rs.getString(10));
+                e.setCity(rs.getString(11));
+                e.setState(rs.getString(12));
 
                 img = rs.getBlob("image");
                 inputStream = img.getBinaryStream();
@@ -242,11 +243,12 @@ ps.setString(1, e.getUsername());
                 e.setEmail(rs.getString(6));
                 e.setNumber(rs.getString(7));
                 e.setAge(rs.getInt(8));
-                e.setAddress(rs.getString(9));
-                e.setCity(rs.getString(10));
-                e.setState(rs.getString(11));
+                e.setNational(rs.getString(9));
+                e.setAddress(rs.getString(10));
+                e.setCity(rs.getString(11));
+                e.setState(rs.getString(12));
 
-                img = rs.getBlob(12);
+                img = rs.getBlob(13);
                 inputStream = img.getBinaryStream();
                 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
                 byte[] buffer = new byte[4096];
@@ -376,10 +378,10 @@ ps.setString(1, e.getUsername());
         try {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "UPDATE cleaner SET username=?, password=? WHERE username=?");
-            ps.setString(1, e.getUsername());
-            ps.setString(2, e.getPasword());
-            ps.setString(3, e.getUsername());
+                    "UPDATE cleaner SET password=? WHERE email=?");
+            ps.setString(1, e.getPasword());
+            ps.setString(2, e.getEmail());
+ 
             status = ps.executeUpdate();
 
             con.close();
@@ -394,10 +396,10 @@ ps.setString(1, e.getUsername());
         try {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "UPDATE contractor SET usernamemanager=?, password=? WHERE usernamemanager=?");
-            ps.setString(1, obj.getUsername());
-            ps.setString(2, obj.getPassword());
-            ps.setString(3, obj.getUsername());
+                    "UPDATE contractor SET password=? WHERE email=?");
+            ps.setString(1, obj.getPassword());
+            ps.setString(2, obj.getEmail());
+          
             status = ps.executeUpdate();
 
             con.close();
@@ -444,13 +446,13 @@ ps.setString(1, e.getUsername());
 
     }
 
-    public static int deletemessage(String usernamemanager) {
+    public static int deletemessage(String time) {
         int status = 0;
         try {
 
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "DELETE FROM message WHERE usernamemanager = '" + usernamemanager + "'");
+                    "DELETE FROM message WHERE time = '" + time + "'");
             status = ps.executeUpdate();
             con.close();
 
@@ -466,9 +468,10 @@ ps.setString(1, e.getUsername());
 
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO quantityused (code) values (?)");
+                    "INSERT INTO quantityused (code, deviceid) values (?, ?)");
 
-            ps.setString((1), obj1.getCode());
+            ps.setString(1, obj1.getCode());
+            ps.setString(2, obj1.getDeviceid());
             status = ps.executeUpdate();
             con.close();;
 
@@ -483,7 +486,7 @@ ps.setString(1, e.getUsername());
         try {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "SELECT DATE(time) Date, COUNT(DISTINCT id) totalCOunt FROM quantityused GROUP BY DATE(time)");
+                    "SELECT month(time) Date, COUNT(DISTINCT id) totalCOunt FROM quantityused GROUP BY month(time)");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 quantityused e = new quantityused();
@@ -543,14 +546,16 @@ ps.setString(1, e.getUsername());
                 e.setUsername(rs.getString(1));
              
                 e.setPassword(rs.getString(2));
-                 e.setIc(rs.getString(3));
-                e.setName(rs.getString(4));
-                e.setEmail(rs.getString(5));
-                e.setNumber(rs.getString(6));
-                e.setAge(rs.getInt(7));
-                e.setAddress(rs.getString(8));
-                e.setCity(rs.getString(9));
-                e.setState(rs.getString(10));
+                e.setCompany(rs.getString(3));
+                 e.setIc(rs.getString(4));
+                e.setName(rs.getString(5));
+                e.setEmail(rs.getString(6));
+                e.setNumber(rs.getString(7));
+                e.setAge(rs.getInt(8));
+                e.setNation(rs.getString(9));
+                e.setAddress(rs.getString(10));
+                e.setCity(rs.getString(11));
+                e.setState(rs.getString(12));
 
                 img = rs.getBlob("image");
                 inputStream = img.getBinaryStream();
@@ -599,11 +604,12 @@ ps.setString(1, e.getUsername());
                 e.setEmail(rs.getString(6));
                 e.setNumber(rs.getString(7));
                 e.setAge(rs.getInt(8));
-                e.setAddress(rs.getString(9));
-                e.setCity(rs.getString(10));
-                e.setState(rs.getString(11));
+                e.setNation(rs.getString(9));
+                e.setAddress(rs.getString(10));
+                e.setCity(rs.getString(11));
+                e.setState(rs.getString(12));
 
-                img = rs.getBlob(12);
+                img = rs.getBlob(13);
                 inputStream = img.getBinaryStream();
                 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
                 byte[] buffer = new byte[4096];
@@ -676,7 +682,7 @@ ps.setString(1, e.getUsername());
         try {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO cleaner (username, password, ic, usernamemanager, name, email, number, age, address, city, state, image) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    "INSERT INTO cleaner (username, password, ic, usernamemanager, name, email, number, age, national, address, city, state, image) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
             InputStream obj = e.getPart().getInputStream();
             ps.setString(1, e.getUsername());
@@ -687,10 +693,11 @@ ps.setString(1, e.getUsername());
             ps.setString(6, e.getEmail());
             ps.setString(7, e.getNumber());
             ps.setInt(8, e.getAge());
-            ps.setString(9, e.getAddress());
-            ps.setString(10, e.getCity());
-            ps.setString(11, e.getState());
-            ps.setBlob(12, obj);
+            ps.setString(9, e.getNational());
+            ps.setString(10, e.getAddress());
+            ps.setString(11, e.getCity());
+            ps.setString(12, e.getState());
+            ps.setBlob(13, obj);
 
             status = ps.executeUpdate();
 
@@ -845,46 +852,7 @@ ps.setString(1, e.getUsername());
         return obj;
     }
 
-    public static User getforgetcleaner(String username) {
-
-        User obj = new User();
-        try {
-            Connection con = getConnection();
-            PreparedStatement ps = con.prepareStatement(
-                    "SELECT * FROM forget WHERE username=?");
-            ps.setString(1, username);
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                obj.setId(rs.getInt(1));
-                obj.setUsername(rs.getString(2));
-                obj.setFavourite(rs.getString(3));
-
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return obj;
-    }
-public static int getupdateforget(User obj) {
-        int status = 0;
-        try {
-            Connection con = getConnection();
-            PreparedStatement ps = con.prepareStatement(
-                    "UPDATE forget SET favourite=? WHERE username=?");
-            ps.setString(1, obj.getFavourite());
-            ps.setString(2, obj.getUsername());
- 
-            status = ps.executeUpdate();
-
-            con.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return status;
-    }
+   
 
 
 public static int getupdateforgetcontractor(manager obj) {
@@ -986,7 +954,7 @@ public static int getupdateforgetcontractor(manager obj) {
         try {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "select t.id, t.deviceid, t.distance, t.logdate, soap_info.location from ((result t inner join ( select deviceid, max(logdate) as MaxDate from result group by deviceid ) tm on t.deviceid = tm.deviceid and t.logdate = tm.MaxDate) inner join soap_info on t.deviceid=soap_info.deviceid ) where soap_info.usernamemanager=?");
+                    "select t.id, t.deviceid, t.distance, t.logdate, t.battery, soap_info.location from ((result t inner join ( select deviceid, max(logdate) as MaxDate from result group by deviceid ) tm on t.deviceid = tm.deviceid and t.logdate = tm.MaxDate) inner join soap_info on t.deviceid=soap_info.deviceid ) where soap_info.usernamemanager=?");
               ps.setString(1, usernamemanager);
             
             ResultSet rs = ps.executeQuery();
@@ -997,7 +965,8 @@ public static int getupdateforgetcontractor(manager obj) {
                 obj.setDeviceid(rs.getString(2));
                 obj.setDistance(rs.getInt(3));
                 obj.setLogdate(rs.getTimestamp(4));
-                obj.setLocation(rs.getString(5));
+                obj.setBattery(rs.getInt(5));
+                obj.setLocation(rs.getString(6));
 
                 list.add(obj);
             }
@@ -1009,6 +978,7 @@ public static int getupdateforgetcontractor(manager obj) {
     }
 
     public static int inactive(User obj) {
+        
         int status = 0;
         try {
 
@@ -1406,26 +1376,7 @@ public static int getupdateforgetcontractor(manager obj) {
     }
            
            
-              public static int savesecure(User obj) {
-        int status = 0;
-        try {
-            Connection con = getConnection();
-            PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO  forget (username, favourite) values (?, ?)");
-
-        ps.setString(1, obj.getUsername());
-        ps.setString(2, obj.getFavourite());
-     
-
-            status = ps.executeUpdate();
-
-            con.close();
-
-        } catch (Exception m) {
-            m.printStackTrace();
-        }
-        return status;
-    }
+            
             public static manager getmanagerBySession1() {
         manager e = new manager();
         String base64Image = "", x = "";
@@ -1525,6 +1476,305 @@ public static int getupdateforgetcontractor(manager obj) {
         }
         return e;
     }
+    public static int gettruncatequantityused( 
+    ) {
 
+        int status = 0;
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "TRUNCATE quantityused");
+            status = ps.executeUpdate();
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return status;
+    }
+
+ 
+  public static List<User>getsearchcleaner(String username)
+    {
+        List<User> list = new ArrayList<User>();
+
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT * FROM inactive WHERE name LIKE '"+username+"%'");
+       
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+                User obj = new User();
+               
+                obj.setUsername(rs.getString(1));
+                obj.setName(rs.getString(2));
+                obj.setIc(rs.getString(3));
+                obj.setEmail(rs.getString(4));
+                obj.setAge(rs.getInt(5));
+                obj.setAddress(rs.getString(6));
+                obj.setCity(rs.getString(7));
+                obj.setState(rs.getString(8));
+                
+                
+                
+                list.add(obj);
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+  
+  
+  public static  List<User> getemail( String username)
+  {
+    List<User> list = new ArrayList<User>();
+
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "select A.email from contractor as A inner join cleaner on A.usernamemanager=cleaner.usernamemanager where username='"+username+"'");
+       
+            ResultSet rs = ps.executeQuery();
+          
+            while (rs.next()) {
+
+                User obj = new User();
+               
+             
+                obj.setEmail(rs.getString(1));
+             
+                list.add(obj);
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;  
+  }
+  
+  public static List<result> getresultbattery( String usernamemanager) {
+
+        List<result> list = new ArrayList<result>();
+
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "select t.id, t.deviceid, t.distance, t.logdate, t.battery, soap_info.location from ((result t inner join ( select deviceid, max(logdate) as MaxDate from result group by deviceid ) tm on t.deviceid = tm.deviceid and t.logdate = tm.MaxDate) inner join soap_info on t.deviceid=soap_info.deviceid ) where soap_info.usernamemanager=?");
+              ps.setString(1, usernamemanager);
+            
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+                result obj = new result();
+                obj.setId(rs.getInt(1));
+                obj.setDeviceid(rs.getString(2));
+                obj.setDistance(rs.getInt(3));
+                obj.setLogdate(rs.getTimestamp(4));
+                obj.setBattery(rs.getInt(5));
+                obj.setLocation(rs.getString(6));
+
+                list.add(obj);
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+  
+   public static int savefeedback(feedback obj) {
+        int status = 0;
+        try {
+
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "INSERT INTO feedback (usernamemanager, name, message, time) values (?, ?, ?, ?)");
+            ps.setString(1, obj.getUsernamemanager());
+            ps.setString(2, obj.getUsername());
+            ps.setString(3, obj.getMessage());
+            ps.setString(4, obj.getTime());
+            
+            
+
+            status = ps.executeUpdate();
+
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return status;
+
+    }
+
+  public static List<feedback> getlistmessage(String usernamemanager) {
+
+        List<feedback> list = new ArrayList<feedback>();
+
+        
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT A.usernamemanager,A.message, A.time FROM feedback as A inner join cleaner as b on A.name=B.name where A.usernamemanager= ?");
+            ps.setString(1, usernamemanager);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                feedback e = new feedback();
+
+                e.setUsernamemanager(rs.getString(1));
+                e.setMessage(rs.getString(2));
+                e.setTime(rs.getString(3));
+               
+                list.add(e);
+            }
+            con.close();
+        } catch (Exception m) {
+            m.printStackTrace();
+        }
+        return list;
+    }
+ public static List<User> getlistuser(String usernamemanager) {
+
+        List<User> list = new ArrayList<User>();
+
+        
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT A.username, A.name FROM cleaner as A inner join contractor as B on A.usernamemanager= B.usernamemanager where B.usernamemanager= ?");
+            ps.setString(1, usernamemanager);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                User e = new User();
+
+                e.setUsername(rs.getString(1));
+               e.setName(rs.getString(2));
+                list.add(e);
+            }
+            con.close();
+        } catch (Exception m) {
+            m.printStackTrace();
+        }
+        return list;
+    }
+ 
+ public static int deletemessage1(String time) {
+        int status = 0;
+        try {
+
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "DELETE FROM feedback WHERE time = '" + time + "'");
+            status = ps.executeUpdate();
+            con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return status;
+    }
+ 
+  public static User getLoginAdmin(String email, String password) {
+        User e = new User();
+        try {
+            Connection con = UserDao.getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT*FROM admin WHERE  email=? and password=?");
+            ps.setString(1, email);
+            ps.setString(2, password);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                e.setEmail(rs.getString(1));
+                e.setPasword(rs.getString(2));
+
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return e;
+
+    }
+ 
+public static int savemanager(manager e) {
+        int status = 0;
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "INSERT INTO contractor (usernamemanager, password, company, ic, name, email, number, age, nation, address, city, state, image) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+            InputStream obj = e.getPart().getInputStream();
+            ps.setString(1, e.getUsername());
+            ps.setString(2, e.getPassword());
+            ps.setString(3, e.getCompany());
+            ps.setString(4, e.getIc());
+            ps.setString(5, e.getName());
+            ps.setString(6, e.getEmail());
+            ps.setString(7, e.getNumber());
+            ps.setInt(8, e.getAge());
+            ps.setString(9, e.getNation());
+            ps.setString(10, e.getAddress());
+            ps.setString(11, e.getCity());
+            ps.setString(12, e.getState());
+            ps.setBlob(13, obj);
+
+            status = ps.executeUpdate();
+
+            con.close();
+
+        } catch (Exception m) {
+            m.printStackTrace();
+            
+        } 
+        return status;
+    }
+
+public static int getdeletemanager(String usernamemanager) {
+
+        int status = 0;
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "DELETE FROM contractor WHERE usernamemanager = '" + usernamemanager + "'");
+            status = ps.executeUpdate();
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return status;
+    }
+
+public static List<soap_info> getresult3( String usernamemanager) {
+
+        List<soap_info> list = new ArrayList<soap_info>();
+
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT location,COUNT( A.id )FROM soap_info inner join quantityused as A on soap_info.deviceid = A.deviceid where soap_info.usernamemanager=? GROUP BY location");
+              ps.setString(1, usernamemanager);
+            
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+                soap_info obj = new soap_info();
+                obj.setLocation(rs.getString(1));
+                obj.setId(rs.getInt(2));
+              
+
+                list.add(obj);
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 
 }

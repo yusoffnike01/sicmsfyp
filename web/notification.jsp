@@ -5,6 +5,8 @@
 --%>
 
 
+<%@page import="fyp.feedback"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="fyp.UserDao"%>
 
@@ -40,11 +42,53 @@ body
                 
                 font-family: sans-serif;
 }
+  .tab {
+                    overflow: hidden;
+                    border: 1px solid #ccc;
+                    background-color: #f1f1f1;
+                    width:60%;
+                    margin-left: 20%;
+                    margin-top:5%;
+
+                }
+
+                /* Style the buttons inside the tab */
+                .tab button {
+                    background-color: inherit;
+                    float: left;
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                    padding: 14px 16px;
+                    transition: 0.3s;
+                    font-size: 17px;
+                }
+
+                /* Change background color of buttons on hover */
+                .tab button:hover {
+                    background-color: #ddd;
+                }
+
+                /* Create an active/current tablink class */
+                .tab button.active {
+                    background-color: #ccc;
+                }
+
+
+                .tabcontent {
+                    display: none;
+                    padding: 6px 12px;
+                    border: 1px solid #ccc;
+                    border-top: none;
+                    width:60%;
+                    margin-left: 20%;
+                    background-color: white;
+                }
    
     #profileid
             {
                 
-              width:6%;
+              width:12%;
                 height:45px;
 
                   border-radius: 50%;
@@ -57,15 +101,7 @@ body
          
          
 
- .main{
-                width: 50%;
-                color:#fff;
-                background-color: white;
-                text-transform: uppercase;
-                transition: all 4s ease-in-out;
-                margin-left: 27%;
-                margin-top: 5%;
-            }
+
             
             form{
                 margin-top: 5%;
@@ -154,11 +190,89 @@ body
   background-color: #3e8e41;
 }
 
+content-table
+{
+    border-collapse: collapse;
+ 
+   font-size: 0.9em;
+    width: 70%;
+    border-radius: 5px 5px 0 0;
+    
+}
+
+.content-table thead tr
+{
+    background-color:#25f0f7;
+    color:black;
+    text-align:left;
+    font-weight:bold;
+    
+}
+
+.content-table th,.content-table td{
+    
+    padding: 10px 13px;
+   
+}
+
+.content-table tbody tr
+{
+    border-bottom: 1px solid #EE83F2;
+}
+
+
+
+
+.content-table tbody tr:last-of-type
+{
+    border-bottom: 2px solid #1FF6CB;
+}
+
 
 
 @media  (max-width: 768px) {
     
-  
+  .tab {
+                overflow: hidden;
+                border: 1px solid #ccc;
+                background-color: #f1f1f1;
+                width:95%;
+                margin-left: 3%;
+                margin-top:5%;
+               
+            }
+
+            /* Style the buttons inside the tab */
+            .tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 8px 10px;
+                transition: 0.3s;
+                font-size: 12px;
+            }
+
+            /* Change background color of buttons on hover */
+            .tab button:hover {
+                background-color: #ddd;
+            }
+
+            /* Create an active/current tablink class */
+            .tab button.active {
+                background-color: #ccc;
+            }
+            
+              .tabcontent {
+                display: none;
+                padding: 6px 12px;
+                border: 1px solid #ccc;
+                border-top: none;
+                width:95%;
+                margin-left: 3%;
+                background-color: white;
+            }
    
 
               #profileid
@@ -268,22 +382,16 @@ body
             </div>
             <div class="navbar-nav ml-auto">
   <div class="dropdown">
-                     <a href="#" class="nav-item nav-link">Dashboard</a>
-                     <div class="dropdown-content">
-  <a href="table.jsp">Dashboard 1</a>
-  <a href="table2.jsp">Dashboard 2</a>
-                 </div>
+                     <a href="table.jsp" class="nav-item nav-link">Dashboard</a>
+                     
                     
                 </div>
                  
                   
                   <div class="dropdown">
                   
-                <a href="#" class="nav-item nav-link">Monitor</a>
-                 <div class="dropdown-content">
-  <a href="Report.jsp">Monitor 1</a>
-  <a href="report2.jsp">Monitor 2</a>
-                 </div>
+                <a href="Report.jsp#" class="nav-item nav-link">Monitor </a>
+                 
                   </div>
                 <a href="notification.jsp" class="nav-item nav-link active">Notification</a>
             
@@ -296,22 +404,107 @@ body
         
        
 </nav>
-   <div class="main">
+        
+        
+         <div class="tab">
+                <button class="tablinks" onclick="openCity(event, 'message')"> <p> Message </p></button>
+                <button class="tablinks" onclick="openCity(event, 'list')"><p>List Message  </p></button>
+             
+            </div>
+   <div id="message" class="tabcontent">
+     
+             
+                     
+                     
+                
+                
                       <center>
+                          <%
+                               List<User>test=UserDao.getemail(e.getUsername());
+            
+             for(User m:test)
+             {
+                              
+                              %>
                       <form id="contact-inform" method="POST" action="processmessage.jsp">
                           <input  type="hidden" name="manager" class="form-control" placeholder="Enter the manager" value="<%=e.getUsernamemanager() %>" >
                                   <br>
                           <input type="text"  name="name" class="form-control" placeholder="Enter the name" value="<%=e.getUsername() %>">
+                          
                           <br>
-
+              <input type="hidden" name="sub" value="Cleaner <%=e.getUsername() %>"  />          
+<input type="hidden" name="mail" value="<%=e.getEmail()%>" />
                            <textarea name="message" class="form-control" placeholder="Message"  required>
                            </textarea><br>
+                           
+                          
                               <button onclick="alert('Sucessfull')" class="btn btn-info">SEND MESSAGE</button>
                       </form>
+                           <%
+             }
+           %>
                       </center>
                   </div>
 
-</body>s
+                      
+                      <div id="list" class="tabcontent">
+                          <center>     
+                          <div class="table-responsive">   
+                <table class="content-table">                <thead>
+            <tr>
+                <th>Contractor</th>
+                <th>message</th>
+                <th>Date</th>
+                
+  <th colspan="1">Action</th>
+
+
+            </tr>
+            </thead>
+                          <%
+                              List<feedback>list=UserDao.getlistmessage(e.getUsernamemanager());
+                              
+for(feedback obj:list)
+
+{
+    %>
+    <tr>
+        <td><%=obj.getUsernamemanager() %></td>
+          
+        <td> <%=obj.getMessage() %></td>
+        <td><%=obj.getTime() %></td>
+        <td><a href="delete3.jsp?time1=<%=obj.getTime() %>"<button onclick="return confirm('Are you sure to delete?')" class="btn btn-info">Delete</button></td>
+    </tr>
+   
+    
+    <%
+}
+                              
+                              
+                              %>
+                          
+                         
+                          </table>     
+                          </div>
+                          </center>
+                      </div>
+                      <script>
+            function openCity(evt, cityName) {
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+                document.getElementById(cityName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+        </script>
+
+</body>
 
 
 </html>

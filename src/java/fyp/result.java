@@ -18,6 +18,7 @@ public class result {
     int distance;
     Timestamp logdate;
     int count;
+    private int battery;
     private String location;
  
     public String getDeviceid() {
@@ -67,6 +68,14 @@ public class result {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public int getBattery() {
+        return battery;
+    }
+
+    public void setBattery(int battery) {
+        this.battery = battery;
     }
     
     

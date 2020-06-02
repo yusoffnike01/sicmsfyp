@@ -5,9 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page import="java.util.*,javax.mail.*"%>
+<%@page import="java.util.*,javax.mail.*"%>
 
-<%@ page import="javax.mail.internet.*" %>
+<%@page import="javax.mail.internet.*" %>
 
 <%
 

@@ -6,18 +6,16 @@
 
 <%@page import="fyp.UserDao"%>
 <%@page import="fyp.User"%>
+<%@page import="java.util.Random"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
-      <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
         <title>JSP Page</title>
         
         <style>
@@ -30,193 +28,87 @@
                 
                 font-family: sans-serif;
             }
-           .form
+            .container
             {
-                background-color:white;
-            margin-top: 4%;
-            margin-left: 25%;
-               min-height: 300px;
-
-                width: 50%;
-              
-                border: 2px solid #2481f2;
-  border-radius: 8px;
+                margin-top: 8%;
             }
-             input[type=text]
-            {
-                width:60%;
-                padding:8px;
-                margin:5px 0;
-                border-radius: 5px;
-                border:1px solid #33cce6;
-                font-size: calc(2vw+30px);
-                
-            }
-            
-              input[type=submit]
-            {
-                width:50%;
-                height:40px;
-                border-radius:5px;
-                background-color: #4880B0;
-                border:1px solid #286090;
-                
-            }
-            .id
-            {
-                margin-top: 10%;
-               border: 2px solid #2481f2;
-  border-radius: 8px;
-                width:80%;
-                background-color:white;
-           
-               min-height: 300px;
-
-            }
+      
             
             @media screen and (max-width: 360px) {
-  .container {
-    width: 100%;
-  }
-  .id
-  {
-     margin-top: 15%;
-               border: 2px solid #2481f2;
-  border-radius: 8px;
-                width:100%;
-                background-color:white;
-           
-               min-height: 300px;
-  }
-  
-    input[type=submit]
-            {
-                width:30%;
-                height:40px;
-                border-radius:5px;
-                background-color: #4880B0;
-                border:1px solid #286090;
-                font-size: 12px;
+                .container
+                {
+                    margin-top: 10%;
                 
+                }
+               
             }
-  
-      input[type=text]
-            {
-                width:80%;
-                padding:8px;
-                margin:5px 0;
-                border-radius: 5px;
-                border:1px solid #33cce6;
-                font-size: calc(2vw+30px);
-                
-            }
-            .id p{
-                font-size: 15px;
-            }
-            }
-            
             
             @media screen and (max-width: 780px)
             {
-                .container {
-                    
-                    margin-top: 15%;
-    width: 100%;
-  }
-  .id
-  {
-      margin-top: 10%;
-               border: 2px solid #2481f2;
-  border-radius: 8px;
-                width:100%;
-                background-color:white;
-           
-               min-height: 300px;
-  }
-  
-    input[type=submit]
-            {
-                width:30%;
-                height:40px;
-                border-radius:5px;
-                background-color: #4880B0;
-                border:1px solid #286090;
-                font-size: 12px;
+                 .container
+                {
+                    margin-top: 10%;
                 
-            }
-  
-      input[type=text]
-            {
-                width:80%;
-                padding:8px;
-                margin:5px 0;
-                border-radius: 5px;
-                border:1px solid #33cce6;
-                font-size: calc(2vw+30px);
-                
-            }
-            .id p{
-                font-size: 15px;
-            }
+                }
+               
             }
         </style>
     </head>
     <body>
-      
-<div class="container">
-   
-    <center>
-            <form  name="myForm" action="processforget.jsp" method="POST" id="register">
-          <table class="id">
-                <tr>
-                    
-                    <td>
-                        <p>           username:</p>
-                        
-                    </td>
-                    <td>
-                            <input type="text" name="username">
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <p>         favourite: </p>
-                    </td>
-                    <td>
-                        <input type="text" name="favourite">
-                    </td>
-                </tr>
-        
-                
-                <tr>
-                    <td>
-                        
-                        
-                    </td>
-                    <td>
-                          <input type="radio" name="role" value="CO">  Contractor 
-                        <input type="radio" name="role" value="CL">  Cleaner 
-                        
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        
-                    </td>
-                    <td>
-                                <input type="submit" name="submit" value="Submit">
-                        
-                    </td>
-                
-                </tr>
 
-        
-            </table>
-            </form>
-    </center>
-   
-  
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="text-center">
+                  <h3><i class="fa fa-lock fa-4x"></i></h3>
+                  <h2 class="text-center">Forgot Password?</h2>
+                  <p>You can reset your password here.</p>
+                  <div class="panel-body">
+    
+                    <form id="register-form" action="processforget2.jsp" role="form" autocomplete="off" class="form" method="post">
+    
+                      <div class="form-group">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
+                          <input id="email" name="email" placeholder="email address" class="form-control"  type="email">
+                        </div>
+                           <%
+            String ab="abcdefghijkmlopqrstuvwxz";
+            Random r= new Random();
+            
+            int size=ab.length();
+            for(int i=0;i<8;i++)
+            {
+              %>
+              
+       <%       
+              
+              
+            }
+int a=(int)(Math.random()*7)+1;
+%>
+                          
+                          
+                           <div class="input-group">
+                         
+                          <input id="email" name="pass" placeholder="email address" class="form-control"  type="hidden" value="<%=ab.charAt(r.nextInt(size))+"12@4#"+a%>">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <input name="Submit" class="btn btn-lg btn-primary btn-block" value="Reset Password" type="submit">
+                      </div>
+                      
+                      <input type="hidden" class="hide" name="token" id="token" value=""> 
+                    </form>
+    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+	</div>
 </div>
 </body>
 </html>                            

@@ -300,10 +300,10 @@
                     </tr>
                      <tr>
                         <td>
-                            <label>Secure:</label>
+                            <label>Password:</label>
                         </td>
                         <td>
-                            <input type="text" name="favourite" value="<%=a.getFavourite() %>">
+                            <input type="text" name="pass" value="<%=e.getPassword() %>">
                         </td>
 
                     </tr>

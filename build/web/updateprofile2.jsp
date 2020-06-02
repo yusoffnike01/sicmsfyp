@@ -29,7 +29,7 @@
       {
           try{
           String username = request.getParameter("username");
-            String password=request.getParameter("password");
+            String password=request.getParameter("pass");
             String usernamemanager=request.getParameter("usernamemanager");
             String name = request.getParameter("name");
             String email=request.getParameter("email");
@@ -39,7 +39,7 @@
             String address = request.getParameter("address");
                String city = request.getParameter("city");
                   String state = request.getParameter("state");
-                  String favourite=request.getParameter("favourite");
+         
                   Part part=request.getPart("image");
   
                 if(age<18||age>40)
@@ -62,7 +62,7 @@
                       e.setAddress(address);
                       e.setCity(city);
                       e.setState(state);
-                      e.setFavourite(favourite);
+                
                     
                        e.setPart(part);
                       int status=UserDao.updatemanager(e);
@@ -108,11 +108,12 @@
             String email=request.getParameter("email");
             String number=request.getParameter("number");
             int age = Integer.parseInt(request.getParameter("age"));
-     
+     String national=request.getParameter("nation");
             String address = request.getParameter("address");
                String city = request.getParameter("city");
                   String state = request.getParameter("state");
-                  String favourite=request.getParameter("favourite");
+                  System.out.println("state"+state);
+               
                   Part part=request.getPart("image");
  
             if(ic.length()<12||ic.length()>13)
@@ -137,18 +138,19 @@
                       e.setEmail(email);
                       e.setNumber(number);
                       e.setAge(age);
+                      e.setNational(national);
                       e.setAddress(address);
                       e.setCity(city);
                       e.setState(state);
-                      e.setFavourite(favourite);
+               
                       e.setPart(part);
                       
                       int status=UserDao.save(e);
-                      int status2=UserDao.inactive(e);
+                    
                       
-                       int status3=UserDao.savesecure(e);
+      
                    
-                       if(status>0 && status3>0)
+                       if(status>0)
                       {
                           response.sendRedirect("register.jsp");
                           System.out.println("Succesfull");
@@ -174,7 +176,7 @@
       {
           try{
              String username = request.getParameter("username");
-            String password=request.getParameter("password");
+            String password=request.getParameter("pass");
             String usernamemanager=request.getParameter("usernamemanager");
             String name = request.getParameter("name");
             String email=request.getParameter("email");
@@ -203,11 +205,11 @@
                       e.setAddress(address);
                       e.setCity(city);
                       e.setState(state);
-                      e.setFavourite(favourite);
+                 
                       e.setPart(part);
                       int status=UserDao.updateUser(e);
-                      int     statusa=UserDao.getupdateforget(e);
-                      if(status>0&&statusa>0)
+               
+                      if(status>0)
                       {
                           response.sendRedirect("profile.jsp");
                       }
@@ -297,11 +299,11 @@
                       e.setAddress(address);
                       e.setCity(city);
                       e.setState(state);
-                      e.setFavourite(favourite);
+
                       e.setPart(part);
                       int status=UserDao.updateUser(e);
-                      int     statusa=UserDao.getupdateforget(e);
-                      if(status>0&& statusa>0)
+           
+                      if(status>0)
                       {
                           response.sendRedirect("register.jsp");
                       }
@@ -316,6 +318,71 @@
               System.out.println("invalid input");
           }
                      
+      }else if(submit.equalsIgnoreCase("Sign up"))
+      {
+          try
+          {
+           String username=request.getParameter("username");
+               String password=request.getParameter("pass");
+               String name=request.getParameter("name");
+               String company=request.getParameter("company");
+               String ic=request.getParameter("ic");
+               String email=request.getParameter("email");
+               String phone=request.getParameter("phone");
+               int age=Integer.parseInt(request.getParameter("age"));
+               String nation=request.getParameter("nation");
+               String address=request.getParameter("address");
+               String city=request.getParameter("city");
+               String state=request.getParameter("state");
+               Part part=request.getPart("image");
+               System.out.println("length"+ic.length());
+               if(ic.length()<12||ic.length()>12)
+               {
+                   response.sendRedirect("registercontractor.jsp");
+                
+                
+               } 
+                else if(age<23||age>45)
+            {
+                response.sendRedirect("registercontractor.jsp");
+                
+               
+            }
+                 else {
+               manager obj=new manager();
+               obj.setUsername(username);
+               obj.setPassword(password);
+               obj.setCompany(company);
+               obj.setIc(ic);
+               obj.setName(name);
+               obj.setEmail(email);
+               obj.setNumber(phone);
+               obj.setAge(age);
+               obj.setNation(nation);
+               obj.setAddress(address);
+               obj.setCity(city);
+               obj.setState(state);
+               obj.setPart(part);
+               int status=UserDao.savemanager(obj);
+               if(status>0)
+               {
+                   response.sendRedirect("registercontractor.jsp");
+                   System.out.println("successfull");
+               }
+               else
+               {
+                   response.sendRedirect("registercontractor.jsp");
+                   System.out.println("fail");
+               }
+                 
+                 } 
+                 
+                 
+                 }catch(NumberFormatException m)  
+          {
+              response.sendRedirect("registercontractor.jsp");
+              System.out.println("invalid input");
+          }
       }
                        
         %>

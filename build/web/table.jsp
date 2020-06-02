@@ -155,10 +155,69 @@ body
 .dropdown:hover .dropbtn {
   background-color: #3e8e41;
 }
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  opacity: 1;
+  transition: opacity 0.6s;
+  margin-bottom: 15px;
+  margin-left: 75%;
+  position:fixed;
+  height:80px;
+}
+.alert p
+{
+    font-size: 12px;
+    
+}
+.alert.warning {background-color: #ff9800;}
 
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
 @media  (max-width: 768px) {
     
-                
+   .alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  opacity: 1;
+  transition: opacity 0.6s;
+  margin-bottom: 15px;
+  margin-left: 50%;
+  
+  height:82px;
+}
+.alert p
+{
+    font-size: 10px;
+    
+}
+
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+             
             
     .navbar-nav
     {
@@ -176,6 +235,7 @@ body
                 border:2px solid #34495e;
          
                 box-sizing: border-box;
+            
              
                 
             }
@@ -248,20 +308,7 @@ body
          window.onpageshow = function(evt) { if (evt.persisted) disableBack() }
       });
    
-    function myfunctional()
-      {
-              <%
-                  String usernamemanager=request.getParameter("usernamanager");
-                  int status=UserDao.deletemessage(usernamemanager);
-                  if(status>0)
-                  {
-                      response.sendRedirect("notificationmanager.jsp");
-                  }
-                   
-                  
-                  
-                  %>
-      }
+    
    
    
              
@@ -292,22 +339,16 @@ body
             </div>
             <div class="navbar-nav ml-auto">
                 <div class="dropdown">
-                     <a href="#" class="nav-item nav-link active">Dashboard</a>
-                     <div class="dropdown-content">
-  <a href="table.jsp">Dashboard 1</a>
-  <a href="table2.jsp">Dashboard 2</a>
-                 </div>
+                     <a href="table.jsp#" class="nav-item nav-link active">Dashboard</a>
+                     
                     
                 </div>
                  
                   
                   
                   <div class="dropdown">
-                <a href="#" class="nav-item nav-link">Monitor</a>
-                 <div class="dropdown-content">
-  <a href="Report.jsp">Monitor 1</a>
-  <a href="report2.jsp">Monitor 2</a>
-                 </div>
+                <a href="Report.jsp" class="nav-item nav-link">Monitor</a>
+                 
                   </div>
                 <a href="notification.jsp" class="nav-item nav-link">Notification</a>
             
@@ -320,7 +361,38 @@ body
         
        
 </nav>
+      <%
+            List <result> a=UserDao.getresultbattery(e.getUsernamemanager());
+            
+for( result m: a)
+{
 
+    
+    %>
+   
+        <div class="alert">
+  <span class="closebtn">&times;</span>  
+  <strong><p>Warning!</p></strong> <p>Please check your <%=m.getDeviceid() %> because low battery.</p>
+</div>
+   
+    
+    <%
+}
+            
+            
+            %>
+<script>
+var close = document.getElementsByClassName("closebtn");
+var i;
+
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function(){
+    var div = this.parentElement;
+    div.style.opacity = "0";
+    setTimeout(function(){ div.style.display = "none"; }, 600);
+  }
+}
+</script>
         <div class="main">
             <center>
 <div class="table-responsive">   
@@ -330,6 +402,7 @@ body
                             <th>Device ID</th>
                             <th>Level soap</th>
                             <th>Date</th>
+                            <th>Battery</th>
                            <th>Location</th>
 
 
@@ -351,6 +424,7 @@ body
                             <td><%= c.getDistance()-obj.getDistance() %> cm</td>
 
                             <td><%=obj.getLogdate()%></td>
+                            <td><%=obj.getBattery() %>%</td>
 
   <td><%=obj.getLocation() %></td>
                         </tr>

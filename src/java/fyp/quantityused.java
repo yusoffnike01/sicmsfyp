@@ -19,6 +19,16 @@ public class quantityused {
 
         String time;
 
+        private String deviceid;
+
+    public String getDeviceid() {
+        return deviceid;
+    }
+
+    public void setDeviceid(String deviceid) {
+        this.deviceid = deviceid;
+    }
+        
     public String getTime() {
         return time;
     }

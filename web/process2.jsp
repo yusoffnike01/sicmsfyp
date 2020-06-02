@@ -28,6 +28,8 @@
                  
                 quantityused obj1 = new quantityused();
                 obj1.setCode(code);
+                obj1.setDeviceid(device);
+                System.out.println("Device"+device);
                 int status = UserDao.getresultsession(device);
                 int status2 = UserDao.deletecode(code);
                 

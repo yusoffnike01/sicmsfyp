@@ -20,6 +20,7 @@ public class manager {
     private String email;
     private String number;
     private int age;
+    private String nation;
     private String address;
     private String city;
     private String state;
@@ -28,6 +29,7 @@ public class manager {
    private String company;
     private String favourite;
 
+    
     public String getCompany() {
         return company;
     }
@@ -142,6 +144,14 @@ public class manager {
 
     public void setIc(String ic) {
         this.ic = ic;
+    }
+
+    public String getNation() {
+        return nation;
+    }
+
+    public void setNation(String nation) {
+        this.nation = nation;
     }
     
     

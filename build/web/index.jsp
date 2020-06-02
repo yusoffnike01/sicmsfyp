@@ -261,9 +261,8 @@
           </style>  
          
     </head>
-    <body onload="noBack();" 
-	onpageshow="if (event.persisted) noBack();" onunload="">
-               
+    <body>
+        <a href="homepage.html" style="color: white;">Home</a>
               
     <center>
         <div class="main">
@@ -287,7 +286,7 @@
                     
                      <div class="inputBox">
                         
-                        <input type="submit" value="Login">
+                        <input type="submit" name="Submit" value="Login">
                         
                     </div>
                     <br><br>

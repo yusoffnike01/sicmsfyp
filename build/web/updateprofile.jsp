@@ -222,7 +222,7 @@
         %>
         <%            String name = request.getParameter("username");
             User e = UserDao.getUserBySession(name);
-            User a=UserDao.getforgetcleaner(name);
+     
              
 
         %>
@@ -333,10 +333,10 @@
                     
                      <tr>
                         <td>
-                            <label>Secure:</label>
+                            <label>Password:</label>
                         </td>
                         <td>
-                            <input type="text" name="favourite" value="<%=a.getFavourite() %>">
+                            <input type="text" name="pass" value="<%=e.getPasword() %>">
                         </td>
 
                     </tr>

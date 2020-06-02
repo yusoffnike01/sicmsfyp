@@ -277,9 +277,70 @@ table{
   to {transform: scale(1)}
 }
 
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  opacity: 1;
+  transition: opacity 0.6s;
+  margin-bottom: 15px;
+  margin-left: 75%;
+ position: fixed;
+  height:80px;
+}
+.alert p
+{
+    font-size: 12px;
+    
+}
+.alert.warning {background-color: #ff9800;}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
 @media  (max-width: 768px) {
     
+ .alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  opacity: 1;
+  transition: opacity 0.6s;
+  margin-bottom: 15px;
+  margin-left: 50%;
+  position: fixed;
+  
+  height:82px;
+}
+.alert p
+{
+    font-size: 10px;
     
+}
+
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
     .tab {
                 overflow: hidden;
                 border: 1px solid #ccc;
@@ -431,6 +492,7 @@ margin-left: 5%;
    font-size: 13px;
 }
 
+
 }
 
 
@@ -471,18 +533,15 @@ margin-left: 5%;
             </div>
             <div class="navbar-nav ml-auto">
            <div class="dropdown">
-               <a href="#"class="nav-item nav-link active">Dashboard</a>
-                 <div class="dropdown-content">
-  <a href="page1.jsp">Dashboard 1</a>
-  <a href="page2.jsp">Dashboard 2</a>
-                 </div>
+               <a href="page1.jsp"class="nav-item nav-link active">Dashboard</a>
+                 
            </div>
                  
                 <div class="dropdown">
-                     <a href="#" class="nav-item nav-link">Monitor</a>
+                     <a href="reportmanager.jsp" class="nav-item nav-link">Monitor</a>
                     <div class="dropdown-content">
-  <a href="reportmanager.jsp">Monitor 1</a>
-  <a href="analysis2.jsp">Monitor 2</a>
+
+
                  </div>
                      
                 </div>      
@@ -500,6 +559,43 @@ margin-left: 5%;
         </div>
     </div>    
 </nav>
+      <%
+            List <result> a=UserDao.getresultbattery(e.getUsername());
+            
+for( result m: a)
+{
+    if(m.getBattery()<30)
+    {
+        
+    
+
+    
+    %>
+   
+        <div class="alert">
+  <span class="closebtn">&times;</span>  
+  <strong><p>Warning!</p></strong> <p>Please check your <%=m.getDeviceid() %> because low battery.</p>
+</div>
+   
+    
+    <%
+        }
+}
+            
+            
+            %>
+<script>
+var close = document.getElementsByClassName("closebtn");
+var i;
+
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function(){
+    var div = this.parentElement;
+    div.style.opacity = "0";
+    setTimeout(function(){ div.style.display = "none"; }, 600);
+  }
+}
+</script>
 <div class="tab">
     
          <button class="tablinks" onclick="openCity(event, 'register')">  Register Device</button>
@@ -553,7 +649,7 @@ margin-left: 5%;
 
                         <tr>
                             <td>
-                                <p>        Name : </p>
+                                <p> Name  &nbsp; &nbsp; &nbsp;&nbsp;: </p>
                             </td>
                             <td>
                                 <input type="text" name="name">
@@ -561,7 +657,7 @@ margin-left: 5%;
                         </tr>
                         <tr>
                             <td>
-                                <p>        Device ID: </p>
+                                <p>Device ID &nbsp;: </p>
                             </td>
                             <td>
                                 <input type="text" name="device">
@@ -570,7 +666,7 @@ margin-left: 5%;
                         <tr>
                             
                              <td>
-                                 <p>               Location : </p>
+                                 <p>Location &nbsp;&nbsp;&nbsp;: </p>
                             </td>
                             <td>
                                 <select name="location">
@@ -619,7 +715,7 @@ margin-left: 5%;
                <td><%=objf.getDeviceid() %></td>
                <td><%=objf.getLocation()  %></td>
                <td>  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal<%=objf.getDeviceid() %>">Edit</button></td>
-               <td><a href="delete.jsp?id=<%=objf.getDeviceid()  %>" onclick="return confirm('Are you sure to delete?')"><button  type="button" class="btn btn-info">Delete</button></a></td>
+               <td><a href="delete8.jsp?id=<%=objf.getDeviceid()  %>" onclick="return confirm('Are you sure to delete?')"><button  type="button" class="btn btn-info">Delete</button></a></td>
            </tr>
            
            
@@ -661,7 +757,7 @@ margin-left: 5%;
                 <th >Device ID</th>
                 <th> level soap</th>
                 <th>Date</th>
-                
+                <th>Battery</th>
               <th>location</th>
          
 
@@ -683,6 +779,8 @@ margin-left: 5%;
                 <td><%= c.getDistance()-obj.getDistance() %>cm</td>
 
                 <td><%=obj.getLogdate()%></td>
+                <td><%=obj.getBattery() %></td>
+                
   <td><%=obj.getLocation() %></td>
 
   <td>
@@ -801,7 +899,7 @@ else
                                             
                                             <input type="text" name="distance" value="<%=obj.getDistance() %>">
                                               <input type="hidden" name="detail" value="<%=obj.getDetail() %>">
-                                                <input type="submit" name="Submit"  value="Edit Profile">
+                                                <input type="submit" name="Submit"  value="Edit Soap Dispenser">
                                         </form>
 						
 						

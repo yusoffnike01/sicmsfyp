@@ -47,7 +47,7 @@ body
     #profileid
             {
                 
-              width:6%;
+              width:12%;
                 height:45px;
 
                   border-radius: 50%;
@@ -274,23 +274,16 @@ body
             </div>
             <div class="navbar-nav ml-auto">
            <div class="dropdown">
-                     <a href="#" class="nav-item nav-link">Dashboard</a>
-                     <div class="dropdown-content">
-  <a href="table.jsp">Dashboard 1</a>
-  <a href="table2.jsp">Dashboard 2</a>
-                 </div>
+                     <a href="table.jsp" class="nav-item nav-link">Dashboard</a>
+                     
                     
                 </div>
                  
                   
                   <div class="dropdown">
                   
-                <a href="#" class="nav-item nav-link active ">Monitor</a>
-                 <div class="dropdown-content">
-  <a href="Report.jsp">Monitor 1</a>
-  <a href="report2.jsp">Monitor 2</a>
-                 </div>
-                  </div>
+                <a href="Report.jsp" class="nav-item nav-link active ">Monitor</a>
+                                   </div>
                 <a href="notification.jsp" class="nav-item nav-link">Notification</a>
             
                  <a href="profile.jsp" class="nav-item nav-link">profile</a>
@@ -305,7 +298,8 @@ body
 <div class="tab">
     
           <button class="tablinks" onclick="openCity(event, 'monitor')"> Monitor</button>
-
+ <button class="tablinks" onclick="openCity(event, 'battery')"> Monitor battery </button>
+ <button class="tablinks" onclick="openCity(event, 'monitor1')"> Monitor Toilet</button>
              
     
 </div>
@@ -444,28 +438,66 @@ body
 
 
 
-        <form action='process2.jsp' method='POST'>
+       <form action='process2.jsp' method='POST'>
             Key in Code:<input type="code" name="code">
             <br>
             Device &nbsp;  &nbsp; &nbsp; &nbsp;  :<select name="device">
-                
-                
-                <option>Device01</option>
-                <option>Device02</option>
-            </select>
-                
-                
-                
-                
+                 <%
+            List<result> liste = UserDao.getresult(e.getUsernamemanager());
+            information l = UserDao.getinformationBySession();
+            information k = UserDao.getinformationByaltitude();
+            for (result obj9 : liste) {
+
+                if ((k.getDistance() - obj9.getDistance()) >= l.getDistance()) {
+
+        %>
+        
+      
+
+        <%        } else if ((k.getDistance() - obj9.getDistance()) < l.getDistance()) {
+
+
+                    %>
+                    
+                <option><%=obj9.getDeviceid() %></option>
+            
+                <%
+                    }
+                }
+%>
+</select>
             <br>
             &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;   <input type="submit" value="Submit">
         </form>
         <br>
     </div>
 
+<div id="battery" class="tabcontent">
+
+        
+                
+
+                        
+
+        <div id="mybatteryChart"></div>  
 
 
 
+
+       
+
+
+
+
+       
+    </div>
+
+
+ <div id="monitor1" class="tabcontent">
+
+           <div id="myChart2"></div>  
+
+    </div>
     
       
               
@@ -554,10 +586,63 @@ body
 
 
 %>  
+
+
+
+<%
+    // --- Create two Java Arrays  
+
+    ArrayList<String> iddevice = new ArrayList<String>();
+    ArrayList<Integer> battery = new ArrayList<Integer>();
+
+    // --- Loop 10 times and create 10 string dates and 10 users  
+    List<result> test = UserDao.getresult(e.getUsernamemanager());
+
+    
+    for (result obj : test) {
+     
+
+        iddevice.add("" + obj.getDeviceid());
+        System.out.println("device"+iddevice);
+        battery.add(obj.getBattery());
+
+    }
+
+
+%>  
+
+<%
+    // --- Create two Java Arrays  
+
+    ArrayList<String> location = new ArrayList<String>();
+    ArrayList<Integer> code = new ArrayList<Integer>();
+
+    // --- Loop 10 times and create 10 string dates and 10 users  
+    List<soap_info> objn = UserDao.getresult3(e.getUsernamemanager());
+
+    
+    for (soap_info m : objn) {
+     
+
+        location.add("" + m.getLocation());
+        System.out.println("location"+location);
+        code.add(m.getId());
+        System.out.println("code"+code);
+
+    }
+
+
+%>  
+
+
+
+
+
 <script>
     // --- add a comma after each value in the array and convert to javascript string representing an array  
 
-
+var battery = [<%= join(battery, ",")%>];
+ 
     var monthData2 = [<%= join(id, ",")%>];
 
 
@@ -582,7 +667,8 @@ body
 
     }
 
-
+var a=[<%= join(location, ",") %>];
+var b=[<%= join(code, ",") %>];
 
 
 </script>  
@@ -598,7 +684,35 @@ body
 
 
     window.onload = function () {
- 
+        zingchart.render({
+            id: "myChart1",
+            width: "100%",
+            height: 380,
+            data: {
+                "type": "bar",
+                "title": {
+                    "text": "Usage of Soap"
+                },
+                "scale-x": {
+
+                    "labels": Data2
+                },
+                "plot": {
+                    "line-width": 1
+                },
+                "series": [{
+
+                        "values": Data
+
+
+
+
+                    }
+
+
+                ]
+            }
+        });
 
         zingchart.render({
             id: "myChart",
@@ -608,7 +722,7 @@ body
             data: {
                 "type": "bar",
                 "title": {
-                    "text": "Level of Graph Soap",
+                    "text": "Level  Soap",
                     fontSize: 20
                 },
                 "scale-x": {
@@ -631,7 +745,7 @@ body
 
                         "values": monthData,
 
-                        "styles": backgroundColor
+                            "styles": backgroundColor
 
 
 
@@ -643,11 +757,80 @@ body
 
         );
 
+zingchart.render({
+            id: "mybatteryChart",
+            width: "100%",
+            height: 380,
 
-    <%
+            data: {
+                "type": "line",
+                "title": {
+                    "text": "Level  Battery",
+                    fontSize: 20
+                },
+                "scale-x": {
+
+                    "labels": [<%= join(id, ",")%>]
+                },
+                "plot": {
+                    "animation": {
+                        "delay": "1000",
+                        "effect": "4",
+                        "method": "5",
+                        "sequence": "1"
+                    }
 
 
-    %>
+                },
+                "series": [
+
+                    {
+
+                        "values": battery,
+
+                        
+
+
+
+
+                    },
+                ]
+            }
+        }
+
+        );
+
+   zingchart.render({
+            id: "myChart2",
+            width: "100%",
+            height: 380,
+            data: {
+                "type": "bar",
+                "title": {
+                    "text": "Monitor the frequency of soap usage in every Toilet"
+                },
+                "scale-x": {
+
+                    "labels": a
+                },
+                "plot": {
+                    "line-width": 1
+                },
+                "series": [{
+
+                        "values": b
+
+
+
+
+                    }
+
+
+                ]
+            }
+        });
+
+
 
 
 
@@ -658,8 +841,6 @@ body
 
 
 </script>
-
-
 
 </body>
 
