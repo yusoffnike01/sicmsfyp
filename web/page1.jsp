@@ -564,7 +564,7 @@ margin-left: 5%;
             
 for( result m: a)
 {
-    if(m.getBattery()<30)
+    if(m.getBattery()<40)
     {
         
     
@@ -669,12 +669,8 @@ for (i = 0; i < close.length; i++) {
                                  <p>Location &nbsp;&nbsp;&nbsp;: </p>
                             </td>
                             <td>
-                                <select name="location">
-  <option  selected>Toilet1</option>
-  <option>Toilet2</option>
-  <option>Toilet3</option>
- 
-</select>
+                                <input type="text" name="location">
+  
                             </td>
                         </tr>
                             <td>
@@ -731,7 +727,7 @@ for (i = 0; i < close.length; i++) {
                                             <input type="text" name="name" value="<%=objf.getName() %>">
                                             
                                             <input type="text" name="id" value="<%=objf.getDeviceid() %>">
-                                              <input type="text" name="location" value="<%=objf.getLocation() %>">
+                                            <input type="text" name="location" value="<%=objf.getLocation() %>"><br>
                                                 <input type="submit" name="submit"  value="Edit">
                                         </form>
 						
@@ -779,7 +775,7 @@ for (i = 0; i < close.length; i++) {
                 <td><%= c.getDistance()-obj.getDistance() %>cm</td>
 
                 <td><%=obj.getLogdate()%></td>
-                <td><%=obj.getBattery() %></td>
+                <td><%=obj.getBattery() %>%</td>
                 
   <td><%=obj.getLocation() %></td>
 

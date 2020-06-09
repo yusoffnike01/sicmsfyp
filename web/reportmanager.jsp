@@ -785,7 +785,11 @@ body
 var a=[<%= join(location, ",") %>];
 var b=[<%= join(code, ",") %>];
 </script>  
-
+<%
+    List<quantityused>n=UserDao.getallcurrent();
+    for(quantityused b:n)
+    {
+    %>
 
 
 
@@ -922,7 +926,7 @@ zingchart.render({
             data: {
                 "type": "bar",
                 "title": {
-                    "text": "Monitor the frequency of soap usage in Toilet"
+                    "text": "Monitor the frequency of soap usage in Toilet <%=b.getTime() %>"
                 },
                 "scale-x": {
 
@@ -956,7 +960,7 @@ zingchart.render({
 
 
 </script>
-
+<%}%>
 
 
 </body>

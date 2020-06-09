@@ -1757,7 +1757,7 @@ public static List<soap_info> getresult3( String usernamemanager) {
         try {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "SELECT location,COUNT( A.id )FROM soap_info inner join quantityused as A on soap_info.deviceid = A.deviceid where soap_info.usernamemanager=? GROUP BY location");
+                    "SELECT location,COUNT( A.id )FROM soap_info inner join quantityused as A on soap_info.deviceid = A.deviceid where soap_info.usernamemanager=? and MONTH(A.time) = MONTH(CURRENT_DATE()) and YEAR(A.time) = YEAR(CURRENT_DATE()) GROUP BY location");
               ps.setString(1, usernamemanager);
             
             ResultSet rs = ps.executeQuery();
@@ -1776,5 +1776,33 @@ public static List<soap_info> getresult3( String usernamemanager) {
         }
         return list;
     }
+
+    
+    public static List<quantityused> getallcurrent() {
+        List<quantityused> list = new ArrayList<quantityused>();
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT MONTHNAME(CURDATE());");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                quantityused e = new quantityused();
+
+                  e.setTime(rs.getString(1));
+                   
+                 
+              
+               
+
+                list.add(e);
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+
 
 }

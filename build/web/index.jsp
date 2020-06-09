@@ -272,7 +272,7 @@
                 <h1>Login Form</h1>
                 
                 
-                <form action="process.jsp" method="POST" autocomplete="off">
+                <form action="process.jsp" method="Get" autocomplete="off">
                     <div class="inputBox">
                         
                         <input type="text" name="username" placeholder="Username" required>

@@ -97,11 +97,13 @@
           }
           
       }
-      else if(submit.equalsIgnoreCase("register"))
+      else if(submit.equalsIgnoreCase("regiasasster"))
       {
+          String page1="";
            try{
+               
            String username = request.getParameter("username");
-            String password=request.getParameter("password");
+           String password=request.getParameter("password");
             String ic=request.getParameter("ic");
             String usernamemanager=request.getParameter("usernamemanager");
             String name = request.getParameter("name");
@@ -146,26 +148,23 @@
                       e.setPart(part);
                       
                       int status=UserDao.save(e);
-                    
-                      
-      
+   
                    
                        if(status>0)
                       {
                           response.sendRedirect("register.jsp");
                           System.out.println("Succesfull");
                       }
-                      else{
+                       else {
                           response.sendRedirect("register.jsp");
                           System.out.println("failed");
-                          
-                          
+ 
                       }
-                       
-                   
+
                 
                    }
                       
+            
                         }catch(NumberFormatException m)  
           {
               response.sendRedirect("register.jsp");
@@ -336,7 +335,7 @@
                String state=request.getParameter("state");
                Part part=request.getPart("image");
                System.out.println("length"+ic.length());
-               if(ic.length()<12||ic.length()>12)
+               if(ic.length()<12||ic.length()>12&&Character.isLetter(ic.charAt(0))||Character.isLetter(ic.charAt(1))||Character.isLetter(ic.charAt(2))||Character.isLetter(ic.charAt(3))||Character.isLetter(ic.charAt(4))||Character.isLetter(ic.charAt(5))||Character.isLetter(ic.charAt(6))||Character.isLetter(ic.charAt(7))||Character.isLetter(ic.charAt(8))||Character.isLetter(ic.charAt(9))||Character.isLetter(ic.charAt(10))||Character.isLetter(ic.charAt(11)))
                {
                    response.sendRedirect("registercontractor.jsp");
                 
@@ -384,7 +383,80 @@
               System.out.println("invalid input");
           }
       }
-                       
+      else if(submit.equalsIgnoreCase("register"))
+      {
+           try{
+               
+           String username = request.getParameter("username");
+           String password=request.getParameter("password");
+            String ic=request.getParameter("ic");
+            String usernamemanager=request.getParameter("usernamemanager");
+            String name = request.getParameter("name");
+            String email=request.getParameter("email");
+            String number=request.getParameter("number");
+            int age = Integer.parseInt(request.getParameter("age"));
+     String national=request.getParameter("nation");
+            String address = request.getParameter("address");
+               String city = request.getParameter("city");
+                  String state = request.getParameter("state");
+                  System.out.println("state"+state);
+               
+                  Part part=request.getPart("image");
+ 
+            if(ic.length()<12||ic.length()>12&&Character.isLetter(ic.charAt(0))||Character.isLetter(ic.charAt(1))||Character.isLetter(ic.charAt(2))||Character.isLetter(ic.charAt(3))||Character.isLetter(ic.charAt(4))||Character.isLetter(ic.charAt(5))||Character.isLetter(ic.charAt(6))||Character.isLetter(ic.charAt(7))||Character.isLetter(ic.charAt(8))||Character.isLetter(ic.charAt(9))||Character.isLetter(ic.charAt(10))||Character.isLetter(ic.charAt(11)))
+            {
+                                response.sendRedirect("register.jsp");
+                                                 System.out.println("failed byk");
+
+            }
+            
+       else     if(age<18|| age>40)
+            {
+                 response.sendRedirect("register.jsp");
+                 System.out.println("failed");
+            }
+            else {
+                
+           User e = new User();
+                      e.setUsername(username);
+                      e.setPasword(password);
+                      e.setIc(ic);
+                      e.setUsernamemanager(usernamemanager);
+                      e.setName(name);
+                      e.setEmail(email);
+                      e.setNumber(number);
+                      e.setAge(age);
+                      e.setNational(national);
+                      e.setAddress(address);
+                      e.setCity(city);
+                      e.setState(state);
+               
+                      e.setPart(part);
+                      
+                      int status=UserDao.save(e);
+   
+                   
+                       if(status>0)
+                      {
+                          response.sendRedirect("register.jsp");
+                          System.out.println("Succesfull");
+                      }
+                       else {
+                          response.sendRedirect("register.jsp");
+                          System.out.println("failed");
+ 
+                      }
+
+                
+                   }
+                      
+            
+                        }catch(NumberFormatException m)  
+          {
+              response.sendRedirect("register.jsp");
+              System.out.println("invalid input");
+      }
+      }           
         %>
     </body>
 </html>

@@ -438,7 +438,7 @@ body
 
 
 
-       <form action='process2.jsp' method='POST'>
+       <form action='process5.jsp' method='POST'>
             Key in Code:<input type="code" name="code">
             <br>
             Device &nbsp;  &nbsp; &nbsp; &nbsp;  :<select name="device">
@@ -635,7 +635,11 @@ body
 %>  
 
 
-
+<%
+    List<quantityused>n=UserDao.getallcurrent();
+    for(quantityused b:n)
+    {
+    %>
 
 
 <script>
@@ -807,7 +811,7 @@ zingchart.render({
             data: {
                 "type": "bar",
                 "title": {
-                    "text": "Monitor the frequency of soap usage in every Toilet"
+                    "text": "Monitor the frequency of soap usage in Toilet <%=b.getTime() %>"
                 },
                 "scale-x": {
 
@@ -841,7 +845,7 @@ zingchart.render({
 
 
 </script>
-
+<%}%>
 </body>
 
 
