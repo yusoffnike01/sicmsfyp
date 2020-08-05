@@ -26,7 +26,7 @@ public class UserDao {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://103.6.198.22:3306/musproje_smart_soap", "musproje_yusoff","yusoffnike01");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/smarttoilet", "root","admin");
         } catch (Exception e) {
             System.out.println(e);
         }

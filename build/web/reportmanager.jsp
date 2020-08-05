@@ -933,7 +933,8 @@ zingchart.render({
                     "labels": a
                 },
                 "plot": {
-                    "line-width": 1
+                    "line-width": 1,
+            'background-color': "turquoise"
                 },
                 "series": [{
 
